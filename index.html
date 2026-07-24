@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Support Management</title>
+<title> Management Portal</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -23,6 +23,7 @@ rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 >
 
+
 <style>
 
 /* =====================================================
@@ -30,10 +31,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 ===================================================== */
 
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
     font-family:'Poppins',sans-serif;
+
 }
 
 
@@ -79,11 +85,9 @@ body::before{
     background:
     rgba(255,255,255,.06);
 
-    top:-180px;
+    top:-200px;
 
     right:-150px;
-
-    filter:blur(5px);
 
     pointer-events:none;
 
@@ -105,9 +109,9 @@ body::after{
     background:
     rgba(255,255,255,.04);
 
-    bottom:-180px;
+    bottom:-200px;
 
-    left:-120px;
+    left:-150px;
 
     pointer-events:none;
 
@@ -137,6 +141,8 @@ body::after{
 }
 
 
+/* LOGO */
+
 .logo{
 
     display:flex;
@@ -152,18 +158,18 @@ body::after{
 
 .logo-icon{
 
-    width:48px;
+    width:50px;
 
-    height:48px;
+    height:50px;
 
-    border-radius:14px;
+    border-radius:15px;
 
     background:
-    rgba(255,255,255,.15);
+    rgba(255,255,255,.14);
 
     border:
     1px solid
-    rgba(255,255,255,.25);
+    rgba(255,255,255,.22);
 
     display:flex;
 
@@ -193,14 +199,20 @@ body::after{
 
 .logo-text span{
 
+    display:block;
+
     font-size:9px;
 
     letter-spacing:2px;
 
-    opacity:.7;
+    opacity:.65;
+
+    margin-top:2px;
 
 }
 
+
+/* STATUS */
 
 .header-status{
 
@@ -212,12 +224,12 @@ body::after{
 
     color:white;
 
-    font-size:12px;
+    font-size:11px;
 
     background:
     rgba(255,255,255,.10);
 
-    padding:9px 14px;
+    padding:9px 15px;
 
     border-radius:30px;
 
@@ -251,9 +263,10 @@ body::after{
 
 .hero{
 
-    min-height:420px;
+    min-height:440px;
 
-    padding:55px 7% 70px;
+    padding:
+    55px 7% 75px;
 
     display:flex;
 
@@ -272,7 +285,7 @@ body::after{
 
 .hero-content{
 
-    max-width:650px;
+    max-width:680px;
 
 }
 
@@ -298,7 +311,7 @@ body::after{
 
     border-radius:30px;
 
-    font-size:11px;
+    font-size:10px;
 
     font-weight:600;
 
@@ -318,7 +331,8 @@ body::after{
 
     color:white;
 
-    font-size:clamp(35px,5vw,62px);
+    font-size:
+    clamp(35px,5vw,60px);
 
     line-height:1.12;
 
@@ -341,9 +355,9 @@ body::after{
     color:
     rgba(255,255,255,.75);
 
-    max-width:580px;
+    max-width:600px;
 
-    font-size:14px;
+    font-size:13px;
 
     line-height:1.8;
 
@@ -395,12 +409,12 @@ body::after{
 
 
 /* =====================================================
-   HERO CARD
+   HERO DASHBOARD CARD
 ===================================================== */
 
 .hero-card{
 
-    width:360px;
+    width:370px;
 
     background:
     rgba(255,255,255,.10);
@@ -460,102 +474,97 @@ body::after{
 }
 
 
-.monitor-line{
+.monitor-row{
 
-    height:8px;
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 0;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+
+.monitor-icon{
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:10px;
 
     background:
     rgba(255,255,255,.10);
 
-    border-radius:10px;
-
-    margin-bottom:12px;
-
-    overflow:hidden;
-
-}
-
-
-.monitor-line span{
-
-    display:block;
-
-    height:100%;
-
-    width:75%;
-
-    background:#7dffc1;
-
-    border-radius:10px;
-
-}
-
-
-.monitor-line:nth-child(3) span{
-
-    width:55%;
-
-}
-
-
-.monitor-line:nth-child(4) span{
-
-    width:88%;
-
-}
-
-
-.monitor-info{
-
     display:flex;
 
-    justify-content:space-between;
+    align-items:center;
 
-    margin-top:20px;
+    justify-content:center;
 
-    padding-top:18px;
-
-    border-top:
-    1px solid
-    rgba(255,255,255,.12);
+    font-size:14px;
 
 }
 
 
-.monitor-info div{
+.monitor-row div:nth-child(2){
 
-    text-align:center;
+    flex:1;
 
 }
 
 
-.monitor-info strong{
+.monitor-row strong{
 
     display:block;
 
-    font-size:22px;
+    font-size:11px;
 
 }
 
 
-.monitor-info small{
+.monitor-row small{
 
-    font-size:9px;
+    font-size:8px;
 
-    opacity:.65;
+    opacity:.55;
+
+}
+
+
+.monitor-status{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#5cffb2;
+
+    box-shadow:
+    0 0 10px
+    #5cffb2;
 
 }
 
 
 /* =====================================================
-   SERVICES SECTION
+   MAIN SECTION
 ===================================================== */
 
-.services{
+.management-section{
 
     background:#f6faf8;
 
-    padding:60px 7% 70px;
+    padding:
+    65px 7% 80px;
 
     position:relative;
 
@@ -567,11 +576,15 @@ body::after{
 }
 
 
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
 .section-title{
 
     text-align:center;
 
-    margin-bottom:40px;
+    margin-bottom:45px;
 
 }
 
@@ -580,11 +593,11 @@ body::after{
 
     color:#123c31;
 
-    font-size:28px;
+    font-size:29px;
 
     font-weight:800;
 
-    margin-bottom:8px;
+    margin-bottom:9px;
 
 }
 
@@ -599,12 +612,12 @@ body::after{
 
 
 /* =====================================================
-   SERVICE GRID
+   MANAGEMENT GRID
 ===================================================== */
 
-.service-grid{
+.management-grid{
 
-    max-width:1200px;
+    max-width:1250px;
 
     margin:auto;
 
@@ -618,17 +631,21 @@ body::after{
 }
 
 
-.service-card{
+/* =====================================================
+   CARD
+===================================================== */
+
+.management-card{
 
     background:white;
 
     border-radius:20px;
 
-    padding:28px;
+    padding:27px;
 
     border:
     1px solid
-    #e7efeb;
+    #e5efeb;
 
     box-shadow:
     0 12px 35px
@@ -643,7 +660,7 @@ body::after{
 }
 
 
-.service-card::before{
+.management-card::before{
 
     content:"";
 
@@ -667,18 +684,19 @@ body::after{
 }
 
 
-.service-card:hover{
+.management-card:hover{
 
-    transform:translateY(-7px);
+    transform:
+    translateY(-7px);
 
     box-shadow:
     0 20px 45px
-    rgba(0,50,35,.12);
+    rgba(0,50,35,.13);
 
 }
 
 
-.service-icon{
+.card-icon{
 
     width:58px;
 
@@ -703,7 +721,7 @@ body::after{
 }
 
 
-.service-card h3{
+.management-card h3{
 
     color:#173c32;
 
@@ -714,20 +732,22 @@ body::after{
 }
 
 
-.service-card p{
+.management-card p{
 
     color:#7c8b86;
 
-    font-size:12px;
+    font-size:11px;
 
-    line-height:1.7;
+    line-height:1.8;
+
+    min-height:58px;
 
     margin-bottom:20px;
 
 }
 
 
-.service-link{
+.card-link{
 
     display:inline-flex;
 
@@ -737,103 +757,183 @@ body::after{
 
     color:#006a4e;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:700;
 
     text-decoration:none;
-
-}
-
-
-.service-link i{
 
     transition:.2s;
 
 }
 
 
-.service-link:hover i{
+.card-link i{
 
-    transform:translateX(4px);
+    transition:.2s;
+
+}
+
+
+.card-link:hover i{
+
+    transform:
+    translateX(5px);
 
 }
 
 
 /* =====================================================
-   FEATURE STRIP
+   STATISTICS
 ===================================================== */
 
-.feature-strip{
+.stats-section{
 
-    max-width:1200px;
+    max-width:1250px;
 
-    margin:45px auto 0;
+    margin:
+    50px auto 0;
 
     display:grid;
 
     grid-template-columns:
-    repeat(3,1fr);
+    repeat(4,1fr);
 
     gap:15px;
 
 }
 
 
-.feature{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
+.stat-card{
 
     background:#eef8f4;
 
-    padding:17px;
+    padding:22px;
 
-    border-radius:14px;
+    border-radius:16px;
+
+    text-align:center;
 
 }
 
 
-.feature-icon{
-
-    width:40px;
-
-    height:40px;
-
-    border-radius:11px;
-
-    background:white;
+.stat-icon{
 
     color:#006a4e;
 
-    display:flex;
+    font-size:20px;
 
-    align-items:center;
-
-    justify-content:center;
+    margin-bottom:8px;
 
 }
 
 
-.feature strong{
+.stat-card strong{
 
     display:block;
 
-    color:#21473d;
+    color:#173c32;
 
-    font-size:12px;
+    font-size:22px;
 
 }
 
 
-.feature span{
+.stat-card span{
 
     color:#82918c;
 
     font-size:9px;
+
+}
+
+
+/* =====================================================
+   WHY CHOOSE
+===================================================== */
+
+.why-section{
+
+    max-width:1250px;
+
+    margin:
+    60px auto 0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #003b2d,
+        #006a4e
+    );
+
+    border-radius:25px;
+
+    padding:35px;
+
+    color:white;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:30px;
+
+}
+
+
+.why-content h2{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+
+.why-content p{
+
+    color:
+    rgba(255,255,255,.65);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+}
+
+
+.why-list{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+}
+
+
+.why-item{
+
+    background:
+    rgba(255,255,255,.08);
+
+    padding:13px;
+
+    border-radius:12px;
+
+    font-size:10px;
+
+}
+
+
+.why-item i{
+
+    color:#7dffc1;
+
+    margin-right:7px;
 
 }
 
@@ -848,9 +948,8 @@ body::after{
 
     color:white;
 
-    text-align:center;
-
-    padding:25px 20px;
+    padding:
+    35px 7%;
 
     position:relative;
 
@@ -859,7 +958,24 @@ body::after{
 }
 
 
-.footer h3{
+.footer-inner{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+.footer-brand h3{
 
     font-size:14px;
 
@@ -868,11 +984,20 @@ body::after{
 }
 
 
-.footer p{
+.footer-brand p{
 
-    font-size:10px;
+    font-size:9px;
 
     opacity:.55;
+
+}
+
+
+.footer-copy{
+
+    font-size:9px;
+
+    opacity:.45;
 
 }
 
@@ -881,7 +1006,7 @@ body::after{
    RESPONSIVE
 ===================================================== */
 
-@media(max-width:900px){
+@media(max-width:1000px){
 
     .hero{
 
@@ -901,10 +1026,25 @@ body::after{
     }
 
 
-    .service-grid{
+    .management-grid{
 
         grid-template-columns:
         repeat(2,1fr);
+
+    }
+
+
+    .stats-section{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+
+    .why-section{
+
+        grid-template-columns:1fr;
 
     }
 
@@ -915,7 +1055,8 @@ body::after{
 
     .header{
 
-        padding:16px 5%;
+        padding:
+        16px 5%;
 
     }
 
@@ -942,10 +1083,10 @@ body::after{
     }
 
 
-    .services{
+    .management-section{
 
         padding:
-        45px 5% 55px;
+        50px 5% 60px;
 
         border-radius:
         25px 25px 0 0;
@@ -953,23 +1094,32 @@ body::after{
     }
 
 
-    .service-grid{
+    .management-grid{
 
         grid-template-columns:1fr;
 
     }
 
 
-    .feature-strip{
+    .stats-section{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+
+    .why-list{
 
         grid-template-columns:1fr;
 
     }
 
 
-    .section-title h2{
+    .footer-inner{
 
-        font-size:24px;
+        flex-direction:column;
+
+        text-align:center;
 
     }
 
@@ -989,19 +1139,25 @@ body::after{
 
 <header class="header">
 
+
     <div class="logo">
+
 
         <div class="logo-icon">
 
-            <i class="fa-solid fa-headset"></i>
+            <i class="fa-solid fa-building-shield"></i>
 
         </div>
+
 
         <div class="logo-text">
 
-            <span>SUPPORT MANAGEMENT SYSTEM</span>
+            <h2>LINK4 COMMUNICATION</h2>
+
+            <span>BUSINESS MANAGEMENT PORTAL</span>
 
         </div>
+
 
     </div>
 
@@ -1013,6 +1169,7 @@ body::after{
         System Online
 
     </div>
+
 
 </header>
 
@@ -1032,7 +1189,7 @@ body::after{
 
             <i class="fa-solid fa-shield-halved"></i>
 
-            SECURE SUPPORT MANAGEMENT
+            PROFESSIONAL BUSINESS MANAGEMENT SYSTEM
 
         </div>
 
@@ -1048,11 +1205,13 @@ body::after{
 
         <p>
 
-            Welcome to LINK4 COMMUNICATION Support Management System.
+            Welcome to LINK4 COMMUNICATION Business Management Portal.
 
-            Manage customer support requests, calls, history and
+            Manage your customers, support operations, users, calls,
 
-            monitor your complete support workflow from one place.
+            tasks, reports and network activities from one centralized
+
+            management platform.
 
         </p>
 
@@ -1062,7 +1221,7 @@ body::after{
         class="start-btn"
         >
 
-            Get Started
+            Enter Management Portal
 
             <i class="fa-solid fa-arrow-right"></i>
 
@@ -1073,18 +1232,22 @@ body::after{
 
 
 
+    <!-- HERO MONITOR -->
+
     <div class="hero-card">
 
 
         <div class="hero-card-top">
 
+
             <h3>
 
                 <i class="fa-solid fa-chart-line"></i>
 
-                Support Monitor
+                System Overview
 
             </h3>
+
 
             <span class="live-badge">
 
@@ -1092,58 +1255,80 @@ body::after{
 
             </span>
 
-        </div>
-
-
-        <div class="monitor-line">
-
-            <span></span>
 
         </div>
 
 
-        <div class="monitor-line">
-
-            <span></span>
-
-        </div>
+        <div class="monitor-row">
 
 
-        <div class="monitor-line">
+            <div class="monitor-icon">
 
-            <span></span>
-
-        </div>
-
-
-        <div class="monitor-info">
-
-
-            <div>
-
-                <strong>24/7</strong>
-
-                <small>SUPPORT</small>
+                <i class="fa-solid fa-headset"></i>
 
             </div>
 
 
             <div>
 
-                <strong>Fast</strong>
+                <strong>Support Management</strong>
 
-                <small>RESPONSE</small>
+                <small>Service Operations</small>
+
+            </div>
+
+
+            <span class="monitor-status"></span>
+
+
+        </div>
+
+
+        <div class="monitor-row">
+
+
+            <div class="monitor-icon">
+
+                <i class="fa-solid fa-users"></i>
 
             </div>
 
 
             <div>
 
-                <strong>100%</strong>
+                <strong>Customer Management</strong>
 
-                <small>TRACKING</small>
+                <small>Customer Operations</small>
 
             </div>
+
+
+            <span class="monitor-status"></span>
+
+
+        </div>
+
+
+        <div class="monitor-row">
+
+
+            <div class="monitor-icon">
+
+                <i class="fa-solid fa-network-wired"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>Network Management</strong>
+
+                <small>Infrastructure Monitor</small>
+
+            </div>
+
+
+            <span class="monitor-status"></span>
 
 
         </div>
@@ -1157,39 +1342,42 @@ body::after{
 
 
 <!-- =====================================================
-     SERVICES
+     MANAGEMENT MODULES
 ===================================================== -->
 
-<section class="services">
+<section class="management-section">
 
 
     <div class="section-title">
 
+
         <h2>
 
-            Support Management
+            Management Modules
 
         </h2>
 
+
         <p>
 
-            Everything you need to manage and monitor customer support.
+            Centralized tools to manage your business operations efficiently.
 
         </p>
+
 
     </div>
 
 
 
-    <div class="service-grid">
+    <div class="management-grid">
 
 
-        <!-- SUPPORT -->
+        <!-- 01 SUPPORT -->
 
-        <div class="service-card">
+        <div class="management-card">
 
 
-            <div class="service-icon">
+            <div class="card-icon">
 
                 <i class="fa-solid fa-headset"></i>
 
@@ -1198,26 +1386,26 @@ body::after{
 
             <h3>
 
-                Support
+                Support Management
 
             </h3>
 
 
             <p>
 
-                Manage new customer support requests and process
+                Manage customer support requests, pending issues
 
-                pending support tasks efficiently.
+                and service operations efficiently.
 
             </p>
 
 
             <a
             href="login.html"
-            class="service-link"
+            class="card-link"
             >
 
-                Open Support
+                Manage Support
 
                 <i class="fa-solid fa-arrow-right"></i>
 
@@ -1228,12 +1416,100 @@ body::after{
 
 
 
-        <!-- CALL -->
+        <!-- 02 CUSTOMER -->
 
-        <div class="service-card">
+        <div class="management-card">
 
 
-            <div class="service-icon">
+            <div class="card-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+
+            <h3>
+
+                Customer Management
+
+            </h3>
+
+
+            <p>
+
+                Organize customer information, profiles and
+
+                customer-related activities in one place.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="card-link"
+            >
+
+                Manage Customers
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- 03 USER -->
+
+        <div class="management-card">
+
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-user-gear"></i>
+
+            </div>
+
+
+            <h3>
+
+                User Management
+
+            </h3>
+
+
+            <p>
+
+                Manage system users, roles, access permissions
+
+                and account activities securely.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="card-link"
+            >
+
+                Manage Users
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- 04 CALL -->
+
+        <div class="management-card">
+
+
+            <div class="card-icon">
 
                 <i class="fa-solid fa-phone-volume"></i>
 
@@ -1242,26 +1518,26 @@ body::after{
 
             <h3>
 
-                Support Call
+                Call Management
 
             </h3>
 
 
             <p>
 
-                Manage pending customer calls and record call work
+                Organize customer calls, communication activities
 
-                and communication details securely.
+                and follow-up operations.
 
             </p>
 
 
             <a
             href="login.html"
-            class="service-link"
+            class="card-link"
             >
 
-                Open Call
+                Manage Calls
 
                 <i class="fa-solid fa-arrow-right"></i>
 
@@ -1272,40 +1548,216 @@ body::after{
 
 
 
-        <!-- HISTORY -->
+        <!-- 05 TICKET -->
 
-        <div class="service-card">
+        <div class="management-card">
 
 
-            <div class="service-icon">
+            <div class="card-icon">
 
-                <i class="fa-solid fa-clock-rotate-left"></i>
+                <i class="fa-solid fa-ticket"></i>
 
             </div>
 
 
             <h3>
 
-                Support History
+                Ticket Management
 
             </h3>
 
 
             <p>
 
-                View completed support and call activities with
+                Track service tickets from creation to completion
 
-                complete customer service history.
+                with a structured workflow.
 
             </p>
 
 
             <a
             href="login.html"
-            class="service-link"
+            class="card-link"
             >
 
-                View History
+                Manage Tickets
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- 06 TASK -->
+
+        <div class="management-card">
+
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-list-check"></i>
+
+            </div>
+
+
+            <h3>
+
+                Task Management
+
+            </h3>
+
+
+            <p>
+
+                Organize daily tasks, assign responsibilities
+
+                and monitor work progress.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="card-link"
+            >
+
+                Manage Tasks
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- 07 REPORT -->
+
+        <div class="management-card">
+
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+            </div>
+
+
+            <h3>
+
+                Report Management
+
+            </h3>
+
+
+            <p>
+
+                Analyze business activities and generate useful
+
+                operational reports and insights.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="card-link"
+            >
+
+                View Reports
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- 08 NETWORK -->
+
+        <div class="management-card">
+
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-network-wired"></i>
+
+            </div>
+
+
+            <h3>
+
+                Network Management
+
+            </h3>
+
+
+            <p>
+
+                Monitor network operations, infrastructure
+
+                activities and connectivity services.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="card-link"
+            >
+
+                Manage Network
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- 09 SYSTEM -->
+
+        <div class="management-card">
+
+
+            <div class="card-icon">
+
+                <i class="fa-solid fa-gauge-high"></i>
+
+            </div>
+
+
+            <h3>
+
+                System Monitoring
+
+            </h3>
+
+
+            <p>
+
+                Monitor system activities, service status and
+
+                overall operational performance.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="card-link"
+            >
+
+                Monitor System
 
                 <i class="fa-solid fa-arrow-right"></i>
 
@@ -1320,73 +1772,178 @@ body::after{
 
 
     <!-- =================================================
-         FEATURE STRIP
+         STATISTICS
     ================================================= -->
 
-    <div class="feature-strip">
+    <div class="stats-section">
 
 
-        <div class="feature">
+        <div class="stat-card">
 
 
-            <div class="feature-icon">
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+
+            <strong>24/7</strong>
+
+            <span>MANAGEMENT ACCESS</span>
+
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+
+            <div class="stat-icon">
 
                 <i class="fa-solid fa-bolt"></i>
 
             </div>
 
 
-            <div>
+            <strong>Fast</strong>
 
-                <strong>Fast Workflow</strong>
-
-                <span>Quick support processing</span>
-
-            </div>
+            <span>WORKFLOW</span>
 
 
         </div>
 
 
 
-        <div class="feature">
+        <div class="stat-card">
 
 
-            <div class="feature-icon">
+            <div class="stat-icon">
 
-                <i class="fa-solid fa-chart-pie"></i>
-
-            </div>
-
-
-            <div>
-
-                <strong>Support Monitor</strong>
-
-                <span>Track support activities</span>
+                <i class="fa-solid fa-chart-line"></i>
 
             </div>
+
+
+            <strong>Real-Time</strong>
+
+            <span>MONITORING</span>
 
 
         </div>
 
 
 
-        <div class="feature">
+        <div class="stat-card">
 
 
-            <div class="feature-icon">
+            <div class="stat-icon">
 
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-shield-halved"></i>
 
             </div>
 
 
-            <div>
+            <strong>Secure</strong>
 
-                <strong>Secure System</strong>
+            <span>ACCESS CONTROL</span>
 
-                <span>Protected support access</span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         WHY CHOOSE
+    ================================================= -->
+
+    <div class="why-section">
+
+
+        <div class="why-content">
+
+
+            <h2>
+
+                Built for Smarter Management
+
+            </h2>
+
+
+            <p>
+
+                LINK4 COMMUNICATION Management Portal brings
+
+                essential business operations into one centralized
+
+                platform, helping teams work faster, stay organized
+
+                and maintain better operational visibility.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="why-list">
+
+
+            <div class="why-item">
+
+                <i class="fa-solid fa-check"></i>
+
+                Centralized Management
+
+            </div>
+
+
+            <div class="why-item">
+
+                <i class="fa-solid fa-check"></i>
+
+                Real-Time Monitoring
+
+            </div>
+
+
+            <div class="why-item">
+
+                <i class="fa-solid fa-check"></i>
+
+                Secure User Access
+
+            </div>
+
+
+            <div class="why-item">
+
+                <i class="fa-solid fa-check"></i>
+
+                Organized Workflow
+
+            </div>
+
+
+            <div class="why-item">
+
+                <i class="fa-solid fa-check"></i>
+
+                Better Productivity
+
+            </div>
+
+
+            <div class="why-item">
+
+                <i class="fa-solid fa-check"></i>
+
+                Professional Reporting
 
             </div>
 
@@ -1407,17 +1964,24 @@ body::after{
 
 <footer class="footer">
 
-    <h3>
 
-        Support Management
+    <div class="footer-inner">
 
-    </h3>
 
-    <p>
+        <div class="footer-brand">
 
-        Support Management System © 2026
+        </div>
 
-    </p>
+
+        <div class="footer-copy">
+
+            ©  Menagment . All Rights Reserved.
+
+        </div>
+
+
+    </div>
+
 
 </footer>
 
