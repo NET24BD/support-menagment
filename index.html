@@ -3,49 +3,979 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Welcome | Support menagment System </title>
+<title>Support Management</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <!-- Google Font -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<style>
 
+/* =====================================================
+   RESET
+===================================================== */
 
-    <!-- Font Awesome -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
 
-    <!-- Index Page CSS -->
+/* =====================================================
+   BODY
+===================================================== */
 
-    <link
-        rel="stylesheet"
-        href="css/login.css"
-    >
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #003b2d 0%,
+        #006a4e 45%,
+        #00a878 100%
+    );
+
+    color:#222;
+
+    overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND EFFECT
+===================================================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.06);
+
+    top:-180px;
+
+    right:-150px;
+
+    filter:blur(5px);
+
+    pointer-events:none;
+
+}
+
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:400px;
+
+    height:400px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.04);
+
+    bottom:-180px;
+
+    left:-120px;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    width:100%;
+
+    padding:20px 7%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    color:white;
+
+}
+
+
+.logo-icon{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.15);
+
+    border:
+    1px solid
+    rgba(255,255,255,.25);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    box-shadow:
+    0 10px 25px
+    rgba(0,0,0,.15);
+
+}
+
+
+.logo-text h2{
+
+    font-size:17px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.logo-text span{
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    opacity:.7;
+
+}
+
+
+.header-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:white;
+
+    font-size:12px;
+
+    background:
+    rgba(255,255,255,.10);
+
+    padding:9px 14px;
+
+    border-radius:30px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+}
+
+
+.status-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#5cffb2;
+
+    box-shadow:
+    0 0 12px
+    #5cffb2;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:420px;
+
+    padding:55px 7% 70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:50px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.hero-content{
+
+    max-width:650px;
+
+}
+
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:
+    rgba(255,255,255,.12);
+
+    border:
+    1px solid
+    rgba(255,255,255,.18);
+
+    color:white;
+
+    padding:9px 16px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+
+.badge i{
+
+    color:#7dffc1;
+
+}
+
+
+.hero h1{
+
+    color:white;
+
+    font-size:clamp(35px,5vw,62px);
+
+    line-height:1.12;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+
+}
+
+
+.hero h1 span{
+
+    color:#8dffd0;
+
+}
+
+
+.hero p{
+
+    color:
+    rgba(255,255,255,.75);
+
+    max-width:580px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+    margin-bottom:28px;
+
+}
+
+
+.start-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 25px;
+
+    background:white;
+
+    color:#006a4e;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+    box-shadow:
+    0 12px 30px
+    rgba(0,0,0,.18);
+
+}
+
+
+.start-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 18px 35px
+    rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   HERO CARD
+===================================================== */
+
+.hero-card{
+
+    width:360px;
+
+    background:
+    rgba(255,255,255,.10);
+
+    border:
+    1px solid
+    rgba(255,255,255,.18);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    color:white;
+
+    box-shadow:
+    0 25px 60px
+    rgba(0,0,0,.15);
+
+}
+
+
+.hero-card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+
+.hero-card-top h3{
+
+    font-size:15px;
+
+}
+
+
+.live-badge{
+
+    font-size:9px;
+
+    background:
+    rgba(92,255,178,.15);
+
+    color:#7dffc1;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+}
+
+
+.monitor-line{
+
+    height:8px;
+
+    background:
+    rgba(255,255,255,.10);
+
+    border-radius:10px;
+
+    margin-bottom:12px;
+
+    overflow:hidden;
+
+}
+
+
+.monitor-line span{
+
+    display:block;
+
+    height:100%;
+
+    width:75%;
+
+    background:#7dffc1;
+
+    border-radius:10px;
+
+}
+
+
+.monitor-line:nth-child(3) span{
+
+    width:55%;
+
+}
+
+
+.monitor-line:nth-child(4) span{
+
+    width:88%;
+
+}
+
+
+.monitor-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:20px;
+
+    padding-top:18px;
+
+    border-top:
+    1px solid
+    rgba(255,255,255,.12);
+
+}
+
+
+.monitor-info div{
+
+    text-align:center;
+
+}
+
+
+.monitor-info strong{
+
+    display:block;
+
+    font-size:22px;
+
+}
+
+
+.monitor-info small{
+
+    font-size:9px;
+
+    opacity:.65;
+
+}
+
+
+/* =====================================================
+   SERVICES SECTION
+===================================================== */
+
+.services{
+
+    background:#f6faf8;
+
+    padding:60px 7% 70px;
+
+    position:relative;
+
+    z-index:3;
+
+    border-radius:
+    35px 35px 0 0;
+
+}
+
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+.section-title h2{
+
+    color:#123c31;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+
+.section-title p{
+
+    color:#7b8b85;
+
+    font-size:12px;
+
+}
+
+
+/* =====================================================
+   SERVICE GRID
+===================================================== */
+
+.service-grid{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:22px;
+
+}
+
+
+.service-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    border:
+    1px solid
+    #e7efeb;
+
+    box-shadow:
+    0 12px 35px
+    rgba(0,50,35,.07);
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.service-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #006a4e,
+        #00b981
+    );
+
+}
+
+
+.service-card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:
+    0 20px 45px
+    rgba(0,50,35,.12);
+
+}
+
+
+.service-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    background:#e7f8f2;
+
+    color:#006a4e;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:23px;
+
+    margin-bottom:20px;
+
+}
+
+
+.service-card h3{
+
+    color:#173c32;
+
+    font-size:17px;
+
+    margin-bottom:9px;
+
+}
+
+
+.service-card p{
+
+    color:#7c8b86;
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+
+}
+
+
+.service-link{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#006a4e;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+}
+
+
+.service-link i{
+
+    transition:.2s;
+
+}
+
+
+.service-link:hover i{
+
+    transform:translateX(4px);
+
+}
+
+
+/* =====================================================
+   FEATURE STRIP
+===================================================== */
+
+.feature-strip{
+
+    max-width:1200px;
+
+    margin:45px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    background:#eef8f4;
+
+    padding:17px;
+
+    border-radius:14px;
+
+}
+
+
+.feature-icon{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:11px;
+
+    background:white;
+
+    color:#006a4e;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.feature strong{
+
+    display:block;
+
+    color:#21473d;
+
+    font-size:12px;
+
+}
+
+
+.feature span{
+
+    color:#82918c;
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    background:#003b2d;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px 20px;
+
+    position:relative;
+
+    z-index:3;
+
+}
+
+
+.footer h3{
+
+    font-size:14px;
+
+    margin-bottom:5px;
+
+}
+
+
+.footer p{
+
+    font-size:10px;
+
+    opacity:.55;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .hero{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .hero-card{
+
+        width:100%;
+
+        max-width:500px;
+
+    }
+
+
+    .service-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .header{
+
+        padding:16px 5%;
+
+    }
+
+
+    .header-status{
+
+        display:none;
+
+    }
+
+
+    .hero{
+
+        padding:
+        40px 5% 60px;
+
+    }
+
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+
+    .services{
+
+        padding:
+        45px 5% 55px;
+
+        border-radius:
+        25px 25px 0 0;
+
+    }
+
+
+    .service-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .feature-strip{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .section-title h2{
+
+        font-size:24px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -53,218 +983,165 @@
 <body>
 
 
-    <!-- =========================================
-         BACKGROUND EFFECT
-    ========================================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-    <div class="bg-circle circle-one"></div>
+<header class="header">
 
-    <div class="bg-circle circle-two"></div>
+    <div class="logo">
 
-    <div class="bg-circle circle-three"></div>
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-headset"></i>
+
+        </div>
+
+        <div class="logo-text">
+
+            <span>SUPPORT MANAGEMENT SYSTEM</span>
+
+        </div>
+
+    </div>
 
 
-    <!-- =========================================
-         MAIN WELCOME CARD
-    ========================================== -->
+    <div class="header-status">
 
-    <main class="welcome-page">
+        <span class="status-dot"></span>
+
+        System Online
+
+    </div>
+
+</header>
 
 
-        <div class="welcome-card">
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
 
 
-            <!-- =====================================
-                 LOGO
-            ====================================== -->
+    <div class="hero-content">
 
-            <div class="welcome-logo">
 
-                <i class="fa-solid fa-network-wired"></i>
+        <div class="badge">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            SECURE SUPPORT MANAGEMENT
+
+        </div>
+
+
+        <h1>
+
+            Hello, Get
+
+            <span>Started.</span>
+
+        </h1>
+
+
+        <p>
+
+            Welcome to LINK4 COMMUNICATION Support Management System.
+
+            Manage customer support requests, calls, history and
+
+            monitor your complete support workflow from one place.
+
+        </p>
+
+
+        <a
+        href="login.html"
+        class="start-btn"
+        >
+
+            Get Started
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+
+    </div>
+
+
+
+    <div class="hero-card">
+
+
+        <div class="hero-card-top">
+
+            <h3>
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Support Monitor
+
+            </h3>
+
+            <span class="live-badge">
+
+                ● LIVE
+
+            </span>
+
+        </div>
+
+
+        <div class="monitor-line">
+
+            <span></span>
+
+        </div>
+
+
+        <div class="monitor-line">
+
+            <span></span>
+
+        </div>
+
+
+        <div class="monitor-line">
+
+            <span></span>
+
+        </div>
+
+
+        <div class="monitor-info">
+
+
+            <div>
+
+                <strong>24/7</strong>
+
+                <small>SUPPORT</small>
 
             </div>
 
 
-            <!-- =====================================
-                 BRAND
-            ====================================== -->
+            <div>
 
-            <div class="brand-title">
+                <strong>Fast</strong>
 
-                Menagement
+                <small>RESPONSE</small>
 
             </div>
 
 
-            <div class="brand-subtitle">
+            <div>
 
-                System
+                <strong>100%</strong>
 
-            </div>
-
-
-            <!-- =====================================
-                 WELCOME BADGE
-            ====================================== -->
-
-            <div class="welcome-badge">
-
-                <span class="badge-dot"></span>
-
-                Welcome to our system
-
-            </div>
-
-
-            <!-- =====================================
-                 MAIN TITLE
-            ====================================== -->
-
-            <h1>
-
-                Hello,
-
-                <span>
-
-                    Get Started!
-
-                </span>
-
-            </h1>
-
-
-            <!-- =====================================
-                 DESCRIPTION
-            ====================================== -->
-
-            <p class="welcome-description">
-
-                Welcome to the
-
-                <strong>
-                    Support Menagment
-                </strong>
-
-                Support Management System.
-
-                Manage support requests, customer
-                calls and support history easily
-                from one powerful platform.
-
-            </p>
-
-
-            <!-- =====================================
-                 GET STARTED BUTTON
-            ====================================== -->
-
-            <a
-                href="login.html"
-                class="start-button"
-            >
-
-                <span>
-
-                    Get Started
-
-                </span>
-
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-
-            <!-- =====================================
-                 FEATURES
-            ====================================== -->
-
-            <div class="feature-grid">
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-headset"></i>
-
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Support
-                        </strong>
-
-                        <small>
-                            Management
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-phone-volume"></i>
-
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Call
-                        </strong>
-
-                        <small>
-                            Management
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Support
-                        </strong>
-
-                        <small>
-                            History
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- =====================================
-                 FOOTER
-            ====================================== -->
-
-            <div class="welcome-footer">
-
-                <span>
-                    <i class="fa-solid fa-shield-halved"></i>
-                </span>
-
-                Secure Support Management System
+                <small>TRACKING</small>
 
             </div>
 
@@ -272,7 +1149,277 @@
         </div>
 
 
-    </main>
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="services">
+
+
+    <div class="section-title">
+
+        <h2>
+
+            Support Management
+
+        </h2>
+
+        <p>
+
+            Everything you need to manage and monitor customer support.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="service-grid">
+
+
+        <!-- SUPPORT -->
+
+        <div class="service-card">
+
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-headset"></i>
+
+            </div>
+
+
+            <h3>
+
+                Support
+
+            </h3>
+
+
+            <p>
+
+                Manage new customer support requests and process
+
+                pending support tasks efficiently.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="service-link"
+            >
+
+                Open Support
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- CALL -->
+
+        <div class="service-card">
+
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-phone-volume"></i>
+
+            </div>
+
+
+            <h3>
+
+                Support Call
+
+            </h3>
+
+
+            <p>
+
+                Manage pending customer calls and record call work
+
+                and communication details securely.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="service-link"
+            >
+
+                Open Call
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- HISTORY -->
+
+        <div class="service-card">
+
+
+            <div class="service-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <h3>
+
+                Support History
+
+            </h3>
+
+
+            <p>
+
+                View completed support and call activities with
+
+                complete customer service history.
+
+            </p>
+
+
+            <a
+            href="login.html"
+            class="service-link"
+            >
+
+                View History
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         FEATURE STRIP
+    ================================================= -->
+
+    <div class="feature-strip">
+
+
+        <div class="feature">
+
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-bolt"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>Fast Workflow</strong>
+
+                <span>Quick support processing</span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="feature">
+
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>Support Monitor</strong>
+
+                <span>Track support activities</span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="feature">
+
+
+            <div class="feature-icon">
+
+                <i class="fa-solid fa-lock"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong>Secure System</strong>
+
+                <span>Protected support access</span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <h3>
+
+        Support Management
+
+    </h3>
+
+    <p>
+
+        Support Management System © 2026
+
+    </p>
+
+</footer>
 
 
 </body>
