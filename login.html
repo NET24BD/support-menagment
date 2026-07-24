@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,9 +10,40 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="description"
+        content="Support Management System Login"
+    >
+
     <title>Login | Support Management</title>
 
-    <!-- Login CSS -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+
     <link
         rel="stylesheet"
         href="css/login.css"
@@ -19,14 +51,377 @@
 
 </head>
 
+
 <body>
 
 
-    <!-- Login HTML Code এখানে থাকবে -->
+
+    <main class="login-page">
+
+        <div class="background-decoration decoration-one"></div>
+
+        <div class="background-decoration decoration-two"></div>
 
 
-    <!-- Login JavaScript -->
+
+        <section class="login-container">
+
+
+            <div class="login-brand">
+
+
+                <div class="brand-icon">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                </div>
+
+
+                <h1>
+                    SUPPORT
+                </h1>
+
+
+                <h2>
+                    MANAGEMENT
+                </h2>
+
+
+                <p>
+                    Welcome to the Support Management System.
+                    Please login to continue.
+                </p>
+
+
+                <div class="brand-line"></div>
+
+
+                <div class="brand-info">
+
+                    <div class="brand-info-item">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            Secure Access
+                        </span>
+
+                    </div>
+
+
+                    <div class="brand-info-item">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <span>
+                            Team Management
+                        </span>
+
+                    </div>
+
+
+                    <div class="brand-info-item">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <span>
+                            Fast Support
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="login-form-area">
+
+
+                <!-- Login Header -->
+
+                <div class="login-header">
+
+                    <div class="mobile-brand-icon">
+
+                        <i class="fa-solid fa-headset"></i>
+
+                    </div>
+
+
+                    <h2>
+                        Welcome Back
+                    </h2>
+
+
+                    <p>
+                        Login to your account
+                    </p>
+
+                </div>
+
+
+                <form
+                    id="loginForm"
+                    autocomplete="off"
+                >
+
+
+                    <div class="form-group">
+
+
+                        <label for="username">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Username
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+
+                            <i class="fa-solid fa-user input-icon"></i>
+
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required
+                            >
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+
+                        <label for="password">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Password
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i
+                                    class="fa-solid fa-eye"
+                                    id="passwordIcon"
+                                ></i>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="login-options">
+
+
+                        <label class="remember-me">
+
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+
+                            <span class="custom-checkbox">
+
+                                <i class="fa-solid fa-check"></i>
+
+                            </span>
+
+
+                            <span>
+                                Remember me
+                            </span>
+
+
+                        </label>
+
+
+                    </div>
+
+
+                    <div
+                        class="message-box"
+                        id="messageBox"
+                    >
+
+                        <i
+                            class="fa-solid fa-circle-info"
+                            id="messageIcon"
+                        ></i>
+
+
+                        <span id="messageText">
+                            Message
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                        id="loginButton"
+                    >
+
+
+                        <span id="loginButtonText">
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+
+                            Login
+
+                        </span>
+
+
+                        <span
+                            id="loginLoading"
+                            class="login-loading"
+                        >
+
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+
+                            Checking...
+
+                        </span>
+
+
+                    </button>
+
+
+                </form>
+
+
+
+                <div class="login-footer">
+
+
+                    <p>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Secure Support Management System
+
+                    </p>
+
+
+                    <span>
+
+                        © 2026 Support Management
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <div
+        class="custom-popup"
+        id="customPopup"
+    >
+
+
+        <div class="popup-overlay"></div>
+
+
+        <div class="popup-box">
+
+
+            <div
+                class="popup-icon"
+                id="popupIcon"
+            >
+
+                <i
+                    class="fa-solid fa-circle-info"
+                    id="popupIconElement"
+                ></i>
+
+            </div>
+
+
+            <h3 id="popupTitle">
+                Message
+            </h3>
+
+
+            <p id="popupMessage">
+                Message
+            </p>
+
+
+            <button
+                type="button"
+                class="popup-button"
+                id="popupButton"
+            >
+
+                OK
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
     <script src="js/login.js"></script>
 
+
 </body>
+
 </html>
