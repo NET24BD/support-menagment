@@ -1,6 +1,6 @@
 /* =====================================================
    LINK4 COMMUNICATION
-   LOGIN JAVASCRIPT
+   ROLE BASED LOGIN SYSTEM
 ===================================================== */
 
 
@@ -10,34 +10,40 @@
 
 const LOGIN_CONFIG = {
 
-    /*
-        আপনার Google Apps Script Web App URL এখানে দিন।
+    API_URL:
+        "https://script.google.com/macros/s/AKfycbxbgyIg_ddBYIs8qkQvRN3xS3-ZG451C5y_2sNbVFWdWydzb9Mc6qV5CoWB5rjs91ghjQ/exec",
 
-        Example:
-
-        API_URL:
-        "https://script.google.com/macros/s/XXXXXXXX/exec"
-
-        Backend ব্যবহার না করলে
-        নিচে DEMO_LOGIN = true রাখুন।
-    */
-
-    API_URL: "",
-
-    /*
-        Demo Login
-
-        true  = Demo Login ব্যবহার করবে
-        false = Google Apps Script API ব্যবহার করবে
-    */
-
-    DEMO_LOGIN: true
+    DEMO_LOGIN: false
 
 };
 
 
 /* =====================================================
-   DOM ELEMENTS
+   DASHBOARD PATH
+===================================================== */
+
+const DASHBOARDS = {
+
+    admin:
+        "dashboards/admin-dashboard.html",
+
+    support:
+        "dashboards/support-dashboard.html",
+
+    call:
+        "dashboards/call-dashboard.html",
+
+    user:
+        "dashboards/user-dashboard.html",
+
+    staff:
+        "dashboards/user-dashboard.html"
+
+};
+
+
+/* =====================================================
+   DOM READY
 ===================================================== */
 
 document.addEventListener(
@@ -58,9 +64,8 @@ function initializeLogin() {
 
 
     /*
-        যদি User আগে থেকেই Login করা থাকে
-        তাহলে সরাসরি Dashboard এ যাবে
-    */
+     * Already Logged In
+     */
 
     const loggedIn =
         localStorage.getItem(
@@ -72,9 +77,7 @@ function initializeLogin() {
         loggedIn === "true"
     ) {
 
-        window.location.replace(
-            "dashboard.html"
-        );
+        redirectByRole();
 
         return;
 
@@ -82,8 +85,8 @@ function initializeLogin() {
 
 
     /*
-        Login Form
-    */
+     * Login Form
+     */
 
     const loginForm =
         document.getElementById(
@@ -103,8 +106,8 @@ function initializeLogin() {
 
 
     /*
-        Form Submit
-    */
+     * Submit
+     */
 
     loginForm.addEventListener(
         "submit",
@@ -113,16 +116,15 @@ function initializeLogin() {
 
 
     /*
-        Password Show / Hide
-    */
+     * Password Toggle
+     */
 
     setupPasswordToggle();
 
 
     /*
-        Clear Error Message
-        যখন User আবার Input করবে
-    */
+     * Input Listener
+     */
 
     setupInputListeners();
 
@@ -133,19 +135,17 @@ function initializeLogin() {
    HANDLE LOGIN
 ===================================================== */
 
-async function handleLogin(event) {
+async function handleLogin(
+    event
+) {
 
-
-    /*
-        Page Reload বন্ধ করা
-    */
 
     event.preventDefault();
 
 
     /*
-        Input Elements
-    */
+     * Inputs
+     */
 
     const usernameInput =
         document.getElementById(
@@ -175,8 +175,8 @@ async function handleLogin(event) {
 
 
     /*
-        Input Value
-    */
+     * Values
+     */
 
     const username =
         usernameInput.value.trim();
@@ -187,8 +187,8 @@ async function handleLogin(event) {
 
 
     /*
-        Empty Validation
-    */
+     * Validation
+     */
 
     if (
         username === ""
@@ -223,8 +223,8 @@ async function handleLogin(event) {
 
 
     /*
-        Loading State
-    */
+     * Loading
+     */
 
     setLoginLoading(
         true
@@ -235,38 +235,46 @@ async function handleLogin(event) {
 
 
         /*
-            DEMO LOGIN
-        */
+         * Authenticate
+         */
 
-        if (
-            LOGIN_CONFIG.DEMO_LOGIN === true
-        ) {
-
-            await demoLogin(
+        const result =
+            await authenticateUser(
                 username,
                 password
+            );
+
+
+        /*
+         * Check Result
+         */
+
+        if (
+            !result.success
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Login failed."
             );
 
         }
 
 
         /*
-            GOOGLE APPS SCRIPT LOGIN
-        */
+         * Create Session
+         */
 
-        else {
-
-            await authenticateUser(
-                username,
-                password
-            );
-
-        }
+        createLoginSession(
+            result
+        );
 
 
     }
 
-    catch (error) {
+    catch (
+        error
+    ) {
 
 
         console.error(
@@ -277,7 +285,7 @@ async function handleLogin(event) {
 
         showMessage(
             error.message ||
-            "Login failed. Please try again.",
+            "Unable to login.",
             "error"
         );
 
@@ -292,92 +300,7 @@ async function handleLogin(event) {
 
 
 /* =====================================================
-   DEMO LOGIN
-===================================================== */
-
-function demoLogin(
-    username,
-    password
-) {
-
-
-    return new Promise(
-        function (
-            resolve,
-            reject
-        ) {
-
-
-            setTimeout(
-                function () {
-
-
-                    /*
-                        Demo Username / Password
-
-                        Username:
-                        admin
-
-                        Password:
-                        123456
-
-                        পরে এগুলো Remove করে
-                        Google Sheet Login ব্যবহার করবেন।
-                    */
-
-
-                    if (
-                        username === "admin" &&
-                        password === "123456"
-                    ) {
-
-
-                        /*
-                            Login Session
-                        */
-
-                        createLoginSession({
-
-                            userName:
-                                "Administrator",
-
-                            username:
-                                username,
-
-                            role:
-                                "Administrator"
-
-                        });
-
-
-                        resolve();
-
-                    }
-
-                    else {
-
-
-                        reject(
-                            new Error(
-                                "Invalid username or password."
-                            )
-                        );
-
-                    }
-
-
-                },
-                700
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   GOOGLE APPS SCRIPT AUTHENTICATION
+   AUTHENTICATE USER
 ===================================================== */
 
 async function authenticateUser(
@@ -387,23 +310,23 @@ async function authenticateUser(
 
 
     /*
-        API URL Check
-    */
+     * API Check
+     */
 
     if (
         !LOGIN_CONFIG.API_URL
     ) {
 
         throw new Error(
-            "Login API URL is not configured."
+            "Login API URL is missing."
         );
 
     }
 
 
     /*
-        Google Apps Script API Request
-    */
+     * API Request
+     */
 
     const response =
         await fetch(
@@ -416,7 +339,7 @@ async function authenticateUser(
                 headers:
                     {
                         "Content-Type":
-                            "application/json"
+                            "text/plain;charset=utf-8"
                     },
 
                 body:
@@ -438,8 +361,8 @@ async function authenticateUser(
 
 
     /*
-        Response Check
-    */
+     * Server Response Check
+     */
 
     if (
         !response.ok
@@ -453,49 +376,14 @@ async function authenticateUser(
 
 
     /*
-        JSON Response
-    */
+     * JSON
+     */
 
     const result =
         await response.json();
 
 
-    /*
-        Login Failed
-    */
-
-    if (
-        !result.success
-    ) {
-
-        throw new Error(
-            result.message ||
-            "Invalid username or password."
-        );
-
-    }
-
-
-    /*
-        Login Successful
-    */
-
-    createLoginSession({
-
-        userName:
-            result.name ||
-            result.userName ||
-            username,
-
-        username:
-            result.username ||
-            username,
-
-        role:
-            result.role ||
-            "Staff"
-
-    });
+    return result;
 
 }
 
@@ -510,8 +398,21 @@ function createLoginSession(
 
 
     /*
-        Login Status
-    */
+     * Normalize Role
+     */
+
+    const role =
+        String(
+            userData.role ||
+            "user"
+        )
+        .trim()
+        .toLowerCase();
+
+
+    /*
+     * Save Login Status
+     */
 
     localStorage.setItem(
         "loggedIn",
@@ -520,40 +421,51 @@ function createLoginSession(
 
 
     /*
-        User Name
-    */
+     * Save User Name
+     */
 
     localStorage.setItem(
         "userName",
-        userData.userName
+        userData.name ||
+        "User"
     );
 
 
     /*
-        Username
-    */
+     * Save Username
+     */
 
     localStorage.setItem(
         "username",
-        userData.username
+        userData.username ||
+        ""
     );
 
 
     /*
-        Role
-    */
+     * Save Role
+     */
 
     localStorage.setItem(
         "role",
-        userData.role
+        role
     );
 
 
     /*
-        Login Time
+     * Save Status
+     */
 
-        Future session management এর জন্য
-    */
+    localStorage.setItem(
+        "status",
+        userData.status ||
+        "Active"
+    );
+
+
+    /*
+     * Login Time
+     */
 
     localStorage.setItem(
         "loginTime",
@@ -562,8 +474,8 @@ function createLoginSession(
 
 
     /*
-        Dashboard Redirect
-    */
+     * Success Message
+     */
 
     showMessage(
         "Login successful. Redirecting...",
@@ -571,12 +483,14 @@ function createLoginSession(
     );
 
 
+    /*
+     * Redirect
+     */
+
     setTimeout(
         function () {
 
-            window.location.replace(
-                "dashboard.html"
-            );
+            redirectByRole();
 
         },
         500
@@ -586,7 +500,116 @@ function createLoginSession(
 
 
 /* =====================================================
-   PASSWORD SHOW / HIDE
+   ROLE BASED REDIRECT
+===================================================== */
+
+function redirectByRole() {
+
+
+    /*
+     * Get Role
+     */
+
+    const role =
+        String(
+            localStorage.getItem(
+                "role"
+            ) ||
+            "user"
+        )
+        .trim()
+        .toLowerCase();
+
+
+    /*
+     * Dashboard
+     */
+
+    let dashboard;
+
+
+    /*
+     * Admin
+     */
+
+    if (
+        role === "admin" ||
+        role === "administrator"
+    ) {
+
+        dashboard =
+            DASHBOARDS.admin;
+
+    }
+
+
+    /*
+     * Support
+     */
+
+    else if (
+        role === "support"
+    ) {
+
+        dashboard =
+            DASHBOARDS.support;
+
+    }
+
+
+    /*
+     * Call
+     */
+
+    else if (
+        role === "call"
+    ) {
+
+        dashboard =
+            DASHBOARDS.call;
+
+    }
+
+
+    /*
+     * Staff
+     */
+
+    else if (
+        role === "staff"
+    ) {
+
+        dashboard =
+            DASHBOARDS.staff;
+
+    }
+
+
+    /*
+     * User
+     */
+
+    else {
+
+        dashboard =
+            DASHBOARDS.user;
+
+    }
+
+
+    /*
+     * Redirect
+     */
+
+    window.location.replace(
+        dashboard
+    );
+
+}
+
+
+/* =====================================================
+   PASSWORD TOGGLE
 ===================================================== */
 
 function setupPasswordToggle() {
@@ -603,11 +626,6 @@ function setupPasswordToggle() {
             "togglePassword"
         );
 
-
-    /*
-        যদি HTML এ Toggle Button না থাকে
-        তাহলে Function বন্ধ থাকবে
-    */
 
     if (
         !passwordInput ||
@@ -651,7 +669,6 @@ function setupPasswordToggle() {
 
             }
 
-
         }
     );
 
@@ -667,13 +684,6 @@ function showMessage(
     type = "error"
 ) {
 
-
-    /*
-        HTML এ নিচের Element থাকলে
-        সেখানে Message দেখাবে:
-
-        <div id="loginMessage"></div>
-    */
 
     const messageElement =
         document.getElementById(
@@ -699,21 +709,18 @@ function showMessage(
             "block";
 
 
-        return;
-
     }
 
+    else {
 
-    /*
-        Login Message Element না থাকলে
-        Console এ দেখাবে
-    */
 
-    console.log(
-        type.toUpperCase() +
-        ": " +
-        message
-    );
+        console.log(
+            type.toUpperCase() +
+            ": " +
+            message
+        );
+
+    }
 
 }
 
@@ -732,7 +739,9 @@ function setupInputListeners() {
 
 
     inputs.forEach(
-        function (input) {
+        function (
+            input
+        ) {
 
 
             input.addEventListener(
@@ -754,7 +763,6 @@ function setupInputListeners() {
                             "none";
 
                     }
-
 
                 }
             );
@@ -794,11 +802,6 @@ function setLoginLoading(
     ) {
 
 
-        /*
-            Original Button Text
-            Save করে রাখা
-        */
-
         if (
             !loginButton.dataset.originalText
         ) {
@@ -815,7 +818,6 @@ function setLoginLoading(
 
         loginButton.textContent =
             "Signing in...";
-
 
     }
 
@@ -836,45 +838,6 @@ function setLoginLoading(
 
 
 /* =====================================================
-   LOGOUT SESSION CLEANUP
-===================================================== */
-
-function clearLoginSession() {
-
-
-    localStorage.removeItem(
-        "loggedIn"
-    );
-
-
-    localStorage.removeItem(
-        "userName"
-    );
-
-
-    localStorage.removeItem(
-        "name"
-    );
-
-
-    localStorage.removeItem(
-        "username"
-    );
-
-
-    localStorage.removeItem(
-        "role"
-    );
-
-
-    localStorage.removeItem(
-        "loginTime"
-    );
-
-}
-
-
-/* =====================================================
    LOGIN PAGE SECURITY
 ===================================================== */
 
@@ -889,18 +852,11 @@ window.addEventListener(
             );
 
 
-        /*
-            Login করা থাকলে
-            Login Page এ থাকার দরকার নেই
-        */
-
         if (
             loggedIn === "true"
         ) {
 
-            window.location.replace(
-                "dashboard.html"
-            );
+            redirectByRole();
 
         }
 
@@ -913,5 +869,5 @@ window.addEventListener(
 ===================================================== */
 
 console.log(
-    "LINK4 Login System Loaded Successfully."
+    "LINK4 Role Based Login System Loaded."
 );
