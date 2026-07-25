@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,44 +6,33 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="description"
-content="SYSTEM MANAGEMENT - Professional Company Management System"
->
+<meta name="theme-color" content="#07111f">
 
-<title>
-SYSTEM MANAGEMENT | Company Management System
-</title>
+<meta name="description"
+content="LINK4 COMMUNICATION Management System - Professional support, call, customer and operations management platform.">
+
+<title>LINK4 COMMUNICATION | Management System</title>
 
 
 <!-- =====================================================
      GOOGLE FONT
 ===================================================== -->
 
-<link
-rel="preconnect"
-href="https://fonts.googleapis.com"
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link
-rel="preconnect"
+<link rel="preconnect"
 href="https://fonts.gstatic.com"
-crossorigin
->
+crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-rel="stylesheet"
->
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 
 <!-- =====================================================
-     FONT AWESOME
+     ICONS
 ===================================================== -->
 
 <link
@@ -51,7 +41,40 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 >
 
 
+<!-- =====================================================
+     CSS
+===================================================== -->
+
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:#07111f;
+
+    color:#ffffff;
+
+    overflow-x:hidden;
+
+    line-height:1.6;
+
+}
+
 
 /* =====================================================
    ROOT
@@ -59,246 +82,96 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 :root{
 
-    --green:#00a968;
+    --bg:#07111f;
 
-    --green-dark:#008651;
+    --bg2:#0b1728;
 
-    --green-light:#18bd7b;
+    --card:rgba(255,255,255,0.045);
 
-    --dark:#102018;
+    --border:rgba(255,255,255,0.09);
 
-    --text:#26362e;
+    --green:#00d084;
 
-    --muted:#718078;
+    --green2:#00b978;
 
-    --white:#ffffff;
+    --blue:#149cff;
 
-    --bg:#f5f8f6;
+    --text:#ffffff;
 
-    --border:rgba(16,32,24,.09);
-
-    --shadow:
-
-        0 20px 60px
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .08
-
-        );
+    --muted:#91a0b3;
 
 }
 
 
 /* =====================================================
-   RESET
+   BACKGROUND EFFECT
 ===================================================== */
 
-*{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
-}
-
-
-html{
-
-    scroll-behavior:smooth;
-
-}
-
-
-body{
-
-    min-height:100vh;
-
-    overflow-x:hidden;
-
-    font-family:
-
-        "Inter",
-
-        Arial,
-
-        sans-serif;
-
-    color:var(--text);
-
-    background:var(--bg);
-
-}
-
-
-a{
-
-    text-decoration:none;
-
-    color:inherit;
-
-}
-
-
-button{
-
-    font-family:inherit;
-
-}
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-.background{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-10;
-
-    overflow:hidden;
-
-    background:
-
-        radial-gradient(
-
-            circle at 5% 5%,
-
-            rgba(
-
-                0,
-
-                169,
-
-                104,
-
-                .10
-
-            ),
-
-            transparent 28%
-
-        ),
-
-        radial-gradient(
-
-            circle at 95% 15%,
-
-            rgba(
-
-                0,
-
-                120,
-
-                70,
-
-                .06
-
-            ),
-
-            transparent 30%
-
-        ),
-
-        radial-gradient(
-
-            circle at 50% 100%,
-
-            rgba(
-
-                230,
-
-                57,
-
-                80,
-
-                .025
-
-            ),
-
-            transparent 35%
-
-        ),
-
-        #f5f8f6;
-
-}
-
-
-.background::before{
+body::before{
 
     content:"";
 
-    position:absolute;
+    position:fixed;
 
-    inset:0;
+    width:600px;
 
-    opacity:.55;
+    height:600px;
 
-    background-image:
+    top:-250px;
 
-        linear-gradient(
+    left:-200px;
 
-            rgba(
+    background:rgba(0,208,132,.07);
 
-                20,
+    filter:blur(120px);
 
-                50,
+    border-radius:50%;
 
-                35,
+    pointer-events:none;
 
-                .035
+    z-index:-1;
 
-            ) 1px,
+}
 
-            transparent 1px
 
-        ),
+body::after{
 
-        linear-gradient(
+    content:"";
 
-            90deg,
+    position:fixed;
 
-            rgba(
+    width:600px;
 
-                20,
+    height:600px;
 
-                50,
+    right:-250px;
 
-                35,
+    bottom:-250px;
 
-                .035
+    background:rgba(20,156,255,.08);
 
-            ) 1px,
+    filter:blur(120px);
 
-            transparent 1px
+    border-radius:50%;
 
-        );
+    pointer-events:none;
 
-    background-size:55px 55px;
+    z-index:-1;
 
-    mask-image:
+}
 
-        linear-gradient(
 
-            to bottom,
+/* =====================================================
+   CONTAINER
+===================================================== */
 
-            black,
+.container{
 
-            transparent 90%
+    width:90%;
 
-        );
+    max-width:1200px;
+
+    margin:auto;
 
 }
 
@@ -315,61 +188,38 @@ button{
 
     left:0;
 
-    right:0;
-
-    z-index:1000;
+    width:100%;
 
     height:76px;
 
-    padding:
+    z-index:999;
 
-        0 6%;
+    background:rgba(7,17,31,.78);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+
+.nav-inner{
+
+    width:90%;
+
+    max-width:1200px;
+
+    height:100%;
+
+    margin:auto;
 
     display:flex;
 
     align-items:center;
 
     justify-content:space-between;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            .88
-
-        );
-
-    backdrop-filter:blur(20px);
-
-    -webkit-backdrop-filter:blur(20px);
-
-    border-bottom:
-
-        1px solid
-
-        var(--border);
-
-    box-shadow:
-
-        0 5px 25px
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .035
-
-        );
 
 }
 
@@ -386,6 +236,10 @@ button{
 
     gap:12px;
 
+    text-decoration:none;
+
+    color:white;
+
 }
 
 
@@ -401,85 +255,69 @@ button{
 
     justify-content:center;
 
-    border-radius:13px;
-
-    color:#fff;
+    border-radius:12px;
 
     background:
 
-        linear-gradient(
+    linear-gradient(
 
-            135deg,
+        135deg,
 
-            var(--green),
+        #00d084,
 
-            var(--green-dark)
+        #00a6ff
 
-        );
+    );
+
+    font-weight:800;
+
+    font-size:16px;
 
     box-shadow:
 
-        0 10px 25px
+    0 10px 35px
 
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .22
-
-        );
+    rgba(0,208,132,.20);
 
 }
 
 
-.logo-box i{
+.logo-info{
 
-    font-size:18px;
+    display:flex;
 
-}
-
-
-.logo-text strong{
-
-    display:block;
-
-    color:var(--dark);
-
-    font-size:14px;
-
-    font-weight:900;
-
-    letter-spacing:1.1px;
+    flex-direction:column;
 
 }
 
 
-.logo-text span{
+.logo-title{
 
-    display:block;
+    font-size:15px;
 
-    margin-top:3px;
+    font-weight:800;
 
-    color:var(--muted);
+    letter-spacing:.6px;
 
-    font-size:8px;
+}
 
-    font-weight:600;
 
-    letter-spacing:1px;
+.logo-sub{
+
+    color:#7f8da0;
+
+    font-size:9px;
+
+    letter-spacing:2px;
 
 }
 
 
 /* =====================================================
-   NAV
+   NAV LINKS
 ===================================================== */
 
-.nav{
+.nav-links{
 
     display:flex;
 
@@ -490,27 +328,33 @@ button{
 }
 
 
-.nav a{
+.nav-links a{
 
-    color:#64736b;
+    text-decoration:none;
 
-    font-size:11px;
+    color:#aeb9c8;
 
-    font-weight:600;
+    font-size:13px;
 
-    transition:.25s;
+    font-weight:500;
 
-}
-
-
-.nav a:hover{
-
-    color:var(--green);
+    transition:.3s;
 
 }
 
 
-.login-btn{
+.nav-links a:hover{
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   NAV LOGIN
+===================================================== */
+
+.nav-login{
 
     display:flex;
 
@@ -518,66 +362,44 @@ button{
 
     gap:8px;
 
-    padding:
+    text-decoration:none;
 
-        11px 21px;
+    color:white;
 
-    border-radius:10px;
+    padding:11px 20px;
 
-    color:#fff !important;
+    border-radius:9px;
 
     background:
 
-        linear-gradient(
+    linear-gradient(
 
-            135deg,
+        135deg,
 
-            var(--green),
+        #00c878,
 
-            var(--green-dark)
+        #008fff
 
-        );
+    );
 
-    box-shadow:
+    font-size:13px;
 
-        0 10px 25px
+    font-weight:700;
 
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .18
-
-        );
-
-    transition:.25s;
+    transition:.3s;
 
 }
 
 
-.login-btn:hover{
+.nav-login:hover{
 
     transform:translateY(-2px);
 
     box-shadow:
 
-        0 15px 30px
+    0 12px 30px
 
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .25
-
-        );
+    rgba(0,170,220,.25);
 
 }
 
@@ -590,160 +412,212 @@ button{
 
     min-height:100vh;
 
-    padding:
-
-        145px 6%
-
-        90px;
+    padding-top:76px;
 
     display:flex;
 
     align-items:center;
 
+    position:relative;
+
 }
 
 
-.hero-container{
-
-    width:100%;
-
-    max-width:1200px;
-
-    margin:auto;
+.hero-grid{
 
     display:grid;
 
     grid-template-columns:
 
-        1.05fr
+    1.1fr
 
-        .95fr;
+    .9fr;
 
-    gap:75px;
+    gap:70px;
 
     align-items:center;
+
+    padding:
+
+    90px 0;
 
 }
 
 
 /* =====================================================
-   HERO CONTENT
+   HERO LEFT
 ===================================================== */
 
-.badge{
+.hero-left{
+
+    animation:
+
+    heroLeft .8s ease both;
+
+}
+
+
+@keyframes heroLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.status-badge{
 
     display:inline-flex;
 
     align-items:center;
 
-    gap:8px;
+    gap:9px;
 
-    padding:
-
-        8px 14px;
-
-    margin-bottom:23px;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .18
-
-        );
+    padding:8px 14px;
 
     border-radius:30px;
 
-    color:var(--green-dark);
-
     background:
 
-        rgba(
+    rgba(0,208,132,.07);
 
-            0,
+    border:
 
-            169,
+    1px solid
 
-            104,
+    rgba(0,208,132,.18);
 
-            .06
+    color:#00dc91;
 
-        );
+    font-size:11px;
 
-    font-size:9px;
+    font-weight:600;
 
-    font-weight:800;
-
-    letter-spacing:1px;
+    margin-bottom:25px;
 
 }
 
 
-.badge i{
+.status-dot{
 
-    color:var(--green);
+    width:7px;
 
-    font-size:7px;
+    height:7px;
+
+    background:#00dc91;
+
+    border-radius:50%;
+
+    box-shadow:
+
+    0 0 12px
+
+    #00dc91;
 
 }
 
+
+/* =====================================================
+   HERO TITLE
+===================================================== */
 
 .hero h1{
 
-    color:var(--dark);
-
     font-size:
 
-        clamp(
+    clamp(
 
-            42px,
+        42px,
 
-            5.5vw,
+        6vw,
 
-            72px
+        72px
 
-        );
+    );
 
-    line-height:1.05;
+    line-height:
 
-    letter-spacing:-3px;
+    1.05;
 
-    font-weight:900;
+    letter-spacing:
+
+    -3px;
+
+    font-weight:
+
+    800;
+
+    margin-bottom:
+
+    25px;
 
 }
 
 
 .hero h1 span{
 
-    display:block;
+    background:
 
-    color:var(--green);
+    linear-gradient(
+
+        90deg,
+
+        #00d084,
+
+        #00b7ff
+
+    );
+
+    -webkit-background-clip:
+
+    text;
+
+    -webkit-text-fill-color:
+
+    transparent;
 
 }
 
 
-.hero-text{
+/* =====================================================
+   HERO TEXT
+===================================================== */
 
-    max-width:600px;
+.hero-description{
 
-    margin-top:24px;
+    max-width:620px;
 
-    color:var(--muted);
+    color:#91a0b3;
 
-    font-size:13px;
+    font-size:16px;
 
-    line-height:1.9;
+    line-height:1.8;
+
+    margin-bottom:32px;
 
 }
 
+
+/* =====================================================
+   BUTTON GROUP
+===================================================== */
 
 .hero-buttons{
 
@@ -751,422 +625,179 @@ button{
 
     align-items:center;
 
-    gap:12px;
-
-    margin-top:32px;
+    gap:14px;
 
     flex-wrap:wrap;
 
 }
 
 
-.btn-primary{
+.primary-btn{
 
     display:inline-flex;
 
     align-items:center;
 
-    justify-content:center;
+    gap:12px;
 
-    gap:9px;
-
-    padding:
-
-        15px 24px;
+    padding:15px 24px;
 
     border-radius:10px;
-
-    color:#fff;
 
     background:
 
-        linear-gradient(
+    linear-gradient(
 
-            135deg,
+        135deg,
 
-            var(--green),
+        #00c878,
 
-            var(--green-dark)
+        #008fff
 
-        );
+    );
 
-    font-size:11px;
+    color:white;
 
-    font-weight:800;
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+
+.primary-btn:hover{
+
+    transform:
+
+    translateY(-3px);
 
     box-shadow:
 
-        0 15px 35px
+    0 15px 35px
 
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .20
-
-        );
-
-    transition:.25s;
+    rgba(0,170,220,.25);
 
 }
 
 
-.btn-primary:hover{
-
-    transform:translateY(-3px);
-
-}
-
-
-.btn-secondary{
+.secondary-btn{
 
     display:inline-flex;
 
     align-items:center;
 
-    justify-content:center;
+    gap:10px;
 
-    gap:9px;
-
-    padding:
-
-        15px 24px;
-
-    border:
-
-        1px solid
-
-        var(--border);
+    padding:14px 23px;
 
     border-radius:10px;
 
-    color:var(--text);
+    border:
 
-    background:#fff;
+    1px solid
 
-    font-size:11px;
+    var(--border);
 
-    font-weight:700;
+    color:#d7e0eb;
 
-    box-shadow:
+    text-decoration:none;
 
-        0 10px 30px
+    font-size:14px;
 
-        rgba(
+    font-weight:600;
 
-            16,
-
-            32,
-
-            24,
-
-            .04
-
-        );
-
-    transition:.25s;
+    transition:.3s;
 
 }
 
 
-.btn-secondary:hover{
+.secondary-btn:hover{
 
-    color:var(--green);
+    background:
+
+    rgba(255,255,255,.05);
 
     border-color:
 
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .25
-
-        );
-
-    transform:translateY(-2px);
+    rgba(255,255,255,.18);
 
 }
 
 
 /* =====================================================
-   HERO VISUAL
+   HERO RIGHT DASHBOARD CARD
 ===================================================== */
 
-.dashboard-preview{
+.hero-right{
 
-    position:relative;
+    animation:
+
+    heroRight .8s ease both;
+
+}
+
+
+@keyframes heroRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 
 }
 
 
 .dashboard-card{
 
-    padding:18px;
+    position:relative;
 
-    border:
+    padding:20px;
 
-        1px solid
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .08
-
-        );
-
-    border-radius:24px;
+    border-radius:22px;
 
     background:
 
-        rgba(
+    linear-gradient(
 
-            255,
+        145deg,
 
-            255,
+        rgba(255,255,255,.07),
 
-            255,
+        rgba(255,255,255,.025)
 
-            .92
+    );
 
-        );
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.10);
 
     box-shadow:
 
-        0 35px 90px
+    0 30px 80px
 
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .12
-
-        );
+    rgba(0,0,0,.30);
 
 }
 
 
-.preview-top{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:
-
-        4px 4px 17px;
-
-    border-bottom:
-
-        1px solid
-
-        var(--border);
-
-}
-
-
-.preview-brand{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-}
-
-
-.preview-icon{
-
-    width:38px;
-
-    height:38px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:11px;
-
-    color:var(--green);
-
-    background:
-
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .08
-
-        );
-
-}
-
-
-.preview-brand strong{
-
-    display:block;
-
-    color:var(--dark);
-
-    font-size:10px;
-
-}
-
-
-.preview-brand span{
-
-    display:block;
-
-    margin-top:3px;
-
-    color:var(--muted);
-
-    font-size:8px;
-
-}
-
-
-.system-status{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    color:var(--green-dark);
-
-    font-size:8px;
-
-    font-weight:700;
-
-}
-
-
-.system-status i{
-
-    font-size:6px;
-
-}
-
-
-/* =====================================================
-   PREVIEW STATS
-===================================================== */
-
-.preview-stats{
-
-    display:grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            4,
-
-            1fr
-
-        );
-
-    gap:9px;
-
-    margin-top:14px;
-
-}
-
-
-.preview-stat{
-
-    padding:
-
-        15px 11px;
-
-    border:
-
-        1px solid
-
-        var(--border);
-
-    border-radius:12px;
-
-    background:#fafcfb;
-
-}
-
-
-.preview-stat small{
-
-    display:block;
-
-    margin-bottom:7px;
-
-    color:var(--muted);
-
-    font-size:7px;
-
-    font-weight:600;
-
-}
-
-
-.preview-stat strong{
-
-    color:var(--dark);
-
-    font-size:18px;
-
-}
-
-
-/* =====================================================
-   PREVIEW ACTIVITY
-===================================================== */
-
-.activity{
-
-    margin-top:12px;
-
-    padding:18px;
-
-    border:
-
-        1px solid
-
-        var(--border);
-
-    border-radius:14px;
-
-    background:#fafcfb;
-
-}
-
-
-.activity-head{
+.dashboard-top{
 
     display:flex;
 
@@ -1179,224 +810,121 @@ button{
 }
 
 
-.activity-head strong{
-
-    color:var(--dark);
-
-    font-size:10px;
-
-}
-
-
-.activity-head span{
-
-    color:var(--green);
-
-    font-size:8px;
-
-    font-weight:700;
-
-}
-
-
-.activity-bars{
-
-    height:95px;
-
-    display:flex;
-
-    align-items:flex-end;
-
-    gap:8px;
-
-}
-
-
-.activity-bar{
-
-    flex:1;
-
-    border-radius:
-
-        5px 5px 2px 2px;
-
-    background:
-
-        linear-gradient(
-
-            to top,
-
-            var(--green-dark),
-
-            var(--green-light)
-
-        );
-
-    opacity:.75;
-
-}
-
-
-.activity-bar:nth-child(1){
-
-    height:35%;
-
-}
-
-
-.activity-bar:nth-child(2){
-
-    height:55%;
-
-}
-
-
-.activity-bar:nth-child(3){
-
-    height:45%;
-
-}
-
-
-.activity-bar:nth-child(4){
-
-    height:70%;
-
-}
-
-
-.activity-bar:nth-child(5){
-
-    height:60%;
-
-}
-
-
-.activity-bar:nth-child(6){
-
-    height:85%;
-
-}
-
-
-.activity-bar:nth-child(7){
-
-    height:75%;
-
-}
-
-
-/* =====================================================
-   FLOATING INFO
-===================================================== */
-
-.floating-card{
-
-    position:absolute;
-
-    right:-35px;
-
-    bottom:35px;
-
-    width:180px;
-
-    padding:16px;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            .8
-
-        );
-
-    border-radius:15px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            .95
-
-        );
-
-    box-shadow:
-
-        0 20px 45px
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .12
-
-        );
-
-    animation:
-
-        floating 4s ease-in-out
-
-        infinite;
-
-}
-
-
-@keyframes floating{
-
-    0%,
-    100%{
-
-        transform:
-
-            translateY(0);
-
-    }
-
-    50%{
-
-        transform:
-
-            translateY(-8px);
-
-    }
-
-}
-
-
-.floating-top{
+.dashboard-title{
 
     display:flex;
 
     align-items:center;
 
-    gap:9px;
+    gap:10px;
 
 }
 
 
-.floating-icon{
+.dashboard-icon{
 
-    width:30px;
+    width:38px;
 
-    height:30px;
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:
+
+    rgba(0,208,132,.10);
+
+    color:#00d084;
+
+}
+
+
+.dashboard-title h3{
+
+    font-size:14px;
+
+}
+
+
+.dashboard-title span{
+
+    display:block;
+
+    font-size:10px;
+
+    color:#718095;
+
+}
+
+
+.live{
+
+    font-size:10px;
+
+    color:#00dc91;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+}
+
+
+.live i{
+
+    font-size:6px;
+
+}
+
+
+/* =====================================================
+   DASHBOARD STATS
+===================================================== */
+
+.dashboard-stats{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+
+.stat-box{
+
+    padding:18px;
+
+    border-radius:14px;
+
+    background:
+
+    rgba(255,255,255,.035);
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.06);
+
+}
+
+
+.stat-icon{
+
+    width:34px;
+
+    height:34px;
 
     display:flex;
 
@@ -1406,43 +934,243 @@ button{
 
     border-radius:9px;
 
-    color:var(--green);
-
     background:
 
-        rgba(
+    rgba(20,156,255,.10);
 
-            0,
+    color:#36aaff;
 
-            169,
-
-            104,
-
-            .08
-
-        );
+    margin-bottom:13px;
 
 }
 
 
-.floating-card strong{
+.stat-box h4{
 
-    color:var(--dark);
+    font-size:23px;
+
+    margin-bottom:2px;
+
+}
+
+
+.stat-box p{
+
+    font-size:10px;
+
+    color:#77869a;
+
+}
+
+
+/* =====================================================
+   ACTIVITY
+===================================================== */
+
+.activity{
+
+    margin-top:12px;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    background:
+
+    rgba(255,255,255,.035);
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.06);
+
+}
+
+
+.activity-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:14px;
+
+}
+
+
+.activity-header h4{
+
+    font-size:12px;
+
+}
+
+
+.activity-header span{
+
+    font-size:10px;
+
+    color:#00d084;
+
+}
+
+
+.activity-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 0;
+
+    border-bottom:
+
+    1px solid
+
+    rgba(255,255,255,.05);
+
+}
+
+
+.activity-item:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.activity-avatar{
+
+    width:30px;
+
+    height:30px;
+
+    border-radius:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+
+    rgba(0,208,132,.08);
+
+    color:#00d084;
+
+    font-size:11px;
+
+}
+
+
+.activity-text{
+
+    flex:1;
+
+}
+
+
+.activity-text strong{
+
+    display:block;
+
+    font-size:10px;
+
+}
+
+
+.activity-text span{
+
+    color:#68788c;
 
     font-size:9px;
 
 }
 
 
-.floating-card p{
+.activity-status{
 
-    margin-top:10px;
+    font-size:9px;
 
-    color:var(--muted);
+    color:#00d084;
 
-    font-size:8px;
+}
 
-    line-height:1.6;
+
+/* =====================================================
+   TRUST BAR
+===================================================== */
+
+.trust-bar{
+
+    border-top:
+
+    1px solid
+
+    rgba(255,255,255,.05);
+
+    border-bottom:
+
+    1px solid
+
+    rgba(255,255,255,.05);
+
+    background:
+
+    rgba(255,255,255,.015);
+
+}
+
+
+.trust-inner{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+    padding:22px 0;
+
+}
+
+
+.trust-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    color:#718095;
+
+    font-size:11px;
+
+    border-right:
+
+    1px solid
+
+    rgba(255,255,255,.06);
+
+}
+
+
+.trust-item:last-child{
+
+    border-right:0;
+
+}
+
+
+.trust-item i{
+
+    color:#00d084;
 
 }
 
@@ -1453,86 +1181,59 @@ button{
 
 .section{
 
-    padding:
-
-        100px 6%;
-
-    border-top:
-
-        1px solid
-
-        var(--border);
-
-}
-
-
-.container{
-
-    max-width:1200px;
-
-    margin:auto;
+    padding:100px 0;
 
 }
 
 
 .section-heading{
 
+    text-align:center;
+
     max-width:650px;
 
     margin:
 
-        0 auto 55px;
-
-    text-align:center;
+    0 auto 55px;
 
 }
 
 
 .section-label{
 
+    color:#00d084;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
     margin-bottom:12px;
-
-    color:var(--green);
-
-    font-size:9px;
-
-    font-weight:800;
-
-    letter-spacing:1.5px;
 
 }
 
 
 .section-heading h2{
 
-    color:var(--dark);
-
     font-size:
 
-        clamp(
+    clamp(30px,4vw,45px);
 
-            28px,
+    line-height:1.15;
 
-            4vw,
-
-            43px
-
-        );
-
-    font-weight:900;
-
-    letter-spacing:-1.5px;
+    margin-bottom:15px;
 
 }
 
 
 .section-heading p{
 
-    margin-top:14px;
+    color:#8190a4;
 
-    color:var(--muted);
-
-    font-size:12px;
+    font-size:14px;
 
     line-height:1.8;
 
@@ -1540,22 +1241,16 @@ button{
 
 
 /* =====================================================
-   FEATURE CARDS
+   FEATURES
 ===================================================== */
 
-.feature-grid{
+.features-grid{
 
     display:grid;
 
     grid-template-columns:
 
-        repeat(
-
-            4,
-
-            1fr
-
-        );
+    repeat(3,1fr);
 
     gap:18px;
 
@@ -1566,53 +1261,60 @@ button{
 
     position:relative;
 
-    min-height:235px;
+    padding:30px;
 
-    padding:25px;
+    min-height:220px;
 
-    overflow:hidden;
+    border-radius:17px;
+
+    background:
+
+    rgba(255,255,255,.035);
 
     border:
 
-        1px solid
+    1px solid
 
-        var(--border);
+    rgba(255,255,255,.07);
 
-    border-radius:20px;
+    transition:.35s;
 
-    background:#fff;
+    overflow:hidden;
 
-    box-shadow:
+}
 
-        0 10px 35px
 
-        rgba(
+.feature-card::before{
 
-            16,
+    content:"";
 
-            32,
+    position:absolute;
 
-            24,
+    top:0;
 
-            .035
+    left:0;
 
-        );
+    width:100%;
 
-    transition:
+    height:2px;
 
-        .35s
+    background:
 
-        cubic-bezier(
+    linear-gradient(
 
-            .22,
+        90deg,
 
-            1,
+        transparent,
 
-            .36,
+        #00d084,
 
-            1
+        transparent
 
-        );
+    );
+
+    opacity:0;
+
+    transition:.3s;
 
 }
 
@@ -1621,38 +1323,31 @@ button{
 
     transform:
 
-        translateY(
+    translateY(-7px);
 
-            -8px
+    background:
 
-        );
+    rgba(255,255,255,.055);
 
     border-color:
 
-        rgba(
+    rgba(0,208,132,.20);
 
-            0,
+}
 
-            169,
 
-            104,
+.feature-card:hover::before{
 
-            .20
-
-        );
-
-    box-shadow:
-
-        var(--shadow);
+    opacity:1;
 
 }
 
 
 .feature-icon{
 
-    width:54px;
+    width:48px;
 
-    height:54px;
+    height:48px;
 
     display:flex;
 
@@ -1660,518 +1355,33 @@ button{
 
     justify-content:center;
 
-    border-radius:15px;
-
-    color:var(--green);
+    border-radius:12px;
 
     background:
 
-        rgba(
+    rgba(0,208,132,.09);
 
-            0,
+    color:#00d084;
 
-            169,
+    font-size:19px;
 
-            104,
-
-            .07
-
-        );
-
-    font-size:18px;
-
-    transition:.3s;
-
-}
-
-
-.feature-card:hover
-.feature-icon{
-
-    color:#fff;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            var(--green),
-
-            var(--green-dark)
-
-        );
-
-    transform:
-
-        rotate(
-
-            -5deg
-
-        );
+    margin-bottom:22px;
 
 }
 
 
 .feature-card h3{
 
-    margin-top:22px;
+    font-size:16px;
 
-    color:var(--dark);
-
-    font-size:14px;
-
-    font-weight:800;
+    margin-bottom:10px;
 
 }
 
 
 .feature-card p{
 
-    margin-top:9px;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    line-height:1.75;
-
-}
-
-
-/* =====================================================
-   WORKFLOW SECTION
-===================================================== */
-
-.workflow-section{
-
-    padding:
-
-        100px 6%;
-
-    background:
-
-        #eef5f1;
-
-    border-top:
-
-        1px solid
-
-        var(--border);
-
-    border-bottom:
-
-        1px solid
-
-        var(--border);
-
-}
-
-
-.workflow-grid{
-
-    display:grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            4,
-
-            1fr
-
-        );
-
-    gap:18px;
-
-}
-
-
-.workflow-card{
-
-    position:relative;
-
-    padding:28px 24px;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .08
-
-        );
-
-    border-radius:18px;
-
-    background:#fff;
-
-    box-shadow:
-
-        0 10px 35px
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .035
-
-        );
-
-}
-
-
-.workflow-number{
-
-    width:36px;
-
-    height:36px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-bottom:18px;
-
-    border-radius:50%;
-
-    color:#fff;
-
-    background:
-
-        linear-gradient(
-
-            135deg,
-
-            var(--green),
-
-            var(--green-dark)
-
-        );
-
-    font-size:9px;
-
-    font-weight:800;
-
-}
-
-
-.workflow-card h3{
-
-    color:var(--dark);
-
-    font-size:13px;
-
-}
-
-
-.workflow-card p{
-
-    margin-top:8px;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    line-height:1.7;
-
-}
-
-
-.workflow-arrow{
-
-    position:absolute;
-
-    top:40px;
-
-    right:-13px;
-
-    z-index:5;
-
-    color:var(--green);
-
-}
-
-
-/* =====================================================
-   COMPANY SECTION
-===================================================== */
-
-.company-grid{
-
-    display:grid;
-
-    grid-template-columns:
-
-        1fr
-
-        1fr;
-
-    gap:70px;
-
-    align-items:center;
-
-}
-
-
-.company-content .section-label{
-
-    text-align:left;
-
-}
-
-
-.company-content h2{
-
-    color:var(--dark);
-
-    font-size:
-
-        clamp(
-
-            30px,
-
-            4vw,
-
-            46px
-
-        );
-
-    line-height:1.15;
-
-    font-weight:900;
-
-}
-
-
-.company-content h2 span{
-
-    color:var(--green);
-
-}
-
-
-.company-content p{
-
-    max-width:560px;
-
-    margin-top:18px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.9;
-
-}
-
-
-.company-list{
-
-    display:grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            2,
-
-            1fr
-
-        );
-
-    gap:12px;
-
-}
-
-
-.company-item{
-
-    padding:22px;
-
-    border:
-
-        1px solid
-
-        var(--border);
-
-    border-radius:15px;
-
-    background:#fff;
-
-    box-shadow:
-
-        0 10px 30px
-
-        rgba(
-
-            16,
-
-            32,
-
-            24,
-
-            .035
-
-        );
-
-}
-
-
-.company-item i{
-
-    color:var(--green);
-
-    font-size:16px;
-
-}
-
-
-.company-item strong{
-
-    display:block;
-
-    margin-top:13px;
-
-    color:var(--dark);
-
-    font-size:11px;
-
-}
-
-
-.company-item span{
-
-    display:block;
-
-    margin-top:6px;
-
-    color:var(--muted);
-
-    font-size:9px;
-
-    line-height:1.6;
-
-}
-
-
-/* =====================================================
-   CTA
-===================================================== */
-
-.cta{
-
-    padding:
-
-        100px 6%;
-
-}
-
-
-.cta-box{
-
-    position:relative;
-
-    overflow:hidden;
-
-    padding:
-
-        75px 30px;
-
-    text-align:center;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            0,
-
-            169,
-
-            104,
-
-            .14
-
-        );
-
-    border-radius:25px;
-
-    background:
-
-        radial-gradient(
-
-            circle at 50% 0%,
-
-            rgba(
-
-                0,
-
-                169,
-
-                104,
-
-                .12
-
-            ),
-
-            transparent 50%
-
-        ),
-
-        #ffffff;
-
-    box-shadow:
-
-        var(--shadow);
-
-}
-
-
-.cta-box h2{
-
-    color:var(--dark);
-
-    font-size:
-
-        clamp(
-
-            28px,
-
-            4vw,
-
-            44px
-
-        );
-
-    font-weight:900;
-
-}
-
-
-.cta-box p{
-
-    max-width:550px;
-
-    margin:
-
-        15px auto 28px;
-
-    color:var(--muted);
+    color:#7f8da0;
 
     font-size:12px;
 
@@ -2181,31 +1391,285 @@ button{
 
 
 /* =====================================================
-   FOOTER
+   PROCESS SECTION
 ===================================================== */
 
-footer{
+.process{
 
-    padding:
+    background:
 
-        30px 6%;
+    rgba(255,255,255,.015);
 
     border-top:
 
-        1px solid
+    1px solid
 
-        var(--border);
+    rgba(255,255,255,.04);
 
-    background:#fff;
+    border-bottom:
+
+    1px solid
+
+    rgba(255,255,255,.04);
 
 }
 
 
+.process-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+
+.process-card{
+
+    text-align:center;
+
+    padding:28px 20px;
+
+}
+
+
+.process-number{
+
+    width:48px;
+
+    height:48px;
+
+    margin:
+
+    0 auto 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+
+    rgba(0,208,132,.08);
+
+    border:
+
+    1px solid
+
+    rgba(0,208,132,.18);
+
+    color:#00d084;
+
+    font-size:14px;
+
+    font-weight:800;
+
+}
+
+
+.process-card h3{
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+
+.process-card p{
+
+    color:#77869a;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   SECURITY CTA
+===================================================== */
+
+.cta{
+
+    padding:
+
+    90px 0;
+
+}
+
+
+.cta-box{
+
+    position:relative;
+
+    padding:
+
+    65px 50px;
+
+    text-align:center;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(0,208,132,.09),
+
+        rgba(20,156,255,.08)
+
+    );
+
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.09);
+
+}
+
+
+.cta-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    top:-180px;
+
+    left:50%;
+
+    transform:
+
+    translateX(-50%);
+
+    background:
+
+    rgba(0,208,132,.12);
+
+    filter:blur(80px);
+
+    border-radius:50%;
+
+}
+
+
+.cta-box > *{
+
+    position:relative;
+
+}
+
+
+.cta-box h2{
+
+    font-size:
+
+    clamp(28px,4vw,42px);
+
+    margin-bottom:15px;
+
+}
+
+
+.cta-box p{
+
+    max-width:600px;
+
+    margin:
+
+    auto;
+
+    color:#8b9aac;
+
+    font-size:13px;
+
+    line-height:1.8;
+
+}
+
+
+.cta-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:28px;
+
+    padding:15px 28px;
+
+    background:white;
+
+    color:#07111f;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    transition:.3s;
+
+}
+
+
+.cta-button:hover{
+
+    transform:
+
+    translateY(-3px);
+
+    box-shadow:
+
+    0 15px 40px
+
+    rgba(255,255,255,.15);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
 .footer{
 
-    max-width:1200px;
+    padding:
 
-    margin:auto;
+    35px 0;
+
+    border-top:
+
+    1px solid
+
+    rgba(255,255,255,.06);
+
+}
+
+
+.footer-inner{
 
     display:flex;
 
@@ -2213,71 +1677,216 @@ footer{
 
     justify-content:space-between;
 
-}
-
-
-.footer strong{
-
-    display:block;
-
-    color:var(--dark);
-
-    font-size:12px;
-
-    letter-spacing:1px;
+    gap:20px;
 
 }
 
 
-.footer span{
+.footer-copy{
 
-    display:block;
+    color:#5f6e80;
 
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:8px;
+    font-size:10px;
 
 }
 
 
-.copyright{
+.footer-right{
 
-    color:var(--muted);
+    display:flex;
 
-    font-size:9px;
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+.footer-right span{
+
+    color:#657487;
+
+    font-size:10px;
+
+}
+
+
+.footer-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#00d084 !important;
+
+}
+
+
+.footer-status i{
+
+    font-size:6px;
 
 }
 
 
 /* =====================================================
-   TABLET
+   MOBILE MENU BUTTON
 ===================================================== */
 
-@media(
+.menu-btn{
 
-    max-width:1000px
+    display:none;
 
-){
+    width:40px;
 
-    .hero-container{
+    height:40px;
 
-        grid-template-columns:1fr;
+    border-radius:9px;
 
-        gap:60px;
+    border:
+
+    1px solid
+
+    rgba(255,255,255,.08);
+
+    background:
+
+    rgba(255,255,255,.04);
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.mobile-menu{
+
+    display:none;
+
+    position:fixed;
+
+    top:76px;
+
+    left:0;
+
+    width:100%;
+
+    padding:20px;
+
+    background:
+
+    rgba(7,17,31,.97);
+
+    backdrop-filter:
+
+    blur(20px);
+
+    border-bottom:
+
+    1px solid
+
+    rgba(255,255,255,.07);
+
+    z-index:998;
+
+}
+
+
+.mobile-menu.active{
+
+    display:block;
+
+}
+
+
+.mobile-menu a{
+
+    display:block;
+
+    padding:13px;
+
+    color:#aeb9c8;
+
+    text-decoration:none;
+
+    border-bottom:
+
+    1px solid
+
+    rgba(255,255,255,.05);
+
+    font-size:13px;
+
+}
+
+
+.mobile-menu .mobile-login{
+
+    margin-top:12px;
+
+    text-align:center;
+
+    color:white;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #00c878,
+
+        #008fff
+
+    );
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:950px){
+
+    .nav-links{
+
+        display:none;
 
     }
 
+    .menu-btn{
 
-    .hero-content{
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+    }
+
+    .hero-grid{
+
+        grid-template-columns:1fr;
+
+        gap:55px;
 
         text-align:center;
 
     }
 
-
-    .hero-text{
+    .hero-description{
 
         margin-left:auto;
 
@@ -2285,155 +1894,96 @@ footer{
 
     }
 
-
     .hero-buttons{
 
         justify-content:center;
 
     }
 
-
-    .dashboard-card{
+    .hero-right{
 
         max-width:650px;
+
+        width:100%;
 
         margin:auto;
 
     }
 
-
-    .floating-card{
-
-        right:10px;
-
-    }
-
-
-    .feature-grid{
+    .features-grid{
 
         grid-template-columns:
 
-            repeat(
-
-                2,
-
-                1fr
-
-            );
+        repeat(2,1fr);
 
     }
 
-
-    .workflow-grid{
+    .process-grid{
 
         grid-template-columns:
 
-            repeat(
-
-                2,
-
-                1fr
-
-            );
-
-    }
-
-
-    .workflow-arrow{
-
-        display:none;
-
-    }
-
-
-    .company-grid{
-
-        grid-template-columns:1fr;
+        repeat(2,1fr);
 
     }
 
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(
-
-    max-width:600px
-
-){
+@media(max-width:650px){
 
     .navbar{
 
         height:68px;
 
-        padding:
-
-            0 18px;
-
     }
 
+    .mobile-menu{
+
+        top:68px;
+
+    }
 
     .logo-box{
 
-        width:40px;
+        width:38px;
 
-        height:40px;
+        height:38px;
+
+        font-size:13px;
 
     }
 
-
-    .logo-text strong{
+    .logo-title{
 
         font-size:12px;
 
     }
 
+    .logo-sub{
 
-    .logo-text span{
+        font-size:7px;
+
+    }
+
+    .nav-login{
 
         display:none;
 
     }
-
-
-    .nav{
-
-        gap:10px;
-
-    }
-
-
-    .nav a:not(
-        .login-btn
-    ){
-
-        display:none;
-
-    }
-
-
-    .login-btn{
-
-        padding:
-
-            10px 15px;
-
-        font-size:9px;
-
-    }
-
 
     .hero{
 
-        padding:
-
-            110px 20px 70px;
+        padding-top:68px;
 
     }
 
+    .hero-grid{
+
+        padding:
+
+        65px 0;
+
+    }
 
     .hero h1{
 
@@ -2443,109 +1993,104 @@ footer{
 
     }
 
+    .hero-description{
 
-    .hero-text{
-
-        font-size:12px;
-
-    }
-
-
-    .hero-buttons{
-
-        flex-direction:column;
+        font-size:13px;
 
     }
 
+    .primary-btn,
 
-    .btn-primary,
-    .btn-secondary{
+    .secondary-btn{
 
         width:100%;
 
-    }
+        justify-content:center;
 
+    }
 
     .dashboard-card{
 
-        padding:13px;
-
-        border-radius:18px;
+        padding:14px;
 
     }
 
-
-    .preview-stats{
+    .trust-inner{
 
         grid-template-columns:
 
-            repeat(
+        repeat(2,1fr);
 
-                2,
-
-                1fr
-
-            );
+        gap:15px;
 
     }
 
+    .trust-item{
 
-    .floating-card{
+        border-right:0;
 
-        position:relative;
-
-        right:auto;
-
-        bottom:auto;
-
-        width:100%;
-
-        margin-top:12px;
-
-        animation:none;
+        padding:8px;
 
     }
 
+    .features-grid{
 
-    .section,
-    .workflow-section,
-    .cta{
+        grid-template-columns:1fr;
+
+    }
+
+    .process-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .section{
+
+        padding:75px 0;
+
+    }
+
+    .cta-box{
 
         padding:
 
-            75px 20px;
+        45px 22px;
 
     }
 
-
-    .feature-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .workflow-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .company-list{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .footer{
+    .footer-inner{
 
         flex-direction:column;
 
         text-align:center;
 
-        gap:15px;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *{
+
+        animation-duration:
+
+        .01ms !important;
+
+        animation-iteration-count:
+
+        1 !important;
+
+        transition-duration:
+
+        .01ms !important;
+
+        scroll-behavior:auto !important;
 
     }
 
@@ -2560,70 +2105,57 @@ footer{
 
 
 <!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
-<div class="background"></div>
-
-
-<!-- =====================================================
      NAVBAR
 ===================================================== -->
 
 <header class="navbar">
 
+<div class="nav-inner">
 
-<a
-href="./index.html"
-class="logo"
->
 
+<a href="index.html" class="logo">
 
 <div class="logo-box">
-
-<i class="fa-solid fa-layer-group"></i>
-
+L4
 </div>
 
+<div class="logo-info">
 
-<div class="logo-text">
-
-<strong>
-SYSTEM MANAGEMENT
-</strong>
-
-<span>
-PROFESSIONAL COMPANY MANAGEMENT SYSTEM
-</span>
-
+<div class="logo-title">
+LINK4 COMMUNICATION
 </div>
 
+<div class="logo-sub">
+MANAGEMENT SYSTEM
+</div>
+
+</div>
 
 </a>
 
 
-<nav class="nav">
+<nav class="nav-links">
 
-
-<a href="#features">
-Features
+<a href="#home">
+Home
 </a>
 
+<a href="#services">
+Services
+</a>
 
 <a href="#workflow">
 Workflow
 </a>
 
-
-<a href="#company">
-Company
+<a href="#security">
+Security
 </a>
 
+</nav>
 
-<a
-href="./login.html"
-class="login-btn"
->
+
+<a href="login.html" class="nav-login">
 
 <i class="fa-solid fa-right-to-bracket"></i>
 
@@ -2632,54 +2164,96 @@ Login
 </a>
 
 
-</nav>
+<button
+class="menu-btn"
+id="menuBtn"
+aria-label="Open Menu">
 
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+</div>
 
 </header>
 
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="#home">
+Home
+</a>
+
+<a href="#services">
+Services
+</a>
+
+<a href="#workflow">
+Workflow
+</a>
+
+<a href="#security">
+Security
+</a>
+
+<a
+href="login.html"
+class="mobile-login">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+&nbsp; Access Management System
+
+</a>
+
+</div>
 
 
 <!-- =====================================================
      HERO
 ===================================================== -->
 
-<section class="hero">
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="hero-grid">
 
 
-<div class="hero-container">
+<div class="hero-left">
 
 
-<div class="hero-content">
+<div class="status-badge">
 
+<span class="status-dot"></span>
 
-<div class="badge">
-
-<i class="fa-solid fa-circle"></i>
-
-COMPANY MANAGEMENT SYSTEM
+System Online & Secure
 
 </div>
 
 
 <h1>
 
-Everything
+Manage Your
 
-<span>
-In One Place.
+<br>
 
-</span>
+<span>Operations Smarter.</span>
 
 </h1>
 
 
-<p class="hero-text">
+<p class="hero-description">
 
-SYSTEM MANAGEMENT is a centralized internal
-management platform built to help our company
-organize daily operations, customer support,
-team communication, monitoring and business
-activities in one secure environment.
+Welcome to the LINK4 COMMUNICATION Management System.
+A centralized platform designed to manage customer support,
+call operations, service activities, monitoring and operational
+history from one professional workspace.
 
 </p>
 
@@ -2688,25 +2262,25 @@ activities in one secure environment.
 
 
 <a
-href="./login.html"
-class="btn-primary"
->
+href="login.html"
+class="primary-btn">
 
 <i class="fa-solid fa-lock"></i>
 
-Secure Login
+Access Management System
+
+<i class="fa-solid fa-arrow-right"></i>
 
 </a>
 
 
 <a
-href="#features"
-class="btn-secondary"
->
-
-<i class="fa-solid fa-arrow-down"></i>
+href="#services"
+class="secondary-btn">
 
 Explore System
+
+<i class="fa-solid fa-angle-down"></i>
 
 </a>
 
@@ -2717,51 +2291,47 @@ Explore System
 </div>
 
 
+<!-- =====================================================
+     DASHBOARD PREVIEW
+===================================================== -->
 
-<!-- =================================================
-     SYSTEM PREVIEW
-================================================= -->
-
-<div class="dashboard-preview">
+<div class="hero-right">
 
 
 <div class="dashboard-card">
 
 
-<div class="preview-top">
+<div class="dashboard-top">
 
 
-<div class="preview-brand">
+<div class="dashboard-title">
 
-
-<div class="preview-icon">
+<div class="dashboard-icon">
 
 <i class="fa-solid fa-chart-line"></i>
 
 </div>
 
-
 <div>
 
-<strong>
-SYSTEM CONTROL CENTER
-</strong>
+<h3>
+Operations Overview
+</h3>
 
 <span>
-Internal Management Platform
+LINK4 Management Workspace
 </span>
 
 </div>
 
-
 </div>
 
 
-<div class="system-status">
+<div class="live">
 
 <i class="fa-solid fa-circle"></i>
 
-System Online
+LIVE
 
 </div>
 
@@ -2769,137 +2339,181 @@ System Online
 </div>
 
 
+<div class="dashboard-stats">
 
-<div class="preview-stats">
 
+<div class="stat-box">
 
-<div class="preview-stat">
+<div class="stat-icon">
 
-<small>
-SUPPORT
-</small>
+<i class="fa-solid fa-headset"></i>
 
-<strong>
-128
-</strong>
+</div>
+
+<h4>
+24
+</h4>
+
+<p>
+Support Activities
+</p>
 
 </div>
 
 
-<div class="preview-stat">
+<div class="stat-box">
 
-<small>
-COMPLETED
-</small>
+<div class="stat-icon">
 
-<strong>
-96
-</strong>
+<i class="fa-solid fa-phone"></i>
 
 </div>
 
-
-<div class="preview-stat">
-
-<small>
-PENDING
-</small>
-
-<strong>
+<h4>
 18
-</strong>
+</h4>
+
+<p>
+Call Operations
+</p>
 
 </div>
 
 
-<div class="preview-stat">
+<div class="stat-box">
 
-<small>
-ACTIVE
-</small>
+<div class="stat-icon">
 
-<strong>
-14
-</strong>
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<h4>
+126
+</h4>
+
+<p>
+Managed Customers
+</p>
+
+</div>
+
+
+<div class="stat-box">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+</div>
+
+<h4>
+98%
+</h4>
+
+<p>
+Activity Tracking
+</p>
 
 </div>
 
 
 </div>
-
 
 
 <div class="activity">
 
 
-<div class="activity-head">
+<div class="activity-header">
 
-<strong>
-Operational Activity
-</strong>
+<h4>
+Recent Activity
+</h4>
 
 <span>
-+24.8%
+View All
 </span>
 
 </div>
 
 
-<div class="activity-bars">
+<div class="activity-item">
 
-<div class="activity-bar"></div>
+<div class="activity-avatar">
 
-<div class="activity-bar"></div>
-
-<div class="activity-bar"></div>
-
-<div class="activity-bar"></div>
-
-<div class="activity-bar"></div>
-
-<div class="activity-bar"></div>
-
-<div class="activity-bar"></div>
+<i class="fa-solid fa-headset"></i>
 
 </div>
 
-
-</div>
-
-
-</div>
-
-
-
-<div class="floating-card">
-
-
-<div class="floating-top">
-
-
-<div class="floating-icon">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-</div>
-
+<div class="activity-text">
 
 <strong>
-Secure Workspace
+Support Request Updated
 </strong>
 
+<span>
+Customer support activity
+</span>
+
+</div>
+
+<div class="activity-status">
+Completed
+</div>
 
 </div>
 
 
-<p>
+<div class="activity-item">
 
-Your company operations are managed
-through a secure and organized
-centralized system.
+<div class="activity-avatar">
 
-</p>
+<i class="fa-solid fa-phone"></i>
 
+</div>
+
+<div class="activity-text">
+
+<strong>
+Call Operation Processed
+</strong>
+
+<span>
+Customer communication
+</span>
+
+</div>
+
+<div class="activity-status">
+Done
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-avatar">
+
+<i class="fa-solid fa-database"></i>
+
+</div>
+
+<div class="activity-text">
+
+<strong>
+System Activity Logged
+</strong>
+
+<span>
+History monitoring
+</span>
+
+</div>
+
+<div class="activity-status">
+Recorded
+</div>
 
 </div>
 
@@ -2909,55 +2523,103 @@ centralized system.
 
 </div>
 
+
+</div>
+
+
+</div>
+
+</div>
 
 </section>
 
 
-
 <!-- =====================================================
-     FEATURES
+     TRUST BAR
 ===================================================== -->
 
-<section
-class="section"
-id="features"
->
+<div class="trust-bar">
 
+<div class="container">
+
+<div class="trust-inner">
+
+
+<div class="trust-item">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+Secure Access
+
+</div>
+
+
+<div class="trust-item">
+
+<i class="fa-solid fa-bolt"></i>
+
+Fast Operations
+
+</div>
+
+
+<div class="trust-item">
+
+<i class="fa-solid fa-layer-group"></i>
+
+Centralized Management
+
+</div>
+
+
+<div class="trust-item">
+
+<i class="fa-solid fa-clock"></i>
+
+Real-time Workflow
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="section" id="services">
 
 <div class="container">
 
 
 <div class="section-heading">
 
-
 <div class="section-label">
-OUR MANAGEMENT SYSTEM
+Powerful Workspace
 </div>
-
 
 <h2>
-Built for Better Operations
+Everything You Need to Manage Operations
 </h2>
 
-
 <p>
-
-Our management environment connects
-different areas of company operations
-into one organized workspace.
-
+A structured management environment that helps your team
+organize support, calls, customer operations and activity history
+with greater clarity and efficiency.
 </p>
-
 
 </div>
 
 
-
-<div class="feature-grid">
+<div class="features-grid">
 
 
 <div class="feature-card">
-
 
 <div class="feature-icon">
 
@@ -2965,55 +2627,39 @@ into one organized workspace.
 
 </div>
 
-
 <h3>
-Customer Support
+Support Management
 </h3>
 
-
 <p>
-
-Organize customer issues, requests
-and support activities through a
-structured operational process.
-
+Track customer support requests, manage pending activities
+and keep support operations organized in a single workflow.
 </p>
-
 
 </div>
 
 
-
 <div class="feature-card">
-
 
 <div class="feature-icon">
 
-<i class="fa-solid fa-gears"></i>
+<i class="fa-solid fa-phone-volume"></i>
 
 </div>
-
 
 <h3>
-Operations Management
+Call Management
 </h3>
 
-
 <p>
-
-Keep daily company operations
-organized and maintain a clear
-workflow across teams.
-
+Organize call-related tasks and maintain a structured
+process for customer communication and follow-up.
 </p>
 
-
 </div>
-
 
 
 <div class="feature-card">
-
 
 <div class="feature-icon">
 
@@ -3021,139 +2667,19 @@ workflow across teams.
 
 </div>
 
-
 <h3>
-Team Coordination
+Customer Management
 </h3>
 
-
 <p>
-
-Improve collaboration between
-different teams and maintain
-better operational coordination.
-
+Keep customer information and service-related activities
+organized for faster and more efficient operations.
 </p>
 
-
 </div>
-
 
 
 <div class="feature-card">
-
-
-<div class="feature-icon">
-
-<i class="fa-solid fa-chart-line"></i>
-
-</div>
-
-
-<h3>
-Performance Monitoring
-</h3>
-
-
-<p>
-
-Monitor activities and review
-operational performance to make
-better management decisions.
-
-</p>
-
-
-</div>
-
-
-
-<div class="feature-card">
-
-
-<div class="feature-icon">
-
-<i class="fa-solid fa-phone"></i>
-
-</div>
-
-
-<h3>
-Communication Management
-</h3>
-
-
-<p>
-
-Manage customer communication
-and follow-up activities in an
-organized environment.
-
-</p>
-
-
-</div>
-
-
-
-<div class="feature-card">
-
-
-<div class="feature-icon">
-
-<i class="fa-solid fa-clock-rotate-left"></i>
-
-</div>
-
-
-<h3>
-Activity History
-</h3>
-
-
-<p>
-
-Maintain organized records of
-important operational activities
-for future reference.
-
-</p>
-
-
-</div>
-
-
-
-<div class="feature-card">
-
-
-<div class="feature-icon">
-
-<i class="fa-solid fa-user-shield"></i>
-
-</div>
-
-
-<h3>
-Access Control
-</h3>
-
-
-<p>
-
-Provide secure access based on
-user roles and responsibilities
-within the company.
-
-</p>
-
-
-</div>
-
-
-
-<div class="feature-card">
-
 
 <div class="feature-icon">
 
@@ -3161,344 +2687,179 @@ within the company.
 
 </div>
 
-
 <h3>
-Business Insights
+Activity Monitoring
 </h3>
 
-
 <p>
-
-Use operational information and
-reports to understand business
-performance more effectively.
-
+Monitor daily operational activities and understand
+the current state of your management workflow.
 </p>
 
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+</div>
+
+<h3>
+History & Records
+</h3>
+
+<p>
+Maintain a structured activity history so important
+operational actions can be reviewed whenever required.
+</p>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-user-shield"></i>
+
+</div>
+
+<h3>
+Role-Based Access
+</h3>
+
+<p>
+Provide controlled access to your management environment
+based on user roles and operational responsibilities.
+</p>
 
 </div>
 
 
 </div>
 
-
 </div>
-
 
 </section>
-
 
 
 <!-- =====================================================
      WORKFLOW
 ===================================================== -->
 
-<section
-class="workflow-section"
-id="workflow"
->
-
+<section class="section process" id="workflow">
 
 <div class="container">
 
 
 <div class="section-heading">
 
-
 <div class="section-label">
-OUR WORKFLOW
+Simple Workflow
 </div>
-
 
 <h2>
-One Connected Process
+A Clear Process for Your Team
 </h2>
 
-
 <p>
-
-A structured workflow helps our teams
-move from request to completion with
-better visibility and control.
-
+Keep daily activities structured from the first customer request
+through support, call operations and final history records.
 </p>
-
 
 </div>
 
 
-
-<div class="workflow-grid">
-
-
-<div class="workflow-card">
+<div class="process-grid">
 
 
-<div class="workflow-number">
+<div class="process-card">
+
+<div class="process-number">
 01
 </div>
 
-
 <h3>
-Request
+Customer Entry
 </h3>
 
-
 <p>
-
-Customer or operational requests
-are recorded and organized.
-
+Receive and organize new customer requests
+and service-related information.
 </p>
-
-
-<span class="workflow-arrow">
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</span>
-
 
 </div>
 
 
+<div class="process-card">
 
-<div class="workflow-card">
-
-
-<div class="workflow-number">
+<div class="process-number">
 02
 </div>
 
-
 <h3>
-Team Action
+Support Processing
 </h3>
 
-
 <p>
-
-The responsible team reviews
-and works on the assigned task.
-
+Support team reviews the request and
+updates the required support information.
 </p>
-
-
-<span class="workflow-arrow">
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</span>
-
 
 </div>
 
 
+<div class="process-card">
 
-<div class="workflow-card">
-
-
-<div class="workflow-number">
+<div class="process-number">
 03
 </div>
 
-
 <h3>
-Communication
+Call Operation
 </h3>
 
-
 <p>
-
-Required communication and
-follow-up activities are completed.
-
+Call team handles communication and
+completes the required follow-up.
 </p>
-
-
-<span class="workflow-arrow">
-
-<i class="fa-solid fa-arrow-right"></i>
-
-</span>
-
 
 </div>
 
 
+<div class="process-card">
 
-<div class="workflow-card">
-
-
-<div class="workflow-number">
+<div class="process-number">
 04
 </div>
 
-
 <h3>
-Completion</h3>
-
+History Record
+</h3>
 
 <p>
-
-The completed activity remains
-organized for history and monitoring.
-
+Completed activities are maintained in
+an organized history for future reference.
 </p>
 
-
 </div>
 
 
 </div>
 
-
 </div>
-
 
 </section>
 
 
-
 <!-- =====================================================
-     COMPANY
+     SECURITY CTA
 ===================================================== -->
 
-<section
-class="section"
-id="company"
->
-
-
-<div class="container">
-
-
-<div class="company-grid">
-
-
-<div class="company-content">
-
-
-<div class="section-label">
-SYSTEM MANAGEMENT
-</div>
-
-
-<h2>
-
-A Better Way to
-
-<span>
-Manage Our Company.
-</span>
-
-</h2>
-
-
-<p>
-
-SYSTEM MANAGEMENT is designed as a
-centralized digital workspace for our
-company. It helps teams stay organized,
-improves visibility and creates a more
-efficient way to manage daily operations.
-
-</p>
-
-
-</div>
-
-
-
-<div class="company-list">
-
-
-<div class="company-item">
-
-<i class="fa-solid fa-layer-group"></i>
-
-<strong>
-Centralized System
-</strong>
-
-<span>
-Everything organized in one
-professional environment.
-</span>
-
-</div>
-
-
-
-<div class="company-item">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-<strong>
-Secure Access
-</strong>
-
-<span>
-Controlled access for authorized
-company users.
-</span>
-
-</div>
-
-
-
-<div class="company-item">
-
-<i class="fa-solid fa-bolt"></i>
-
-<strong>
-Faster Operations
-</strong>
-
-<span>
-Reduce manual work and improve
-daily workflow efficiency.
-</span>
-
-</div>
-
-
-
-<div class="company-item">
-
-<i class="fa-solid fa-eye"></i>
-
-<strong>
-Better Visibility
-</strong>
-
-<span>
-Management can monitor important
-operational activities.
-</span>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     CTA
-===================================================== -->
-
-<section class="cta">
-
+<section class="cta" id="security">
 
 <div class="container">
 
@@ -3506,83 +2867,216 @@ operational activities.
 <div class="cta-box">
 
 
-<div class="section-label">
-AUTHORIZED ACCESS ONLY
-</div>
-
-
 <h2>
-Welcome to SYSTEM MANAGEMENT
+Ready to Access Your Workspace?
 </h2>
 
 
 <p>
 
-Access your company workspace securely
-using your authorized account.
+Sign in to the LINK4 COMMUNICATION Management System
+and manage your daily operations from one centralized platform.
 
 </p>
 
 
 <a
-href="./login.html"
-class="btn-primary"
->
+href="login.html"
+class="cta-button">
 
 <i class="fa-solid fa-right-to-bracket"></i>
 
-Login to System
+Login to Management System
 
 </a>
 
 
 </div>
 
-
 </div>
 
-
 </section>
-
 
 
 <!-- =====================================================
      FOOTER
 ===================================================== -->
 
-<footer>
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-inner">
 
 
-<div class="footer">
+<div class="footer-copy">
 
-
-<div>
-
-<strong>
-SYSTEM MANAGEMENT
-</strong>
-
-<span>
-Professional Company Management System
-</span>
-
-</div>
-
-
-<div class="copyright">
-
-© 2026 SYSTEM MANAGEMENT.
+© <span id="year"></span>
+LINK4 COMMUNICATION.
 All Rights Reserved.
 
 </div>
 
 
+<div class="footer-right">
+
+<span>
+Management System
+</span>
+
+<span class="footer-status">
+
+<i class="fa-solid fa-circle"></i>
+
+System Online
+
+</span>
+
 </div>
 
 
+</div>
+
+</div>
+
 </footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   CURRENT YEAR
+===================================================== */
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const mobileMenu =
+document.getElementById("mobileMenu");
+
+
+menuBtn.addEventListener(
+"click",
+function(){
+
+    mobileMenu.classList.toggle(
+        "active"
+    );
+
+    const icon =
+    menuBtn.querySelector("i");
+
+    if(
+        mobileMenu.classList.contains(
+            "active"
+        )
+    ){
+
+        icon.classList.remove(
+            "fa-bars"
+        );
+
+        icon.classList.add(
+            "fa-xmark"
+        );
+
+    }else{
+
+        icon.classList.remove(
+            "fa-xmark"
+        );
+
+        icon.classList.add(
+            "fa-bars"
+        );
+
+    }
+
+});
+
+
+/* =====================================================
+   CLOSE MOBILE MENU
+===================================================== */
+
+document
+.querySelectorAll(
+".mobile-menu a"
+)
+.forEach(
+function(link){
+
+    link.addEventListener(
+    "click",
+    function(){
+
+        mobileMenu.classList.remove(
+            "active"
+        );
+
+        const icon =
+        menuBtn.querySelector("i");
+
+        icon.classList.remove(
+            "fa-xmark"
+        );
+
+        icon.classList.add(
+            "fa-bars"
+        );
+
+    });
+
+});
+
+
+/* =====================================================
+   NAVBAR SCROLL EFFECT
+===================================================== */
+
+window.addEventListener(
+"scroll",
+function(){
+
+    const navbar =
+    document.querySelector(
+        ".navbar"
+    );
+
+    if(
+        window.scrollY > 30
+    ){
+
+        navbar.style.background =
+        "rgba(7,17,31,.94)";
+
+    }else{
+
+        navbar.style.background =
+        "rgba(7,17,31,.78)";
+
+    }
+
+});
+
+
+</script>
 
 
 </body>
 
 </html>
+```
