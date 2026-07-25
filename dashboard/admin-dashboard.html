@@ -1,1 +1,1229 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="System Management Admin Dashboard"
+    >
+
+    <title>Admin Dashboard | System Management</title>
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <!-- Admin Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/admin-dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     DASHBOARD WRAPPER
+===================================================== -->
+
+<div class="dashboard-wrapper">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+
+        <!-- Brand -->
+
+        <div class="sidebar-brand">
+
+
+            <div class="brand-logo">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <h2>
+                    SYSTEM
+                </h2>
+
+                <span>
+                    MANAGEMENT
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Admin Profile -->
+
+        <div class="admin-profile">
+
+
+            <div class="admin-avatar">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+            </div>
+
+
+            <div class="admin-info">
+
+                <strong id="sidebarUserName">
+                    Administrator
+                </strong>
+
+                <span>
+
+                    <i class="fa-solid fa-circle"></i>
+
+                    Administrator
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <nav class="sidebar-nav">
+
+
+            <div class="nav-section-title">
+
+                MAIN MENU
+
+            </div>
+
+
+            <a
+                href="admin-dashboard.html"
+                class="nav-item active"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/new-support.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </span>
+
+                <span>
+                    New Support
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/support.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                </span>
+
+                <span>
+                    Support Management
+                </span>
+
+                <span class="nav-badge">
+                    12
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/call.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                </span>
+
+                <span>
+                    Call Management
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/history.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                </span>
+
+                <span>
+                    Support History
+                </span>
+
+            </a>
+
+
+            <div class="nav-section-title">
+
+                MANAGEMENT
+
+            </div>
+
+
+            <a
+                href="../pages/monitor.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </span>
+
+                <span>
+                    System Monitor
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/user-management.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                </span>
+
+                <span>
+                    User Management
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/my-account.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-user-circle"></i>
+
+                </span>
+
+                <span>
+                    My Account
+                </span>
+
+            </a>
+
+
+            <a
+                href="../pages/settings.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                </span>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- Sidebar Bottom -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        System Online
+                    </strong>
+
+                    <small>
+                        All services operational
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-button"
+                id="logoutButton"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- Top Header -->
+
+        <header class="top-header">
+
+
+            <div class="header-left">
+
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    id="menuToggle"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="page-heading">
+
+                    <span>
+                        ADMIN PANEL
+                    </span>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <button
+                    type="button"
+                    class="header-icon-button"
+                    title="Notifications"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <div class="header-divider"></div>
+
+
+                <div class="header-user">
+
+
+                    <div class="header-user-avatar">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                    </div>
+
+
+                    <div class="header-user-info">
+
+                        <strong id="headerUserName">
+                            Administrator
+                        </strong>
+
+                        <span>
+                            Admin
+                        </span>
+
+                    </div>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- Page Content -->
+
+        <div class="content-area">
+
+
+            <!-- Welcome -->
+
+            <section class="welcome-section">
+
+
+                <div>
+
+                    <p class="welcome-label">
+                        WELCOME BACK
+                    </p>
+
+                    <h2>
+                        Hello,
+                        <span id="welcomeUserName">
+                            Administrator
+                        </span>
+                        👋
+                    </h2>
+
+                    <p>
+                        Here's what's happening with your system today.
+                    </p>
+
+                </div>
+
+
+                <div class="current-date">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    <span id="currentDate">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- Stats -->
+
+            <section class="stats-grid">
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon blue">
+
+                            <i class="fa-solid fa-headset"></i>
+
+                        </div>
+
+                        <span class="stat-trend positive">
+
+                            <i class="fa-solid fa-arrow-up"></i>
+
+                            12%
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            Total Support
+                        </span>
+
+                        <strong>
+                            248
+                        </strong>
+
+                        <small>
+                            Compared to last month
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon orange">
+
+                            <i class="fa-solid fa-hourglass-half"></i>
+
+                        </div>
+
+                        <span class="stat-trend warning">
+
+                            Pending
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            Pending Support
+                        </span>
+
+                        <strong>
+                            32
+                        </strong>
+
+                        <small>
+                            Requires attention
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon green">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+                        <span class="stat-trend positive">
+
+                            <i class="fa-solid fa-arrow-up"></i>
+
+                            8%
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong>
+                            186
+                        </strong>
+
+                        <small>
+                            Successfully resolved
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-card-top">
+
+                        <div class="stat-icon purple">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                        <span class="stat-trend active">
+
+                            Active
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            Active Users
+                        </span>
+
+                        <strong>
+                            24
+                        </strong>
+
+                        <small>
+                            Currently online
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- Quick Actions -->
+
+            <section class="section-block">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            QUICK ACCESS
+                        </span>
+
+                        <h3>
+                            Management Center
+                        </h3>
+
+                    </div>
+
+                    <span class="section-description">
+                        Manage your system efficiently
+                    </span>
+
+                </div>
+
+
+                <div class="quick-actions-grid">
+
+
+                    <a
+                        href="../pages/new-support.html"
+                        class="quick-card"
+                    >
+
+                        <div class="quick-icon blue">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                New Support
+                            </h4>
+
+                            <p>
+                                Create a new support entry
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right quick-arrow"></i>
+
+                    </a>
+
+
+
+                    <a
+                        href="../pages/support.html"
+                        class="quick-card"
+                    >
+
+                        <div class="quick-icon orange">
+
+                            <i class="fa-solid fa-headset"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Support Management
+                            </h4>
+
+                            <p>
+                                Manage pending support
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right quick-arrow"></i>
+
+                    </a>
+
+
+
+                    <a
+                        href="../pages/call.html"
+                        class="quick-card"
+                    >
+
+                        <div class="quick-icon green">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                Call Management
+                            </h4>
+
+                            <p>
+                                Manage customer calls
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right quick-arrow"></i>
+
+                    </a>
+
+
+
+                    <a
+                        href="../pages/user-management.html"
+                        class="quick-card"
+                    >
+
+                        <div class="quick-icon purple">
+
+                            <i class="fa-solid fa-users-gear"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+                                User Management
+                            </h4>
+
+                            <p>
+                                Manage system users
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-arrow-right quick-arrow"></i>
+
+                    </a>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- Bottom Grid -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- Recent Support -->
+
+                <div class="dashboard-panel">
+
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                RECENT ACTIVITY
+                            </span>
+
+                            <h3>
+                                Recent Support
+                            </h3>
+
+                        </div>
+
+
+                        <a
+                            href="../pages/history.html"
+                            class="view-all"
+                        >
+
+                            View All
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="activity-list">
+
+
+                        <div class="activity-item">
+
+
+                            <div class="activity-avatar blue">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+
+                            <div class="activity-details">
+
+                                <strong>
+                                    Customer Support Request
+                                </strong>
+
+                                <span>
+                                    Customer ID: CUS-1024
+                                </span>
+
+                            </div>
+
+
+                            <div class="activity-status pending">
+                                Pending
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="activity-item">
+
+
+                            <div class="activity-avatar green">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+
+
+                            <div class="activity-details">
+
+                                <strong>
+                                    Internet Connection Issue
+                                </strong>
+
+                                <span>
+                                    Customer ID: CUS-1021
+                                </span>
+
+                            </div>
+
+
+                            <div class="activity-status completed">
+                                Completed
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="activity-item">
+
+
+                            <div class="activity-avatar orange">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+
+
+                            <div class="activity-details">
+
+                                <strong>
+                                    Customer Call Required
+                                </strong>
+
+                                <span>
+                                    Customer ID: CUS-1018
+                                </span>
+
+                            </div>
+
+
+                            <div class="activity-status calling">
+                                Calling
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="activity-item">
+
+
+                            <div class="activity-avatar purple">
+                                <i class="fa-solid fa-wrench"></i>
+                            </div>
+
+
+                            <div class="activity-details">
+
+                                <strong>
+                                    Technical Support
+                                </strong>
+
+                                <span>
+                                    Customer ID: CUS-1015
+                                </span>
+
+                            </div>
+
+
+                            <div class="activity-status completed">
+                                Completed
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- System Overview -->
+
+                <div class="dashboard-panel">
+
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                SYSTEM
+                            </span>
+
+                            <h3>
+                                System Overview
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-overview">
+
+
+                        <div class="overview-item">
+
+                            <div class="overview-icon">
+
+                                <i class="fa-solid fa-server"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Server Status
+                                </strong>
+
+                                <span class="online-text">
+                                    Operational
+                                </span>
+
+                            </div>
+
+                            <span class="online-dot"></span>
+
+                        </div>
+
+
+                        <div class="overview-item">
+
+                            <div class="overview-icon">
+
+                                <i class="fa-solid fa-database"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Database
+                                </strong>
+
+                                <span class="online-text">
+                                    Connected
+                                </span>
+
+                            </div>
+
+                            <span class="online-dot"></span>
+
+                        </div>
+
+
+                        <div class="overview-item">
+
+                            <div class="overview-icon">
+
+                                <i class="fa-solid fa-shield-halved"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Security
+                                </strong>
+
+                                <span class="online-text">
+                                    Protected
+                                </span>
+
+                            </div>
+
+                            <span class="online-dot"></span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="system-footer">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        All systems are running normally.
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <footer class="dashboard-footer">
+
+            <span>
+                © 2026 System Management. All rights reserved.
+            </span>
+
+            <span>
+                Admin Control Panel
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     LOGOUT MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="logoutModal"
+>
+
+
+    <div class="logout-modal">
+
+
+        <div class="logout-modal-icon">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+        </div>
+
+
+        <h3>
+            Logout from System?
+        </h3>
+
+
+        <p>
+            Are you sure you want to logout from your admin account?
+        </p>
+
+
+        <div class="modal-actions">
+
+
+            <button
+                type="button"
+                class="cancel-button"
+                id="cancelLogout"
+            >
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="button"
+                class="confirm-logout-button"
+                id="confirmLogout"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="../js/admin-dashboard.js"></script>
+
+
+</body>
+
+</html>
