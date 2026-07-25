@@ -3,51 +3,732 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Support Management System Login"
-    >
+<meta name="theme-color" content="#07111f">
 
-    <title>Login | Support Management</title>
+<title>Login | LINK4 COMMUNICATION</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 
 
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    font-family:'Inter',sans-serif;
+
+    background:#07111f;
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow-x:hidden;
+
+}
 
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+
+    --bg:#07111f;
+
+    --card:rgba(255,255,255,.055);
+
+    --border:rgba(255,255,255,.10);
+
+    --green:#00d084;
+
+    --blue:#149cff;
+
+    --muted:#8c9aad;
+
+}
 
 
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
-    <link
-        rel="stylesheet"
-        href="css/login.css"
-    >
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:550px;
+
+    height:550px;
+
+    top:-220px;
+
+    left:-200px;
+
+    background:rgba(0,208,132,.09);
+
+    filter:blur(120px);
+
+    border-radius:50%;
+
+    z-index:-1;
+
+}
+
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:550px;
+
+    height:550px;
+
+    right:-220px;
+
+    bottom:-220px;
+
+    background:rgba(20,156,255,.10);
+
+    filter:blur(120px);
+
+    border-radius:50%;
+
+    z-index:-1;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.login-wrapper{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+
+}
+
+
+/* =====================================================
+   LOGIN CARD
+===================================================== */
+
+.login-card{
+
+    width:100%;
+
+    max-width:440px;
+
+    padding:42px;
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(255,255,255,.075),
+
+        rgba(255,255,255,.025)
+
+    );
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    box-shadow:
+
+    0 30px 90px
+
+    rgba(0,0,0,.40);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    animation:cardShow .7s ease both;
+
+}
+
+
+@keyframes cardShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px) scale(.98);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo-area{
+
+    text-align:center;
+
+    margin-bottom:32px;
+
+}
+
+
+.logo-box{
+
+    width:62px;
+
+    height:62px;
+
+    margin:0 auto 16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:17px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #00d084,
+
+        #008fff
+
+    );
+
+    font-size:21px;
+
+    font-weight:800;
+
+    box-shadow:
+
+    0 15px 40px
+
+    rgba(0,208,132,.20);
+
+}
+
+
+.logo-title{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.logo-sub{
+
+    margin-top:5px;
+
+    color:#718095;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.login-heading{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+
+.login-heading h1{
+
+    font-size:25px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+
+.login-heading p{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group{
+
+    margin-bottom:19px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#c8d2df;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+.input-box{
+
+    position:relative;
+
+}
+
+
+.input-box i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#718095;
+
+    font-size:13px;
+
+    pointer-events:none;
+
+}
+
+
+.input-box input{
+
+    width:100%;
+
+    height:50px;
+
+    padding:0 45px;
+
+    border-radius:11px;
+
+    border:1px solid rgba(255,255,255,.09);
+
+    outline:none;
+
+    background:rgba(255,255,255,.045);
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    transition:.3s;
+
+}
+
+
+.input-box input::placeholder{
+
+    color:#617083;
+
+}
+
+
+.input-box input:focus{
+
+    border-color:rgba(0,208,132,.55);
+
+    background:rgba(255,255,255,.065);
+
+    box-shadow:
+
+    0 0 0 3px
+
+    rgba(0,208,132,.08);
+
+}
+
+
+.password-toggle{
+
+    position:absolute;
+
+    right:14px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#718095;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:.3s;
+
+}
+
+
+.password-toggle:hover{
+
+    color:#00d084;
+
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-btn{
+
+    width:100%;
+
+    height:52px;
+
+    margin-top:7px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #00c878,
+
+        #008fff
+
+    );
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+    0 15px 35px
+
+    rgba(0,170,220,.25);
+
+}
+
+
+.login-btn:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-spinner{
+
+    width:16px;
+
+    height:16px;
+
+    border:2px solid rgba(255,255,255,.35);
+
+    border-top-color:white;
+
+    border-radius:50%;
+
+    animation:spin .7s linear infinite;
+
+}
+
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+    display:none;
+
+    margin-top:17px;
+
+    padding:12px 14px;
+
+    border-radius:10px;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    text-align:center;
+
+}
+
+
+.message.show{
+
+    display:block;
+
+}
+
+
+.message.error{
+
+    color:#ff9b9b;
+
+    background:rgba(255,70,70,.08);
+
+    border:1px solid rgba(255,70,70,.15);
+
+}
+
+
+.message.success{
+
+    color:#7dffca;
+
+    background:rgba(0,208,132,.08);
+
+    border:1px solid rgba(0,208,132,.15);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.login-footer{
+
+    text-align:center;
+
+    margin-top:27px;
+
+    padding-top:22px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+}
+
+
+.back-home{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#8190a4;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    transition:.3s;
+
+}
+
+
+.back-home:hover{
+
+    color:#00d084;
+
+}
+
+
+.security-text{
+
+    margin-top:15px;
+
+    color:#566578;
+
+    font-size:9px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+
+.security-text i{
+
+    color:#00d084;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:500px){
+
+    .login-wrapper{
+
+        padding:20px;
+
+    }
+
+    .login-card{
+
+        padding:30px 22px;
+
+        border-radius:20px;
+
+    }
+
+    .logo-title{
+
+        font-size:16px;
+
+    }
+
+    .login-heading h1{
+
+        font-size:22px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -55,371 +736,519 @@
 <body>
 
 
+<div class="login-wrapper">
 
-    <main class="login-page">
 
-        <div class="background-decoration decoration-one"></div>
+<div class="login-card">
 
-        <div class="background-decoration decoration-two"></div>
 
+<!-- =====================================================
+     LOGO
+===================================================== -->
 
+<div class="logo-area">
 
-        <section class="login-container">
+<div class="logo-box">
+L4
+</div>
 
+<div class="logo-title">
+LINK4 COMMUNICATION
+</div>
 
-            <div class="login-brand">
+<div class="logo-sub">
+MANAGEMENT SYSTEM
+</div>
 
+</div>
 
-                <div class="brand-icon">
 
-                    <i class="fa-solid fa-headset"></i>
+<!-- =====================================================
+     HEADING
+===================================================== -->
 
-                </div>
+<div class="login-heading">
 
+<h1>
+Welcome Back
+</h1>
 
-                <h1>
-                    SUPPORT
-                </h1>
+<p>
+Sign in to access your management workspace.
+</p>
 
+</div>
 
-                <h2>
-                    MANAGEMENT
-                </h2>
 
+<!-- =====================================================
+     LOGIN FORM
+===================================================== -->
 
-                <p>
-                    Welcome to the Support Management System.
-                    Please login to continue.
-                </p>
+<form id="loginForm">
 
 
-                <div class="brand-line"></div>
+<div class="form-group">
 
+<label for="username">
+Username
+</label>
 
-                <div class="brand-info">
+<div class="input-box">
 
-                    <div class="brand-info-item">
+<i class="fa-solid fa-user"></i>
 
-                        <i class="fa-solid fa-shield-halved"></i>
+<input
+type="text"
+id="username"
+placeholder="Enter your username"
+autocomplete="username"
+required
+>
 
-                        <span>
-                            Secure Access
-                        </span>
+</div>
 
-                    </div>
+</div>
 
 
-                    <div class="brand-info-item">
+<div class="form-group">
 
-                        <i class="fa-solid fa-users"></i>
+<label for="password">
+Password
+</label>
 
-                        <span>
-                            Team Management
-                        </span>
+<div class="input-box">
 
-                    </div>
+<i class="fa-solid fa-lock"></i>
 
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+autocomplete="current-password"
+required
+>
 
-                    <div class="brand-info-item">
+<span
+class="password-toggle"
+id="togglePassword">
 
-                        <i class="fa-solid fa-clock"></i>
+<i class="fa-solid fa-eye"></i>
 
-                        <span>
-                            Fast Support
-                        </span>
+</span>
 
-                    </div>
+</div>
 
-                </div>
+</div>
 
 
-            </div>
+<button
+type="submit"
+class="login-btn"
+id="loginBtn">
 
+<i class="fa-solid fa-right-to-bracket"></i>
 
+<span id="loginText">
+Login to System
+</span>
 
-            <div class="login-form-area">
+</button>
 
 
-                <!-- Login Header -->
+</form>
 
-                <div class="login-header">
 
-                    <div class="mobile-brand-icon">
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
 
-                        <i class="fa-solid fa-headset"></i>
+<div
+class="message"
+id="message">
+</div>
 
-                    </div>
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-                    <h2>
-                        Welcome Back
-                    </h2>
+<div class="login-footer">
 
+<a
+href="index.html"
+class="back-home">
 
-                    <p>
-                        Login to your account
-                    </p>
+<i class="fa-solid fa-arrow-left"></i>
 
-                </div>
+Back to Home
 
+</a>
 
-                <form
-                    id="loginForm"
-                    autocomplete="off"
-                >
 
+<div class="security-text">
 
-                    <div class="form-group">
+<i class="fa-solid fa-shield-halved"></i>
 
+Secure Management Access
 
-                        <label for="username">
+</div>
 
-                            <i class="fa-solid fa-user"></i>
+</div>
 
-                            Username
 
-                        </label>
+</div>
 
+</div>
 
-                        <div class="input-wrapper">
 
+<script>
 
-                            <i class="fa-solid fa-user input-icon"></i>
+/* =====================================================
+   GOOGLE APPS SCRIPT URL
+===================================================== */
 
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxbgyIg_ddBYIs8qkQvRN3xS3-ZG451C5y_2sNbVFWdWydzb9Mc6qV5CoWB5rjs91ghjQ/exec";
 
-                            <input
-                                type="text"
-                                id="username"
-                                name="username"
-                                placeholder="Enter your username"
-                                autocomplete="username"
-                                required
-                            >
 
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-                        </div>
+const loginForm =
+document.getElementById("loginForm");
 
+const usernameInput =
+document.getElementById("username");
 
-                    </div>
+const passwordInput =
+document.getElementById("password");
 
+const loginBtn =
+document.getElementById("loginBtn");
 
+const loginText =
+document.getElementById("loginText");
 
-                    <div class="form-group">
+const message =
+document.getElementById("message");
 
+const togglePassword =
+document.getElementById("togglePassword");
 
-                        <label for="password">
 
-                            <i class="fa-solid fa-lock"></i>
+/* =====================================================
+   PASSWORD SHOW / HIDE
+===================================================== */
 
-                            Password
+togglePassword.addEventListener(
+"click",
+function(){
 
-                        </label>
+    if(
+        passwordInput.type === "password"
+    ){
 
+        passwordInput.type = "text";
 
-                        <div class="input-wrapper">
+        this.innerHTML =
+        '<i class="fa-solid fa-eye-slash"></i>';
 
+    }else{
 
-                            <i class="fa-solid fa-lock input-icon"></i>
+        passwordInput.type = "password";
 
+        this.innerHTML =
+        '<i class="fa-solid fa-eye"></i>';
 
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Enter your password"
-                                autocomplete="current-password"
-                                required
-                            >
+    }
 
+});
 
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                id="passwordToggle"
-                                aria-label="Show password"
-                            >
 
-                                <i
-                                    class="fa-solid fa-eye"
-                                    id="passwordIcon"
-                                ></i>
+/* =====================================================
+   MESSAGE FUNCTION
+===================================================== */
 
-                            </button>
+function showMessage(
+    text,
+    type
+){
 
+    message.textContent =
+    text;
 
-                        </div>
+    message.className =
+    "message show " + type;
 
+}
 
-                    </div>
 
+/* =====================================================
+   LOGIN
+===================================================== */
 
+loginForm.addEventListener(
+"submit",
+async function(e){
 
-                    <div class="login-options">
+    e.preventDefault();
 
 
-                        <label class="remember-me">
+    const username =
+    usernameInput.value.trim();
 
+    const password =
+    passwordInput.value.trim();
 
-                            <input
-                                type="checkbox"
-                                id="rememberMe"
-                            >
 
+    if(
+        !username ||
+        !password
+    ){
 
-                            <span class="custom-checkbox">
+        showMessage(
+            "Please enter username and password.",
+            "error"
+        );
 
-                                <i class="fa-solid fa-check"></i>
+        return;
 
-                            </span>
+    }
 
 
-                            <span>
-                                Remember me
-                            </span>
+    /* ===============================
+       LOADING
+    =============================== */
 
+    loginBtn.disabled =
+    true;
 
-                        </label>
+    loginText.textContent =
+    "Checking Login...";
 
 
-                    </div>
+    loginBtn.insertAdjacentHTML(
+        "afterbegin",
+        '<span class="loading-spinner"></span>'
+    );
 
 
-                    <div
-                        class="message-box"
-                        id="messageBox"
-                    >
+    try{
 
-                        <i
-                            class="fa-solid fa-circle-info"
-                            id="messageIcon"
-                        ></i>
 
+        /* ===============================
+           API REQUEST
+        =============================== */
 
-                        <span id="messageText">
-                            Message
-                        </span>
+        const response =
+        await fetch(
 
-                    </div>
+            API_URL +
 
+            "?action=login" +
 
-                    <button
-                        type="submit"
-                        class="login-button"
-                        id="loginButton"
-                    >
+            "&username=" +
 
+            encodeURIComponent(username) +
 
-                        <span id="loginButtonText">
+            "&password=" +
 
-                            <i class="fa-solid fa-right-to-bracket"></i>
+            encodeURIComponent(password),
 
-                            Login
+            {
 
-                        </span>
+                method:"GET",
 
+                cache:"no-store"
 
-                        <span
-                            id="loginLoading"
-                            class="login-loading"
-                        >
+            }
 
-                            <i class="fa-solid fa-spinner fa-spin"></i>
+        );
 
-                            Checking...
 
-                        </span>
+        if(
+            !response.ok
+        ){
 
+            throw new Error(
+                "Server connection failed."
+            );
 
-                    </button>
+        }
 
 
-                </form>
+        const data =
+        await response.json();
 
 
+        /* ===============================
+           LOGIN SUCCESS
+        =============================== */
 
-                <div class="login-footer">
+        if(
+            data.success === true
+        ){
 
+            showMessage(
+                "Login successful. Redirecting...",
+                "success"
+            );
 
-                    <p>
 
-                        <i class="fa-solid fa-shield-halved"></i>
+            /* ===============================
+               SAVE USER SESSION
+            =============================== */
 
-                        Secure Support Management System
+            localStorage.setItem(
+                "loggedIn",
+                "true"
+            );
 
-                    </p>
 
+            localStorage.setItem(
+                "username",
+                data.username || username
+            );
 
-                    <span>
 
-                        © 2026 Support Management
+            localStorage.setItem(
+                "name",
+                data.name || ""
+            );
 
-                    </span>
 
+            localStorage.setItem(
+                "role",
+                data.role || ""
+            );
 
-                </div>
 
+            localStorage.setItem(
+                "status",
+                data.status || "Active"
+            );
 
-            </div>
 
+            /* ===============================
+               REDIRECT
+            =============================== */
 
-        </section>
+            setTimeout(
 
+                function(){
 
-    </main>
+                    window.location.href =
+                    "dashboard.html";
 
+                },
 
-    <div
-        class="custom-popup"
-        id="customPopup"
-    >
+                700
 
+            );
 
-        <div class="popup-overlay"></div>
 
+        }else{
 
-        <div class="popup-box">
 
+            showMessage(
 
-            <div
-                class="popup-icon"
-                id="popupIcon"
-            >
+                data.message ||
 
-                <i
-                    class="fa-solid fa-circle-info"
-                    id="popupIconElement"
-                ></i>
+                "Invalid username or password.",
 
-            </div>
+                "error"
 
+            );
 
-            <h3 id="popupTitle">
-                Message
-            </h3>
 
+            loginBtn.disabled =
+            false;
 
-            <p id="popupMessage">
-                Message
-            </p>
+            loginText.textContent =
+            "Login to System";
 
 
-            <button
-                type="button"
-                class="popup-button"
-                id="popupButton"
-            >
+            const spinner =
+            loginBtn.querySelector(
+                ".loading-spinner"
+            );
 
-                OK
+            if(
+                spinner
+            ){
 
-            </button>
+                spinner.remove();
 
+            }
 
-        </div>
+        }
 
 
-    </div>
+    }catch(error){
 
-    <script src="js/login.js"></script>
+
+        console.error(
+            "Login Error:",
+            error
+        );
+
+
+        showMessage(
+
+            "Unable to connect to the login server. Please try again.",
+
+            "error"
+
+        );
+
+
+        loginBtn.disabled =
+        false;
+
+        loginText.textContent =
+        "Login to System";
+
+
+        const spinner =
+        loginBtn.querySelector(
+            ".loading-spinner"
+        );
+
+
+        if(
+            spinner
+        ){
+
+            spinner.remove();
+
+        }
+
+    }
+
+});
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+passwordInput.addEventListener(
+"keydown",
+function(e){
+
+    if(
+        e.key === "Enter"
+    ){
+
+        loginForm.requestSubmit();
+
+    }
+
+});
+
+
+</script>
 
 
 </body>
