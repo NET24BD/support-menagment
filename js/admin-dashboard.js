@@ -11,16 +11,11 @@
 (function () {
 
     const loggedIn =
-        localStorage.getItem(
-            "loggedIn"
-        );
+        localStorage.getItem("loggedIn");
 
     const role =
         String(
-            localStorage.getItem(
-                "role"
-            ) ||
-            ""
+            localStorage.getItem("role") || ""
         )
         .trim()
         .toLowerCase();
@@ -30,13 +25,9 @@
      * Login না করলে Login Page
      */
 
-    if (
-        loggedIn !== "true"
-    ) {
+    if (loggedIn !== "true") {
 
-        window.location.replace(
-            "../login.html"
-        );
+        window.location.replace("../login.html");
 
         return;
 
@@ -52,14 +43,7 @@
         role !== "administrator"
     ) {
 
-        alert(
-            "Access Denied. Administrator access required."
-        );
-
-
-        window.location.replace(
-            "../login.html"
-        );
+        window.location.replace("../login.html");
 
         return;
 
@@ -88,34 +72,13 @@ document.addEventListener(
 
 function initializeDashboard() {
 
-
-    /*
-     * Load User Information
-     */
-
     loadUserInformation();
-
-
-    /*
-     * Current Date
-     */
 
     displayCurrentDate();
 
-
-    /*
-     * Mobile Sidebar
-     */
-
     setupMobileSidebar();
 
-
-    /*
-     * Logout
-     */
-
     setupLogout();
-
 
 }
 
@@ -126,11 +89,8 @@ function initializeDashboard() {
 
 function loadUserInformation() {
 
-
     const userName =
-        localStorage.getItem(
-            "userName"
-        ) ||
+        localStorage.getItem("userName") ||
         "Administrator";
 
 
@@ -152,9 +112,7 @@ function loadUserInformation() {
         );
 
 
-    if (
-        sidebarUserName
-    ) {
+    if (sidebarUserName) {
 
         sidebarUserName.textContent =
             userName;
@@ -162,9 +120,7 @@ function loadUserInformation() {
     }
 
 
-    if (
-        headerUserName
-    ) {
+    if (headerUserName) {
 
         headerUserName.textContent =
             userName;
@@ -172,9 +128,7 @@ function loadUserInformation() {
     }
 
 
-    if (
-        welcomeUserName
-    ) {
+    if (welcomeUserName) {
 
         welcomeUserName.textContent =
             userName;
@@ -190,16 +144,13 @@ function loadUserInformation() {
 
 function displayCurrentDate() {
 
-
     const dateElement =
         document.getElementById(
             "currentDate"
         );
 
 
-    if (
-        !dateElement
-    ) {
+    if (!dateElement) {
 
         return;
 
@@ -212,17 +163,13 @@ function displayCurrentDate() {
 
     const options = {
 
-        weekday:
-            "long",
+        weekday: "long",
 
-        year:
-            "numeric",
+        year: "numeric",
 
-        month:
-            "long",
+        month: "long",
 
-        day:
-            "numeric"
+        day: "numeric"
 
     };
 
@@ -241,7 +188,6 @@ function displayCurrentDate() {
 ===================================================== */
 
 function setupMobileSidebar() {
-
 
     const menuToggle =
         document.getElementById(
@@ -265,12 +211,49 @@ function setupMobileSidebar() {
     }
 
 
+    /*
+     * Create Overlay Automatically
+     */
+
+    let sidebarOverlay =
+        document.querySelector(
+            ".sidebar-overlay"
+        );
+
+
+    if (!sidebarOverlay) {
+
+        sidebarOverlay =
+            document.createElement(
+                "div"
+            );
+
+        sidebarOverlay.className =
+            "sidebar-overlay";
+
+        document.body.appendChild(
+            sidebarOverlay
+        );
+
+    }
+
+
+    /*
+     * Open / Close Sidebar
+     */
+
     menuToggle.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.stopPropagation();
 
             sidebar.classList.toggle(
-                "open"
+                "mobile-open"
+            );
+
+            sidebarOverlay.classList.toggle(
+                "active"
             );
 
         }
@@ -279,20 +262,31 @@ function setupMobileSidebar() {
 
     /*
      * Close Sidebar
-     * When clicking outside
+     * Overlay Click
+     */
+
+    sidebarOverlay.addEventListener(
+        "click",
+        function () {
+
+            closeMobileSidebar();
+
+        }
+    );
+
+
+    /*
+     * Close Sidebar
+     * Outside Click
      */
 
     document.addEventListener(
         "click",
-        function (
-            event
-        ) {
-
+        function (event) {
 
             if (
-                window.innerWidth <= 900
+                window.innerWidth <= 768
             ) {
-
 
                 if (
                     !sidebar.contains(
@@ -303,9 +297,7 @@ function setupMobileSidebar() {
                     )
                 ) {
 
-                    sidebar.classList.remove(
-                        "open"
-                    );
+                    closeMobileSidebar();
 
                 }
 
@@ -313,6 +305,76 @@ function setupMobileSidebar() {
 
         }
     );
+
+
+    /*
+     * Close Sidebar
+     * Navigation Click
+     */
+
+    const navItems =
+        sidebar.querySelectorAll(
+            ".nav-item"
+        );
+
+
+    navItems.forEach(
+        function (item) {
+
+            item.addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        window.innerWidth <= 768
+                    ) {
+
+                        closeMobileSidebar();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /*
+     * Window Resize
+     */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (
+                window.innerWidth > 768
+            ) {
+
+                closeMobileSidebar();
+
+            }
+
+        }
+    );
+
+
+    /*
+     * Close Function
+     */
+
+    function closeMobileSidebar() {
+
+        sidebar.classList.remove(
+            "mobile-open"
+        );
+
+        sidebarOverlay.classList.remove(
+            "active"
+        );
+
+    }
 
 }
 
@@ -322,7 +384,6 @@ function setupMobileSidebar() {
 ===================================================== */
 
 function setupLogout() {
-
 
     const logoutButton =
         document.getElementById(
@@ -349,11 +410,12 @@ function setupLogout() {
 
 
     /*
-     * Open Modal
+     * Logout Button
      */
 
     if (
-        logoutButton
+        logoutButton &&
+        logoutModal
     ) {
 
         logoutButton.addEventListener(
@@ -371,11 +433,12 @@ function setupLogout() {
 
 
     /*
-     * Cancel
+     * Cancel Logout
      */
 
     if (
-        cancelLogout
+        cancelLogout &&
+        logoutModal
     ) {
 
         cancelLogout.addEventListener(
@@ -396,9 +459,7 @@ function setupLogout() {
      * Confirm Logout
      */
 
-    if (
-        confirmLogout
-    ) {
+    if (confirmLogout) {
 
         confirmLogout.addEventListener(
             "click",
@@ -416,16 +477,11 @@ function setupLogout() {
      * Click Outside Modal
      */
 
-    if (
-        logoutModal
-    ) {
+    if (logoutModal) {
 
         logoutModal.addEventListener(
             "click",
-            function (
-                event
-            ) {
-
+            function (event) {
 
                 if (
                     event.target ===
@@ -443,6 +499,34 @@ function setupLogout() {
 
     }
 
+
+    /*
+     * ESC Key
+     */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                if (
+                    logoutModal
+                ) {
+
+                    logoutModal.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
 }
 
 
@@ -452,44 +536,44 @@ function setupLogout() {
 
 function performLogout() {
 
-
     /*
-     * Clear Login Session
+     * Clear Session
      */
 
     localStorage.removeItem(
         "loggedIn"
     );
 
-
     localStorage.removeItem(
         "userName"
     );
-
 
     localStorage.removeItem(
         "username"
     );
 
-
     localStorage.removeItem(
         "role"
     );
-
 
     localStorage.removeItem(
         "status"
     );
 
-
     localStorage.removeItem(
         "loginTime"
     );
 
-
     localStorage.removeItem(
         "rememberMe"
     );
+
+
+    /*
+     * Prevent Cached Dashboard
+     */
+
+    sessionStorage.clear();
 
 
     /*
@@ -504,13 +588,12 @@ function performLogout() {
 
 
 /* =====================================================
-   PREVENT BACK BUTTON AFTER LOGOUT
+   PAGE SECURITY
 ===================================================== */
 
 window.addEventListener(
     "pageshow",
     function () {
-
 
         const loggedIn =
             localStorage.getItem(
@@ -522,8 +605,7 @@ window.addEventListener(
             String(
                 localStorage.getItem(
                     "role"
-                ) ||
-                ""
+                ) || ""
             )
             .trim()
             .toLowerCase();
@@ -542,6 +624,23 @@ window.addEventListener(
             );
 
         }
+
+    }
+);
+
+
+/* =====================================================
+   PREVENT BFCACHE
+===================================================== */
+
+window.addEventListener(
+    "pagehide",
+    function () {
+
+        /*
+         * Browser Back/Forward Cache
+         * Handling
+         */
 
     }
 );
