@@ -1,29 +1,67 @@
 /* =====================================================
-   LINK4 COMMUNICATION
-   DASHBOARD JAVASCRIPT
+   SYSTEM MANAGEMENT
+   ADMIN DASHBOARD JAVASCRIPT
 ===================================================== */
 
 
 /* =====================================================
-   LOGIN SECURITY
+   DASHBOARD SECURITY
 ===================================================== */
 
 (function () {
 
     const loggedIn =
-        localStorage.getItem("loggedIn");
+        localStorage.getItem(
+            "loggedIn"
+        );
+
+    const role =
+        String(
+            localStorage.getItem(
+                "role"
+            ) ||
+            ""
+        )
+        .trim()
+        .toLowerCase();
+
 
     /*
-        Login না করা থাকলে
-        Dashboard access বন্ধ করে
-        login.html এ পাঠানো হবে
-    */
+     * Login না করলে Login Page
+     */
 
-    if (loggedIn !== "true") {
+    if (
+        loggedIn !== "true"
+    ) {
 
         window.location.replace(
-            "login.html"
+            "../login.html"
         );
+
+        return;
+
+    }
+
+
+    /*
+     * শুধু Admin Access
+     */
+
+    if (
+        role !== "admin" &&
+        role !== "administrator"
+    ) {
+
+        alert(
+            "Access Denied. Administrator access required."
+        );
+
+
+        window.location.replace(
+            "../login.html"
+        );
+
+        return;
 
     }
 
@@ -38,68 +76,69 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        loadUserData();
-
-        setCurrentDate();
-
-        setupSidebar();
-
-        setupLogout();
-
-        setupNotifications();
+        initializeDashboard();
 
     }
 );
 
 
 /* =====================================================
-   LOAD USER DATA
+   INITIALIZE DASHBOARD
 ===================================================== */
 
-function loadUserData() {
+function initializeDashboard() {
 
 
     /*
-        Login System থেকে User Data নেওয়া হচ্ছে
-    */
+     * Load User Information
+     */
+
+    loadUserInformation();
+
+
+    /*
+     * Current Date
+     */
+
+    displayCurrentDate();
+
+
+    /*
+     * Mobile Sidebar
+     */
+
+    setupMobileSidebar();
+
+
+    /*
+     * Logout
+     */
+
+    setupLogout();
+
+
+}
+
+
+/* =====================================================
+   LOAD USER INFORMATION
+===================================================== */
+
+function loadUserInformation() {
+
 
     const userName =
-        localStorage.getItem("userName") ||
-        localStorage.getItem("name") ||
-        "User";
+        localStorage.getItem(
+            "userName"
+        ) ||
+        "Administrator";
 
 
-    const username =
-        localStorage.getItem("username") ||
-        "—";
-
-
-    const role =
-        localStorage.getItem("role") ||
-        "Staff";
-
-
-    /*
-        Welcome User Name
-    */
-
-    const welcomeUserName =
+    const sidebarUserName =
         document.getElementById(
-            "welcomeUserName"
+            "sidebarUserName"
         );
 
-
-    if (welcomeUserName) {
-
-        welcomeUserName.textContent =
-            userName;
-
-    }
-
-
-    /*
-        Header User Name
-    */
 
     const headerUserName =
         document.getElementById(
@@ -107,7 +146,25 @@ function loadUserData() {
         );
 
 
-    if (headerUserName) {
+    const welcomeUserName =
+        document.getElementById(
+            "welcomeUserName"
+        );
+
+
+    if (
+        sidebarUserName
+    ) {
+
+        sidebarUserName.textContent =
+            userName;
+
+    }
+
+
+    if (
+        headerUserName
+    ) {
 
         headerUserName.textContent =
             userName;
@@ -115,99 +172,12 @@ function loadUserData() {
     }
 
 
-    /*
-        Header User Role
-    */
+    if (
+        welcomeUserName
+    ) {
 
-    const headerUserRole =
-        document.getElementById(
-            "headerUserRole"
-        );
-
-
-    if (headerUserRole) {
-
-        headerUserRole.textContent =
-            role;
-
-    }
-
-
-    /*
-        Account Name
-    */
-
-    const accountName =
-        document.getElementById(
-            "accountName"
-        );
-
-
-    if (accountName) {
-
-        accountName.textContent =
+        welcomeUserName.textContent =
             userName;
-
-    }
-
-
-    /*
-        Account Username
-    */
-
-    const accountUsername =
-        document.getElementById(
-            "accountUsername"
-        );
-
-
-    if (accountUsername) {
-
-        accountUsername.textContent =
-            username;
-
-    }
-
-
-    /*
-        Account Role
-    */
-
-    const accountRole =
-        document.getElementById(
-            "accountRole"
-        );
-
-
-    if (accountRole) {
-
-        accountRole.textContent =
-            role;
-
-    }
-
-
-    /*
-        User Avatar
-    */
-
-    const userAvatar =
-        document.getElementById(
-            "userAvatar"
-        );
-
-
-    if (userAvatar) {
-
-        const firstLetter =
-            userName
-                .trim()
-                .charAt(0)
-                .toUpperCase();
-
-
-        userAvatar.textContent =
-            firstLetter || "U";
 
     }
 
@@ -218,7 +188,7 @@ function loadUserData() {
    CURRENT DATE
 ===================================================== */
 
-function setCurrentDate() {
+function displayCurrentDate() {
 
 
     const dateElement =
@@ -227,7 +197,9 @@ function setCurrentDate() {
         );
 
 
-    if (!dateElement) {
+    if (
+        !dateElement
+    ) {
 
         return;
 
@@ -240,13 +212,17 @@ function setCurrentDate() {
 
     const options = {
 
-        weekday: "long",
+        weekday:
+            "long",
 
-        year: "numeric",
+        year:
+            "numeric",
 
-        month: "long",
+        month:
+            "long",
 
-        day: "numeric"
+        day:
+            "numeric"
 
     };
 
@@ -261,10 +237,10 @@ function setCurrentDate() {
 
 
 /* =====================================================
-   SIDEBAR
+   MOBILE SIDEBAR
 ===================================================== */
 
-function setupSidebar() {
+function setupMobileSidebar() {
 
 
     const menuToggle =
@@ -279,16 +255,9 @@ function setupSidebar() {
         );
 
 
-    const overlay =
-        document.getElementById(
-            "sidebarOverlay"
-        );
-
-
     if (
         !menuToggle ||
-        !sidebar ||
-        !overlay
+        !sidebar
     ) {
 
         return;
@@ -296,169 +265,183 @@ function setupSidebar() {
     }
 
 
-    /*
-        Open Sidebar
-    */
-
     menuToggle.addEventListener(
         "click",
         function () {
 
-            sidebar.classList.add(
-                "show"
+            sidebar.classList.toggle(
+                "open"
             );
-
-            overlay.classList.add(
-                "show"
-            );
-
-            document.body.style.overflow =
-                "hidden";
 
         }
     );
 
 
     /*
-        Close Sidebar
-    */
+     * Close Sidebar
+     * When clicking outside
+     */
 
-    overlay.addEventListener(
+    document.addEventListener(
         "click",
-        function () {
-
-            closeSidebar();
-
-        }
-    );
-
-
-    /*
-        Mobile Sidebar Link Click
-    */
-
-    const navLinks =
-        document.querySelectorAll(
-            ".nav-link"
-        );
-
-
-    navLinks.forEach(
-        function (link) {
-
-            link.addEventListener(
-                "click",
-                function () {
-
-                    if (
-                        window.innerWidth <= 900
-                    ) {
-
-                        closeSidebar();
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   CLOSE SIDEBAR
-===================================================== */
-
-function closeSidebar() {
-
-
-    const sidebar =
-        document.getElementById(
-            "sidebar"
-        );
-
-
-    const overlay =
-        document.getElementById(
-            "sidebarOverlay"
-        );
-
-
-    if (sidebar) {
-
-        sidebar.classList.remove(
-            "show"
-        );
-
-    }
-
-
-    if (overlay) {
-
-        overlay.classList.remove(
-            "show"
-        );
-
-    }
-
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* =====================================================
-   WINDOW RESIZE
-===================================================== */
-
-window.addEventListener(
-    "resize",
-    function () {
-
-
-        if (
-            window.innerWidth > 900
+        function (
+            event
         ) {
 
-            closeSidebar();
+
+            if (
+                window.innerWidth <= 900
+            ) {
+
+
+                if (
+                    !sidebar.contains(
+                        event.target
+                    ) &&
+                    !menuToggle.contains(
+                        event.target
+                    )
+                ) {
+
+                    sidebar.classList.remove(
+                        "open"
+                    );
+
+                }
+
+            }
 
         }
+    );
 
-    }
-);
+}
 
 
 /* =====================================================
-   LOGOUT
+   LOGOUT SETUP
 ===================================================== */
 
 function setupLogout() {
 
 
-    const logoutBtn =
+    const logoutButton =
         document.getElementById(
-            "logoutBtn"
+            "logoutButton"
         );
 
 
-    if (!logoutBtn) {
+    const logoutModal =
+        document.getElementById(
+            "logoutModal"
+        );
 
-        return;
+
+    const cancelLogout =
+        document.getElementById(
+            "cancelLogout"
+        );
+
+
+    const confirmLogout =
+        document.getElementById(
+            "confirmLogout"
+        );
+
+
+    /*
+     * Open Modal
+     */
+
+    if (
+        logoutButton
+    ) {
+
+        logoutButton.addEventListener(
+            "click",
+            function () {
+
+                logoutModal.classList.add(
+                    "active"
+                );
+
+            }
+        );
 
     }
 
 
-    logoutBtn.addEventListener(
-        "click",
-        function () {
+    /*
+     * Cancel
+     */
 
-            performLogout();
+    if (
+        cancelLogout
+    ) {
 
-        }
-    );
+        cancelLogout.addEventListener(
+            "click",
+            function () {
+
+                logoutModal.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Confirm Logout
+     */
+
+    if (
+        confirmLogout
+    ) {
+
+        confirmLogout.addEventListener(
+            "click",
+            function () {
+
+                performLogout();
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Click Outside Modal
+     */
+
+    if (
+        logoutModal
+    ) {
+
+        logoutModal.addEventListener(
+            "click",
+            function (
+                event
+            ) {
+
+
+                if (
+                    event.target ===
+                    logoutModal
+                ) {
+
+                    logoutModal.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    }
 
 }
 
@@ -471,25 +454,16 @@ function performLogout() {
 
 
     /*
-        Login Session Remove
-    */
+     * Clear Login Session
+     */
 
     localStorage.removeItem(
         "loggedIn"
     );
 
 
-    /*
-        User Information Remove
-    */
-
     localStorage.removeItem(
         "userName"
-    );
-
-
-    localStorage.removeItem(
-        "name"
     );
 
 
@@ -503,68 +477,34 @@ function performLogout() {
     );
 
 
-    /*
-        অন্যান্য Session Data থাকলে
-        এখানে Remove করা যাবে
-    */
+    localStorage.removeItem(
+        "status"
+    );
+
+
+    localStorage.removeItem(
+        "loginTime"
+    );
+
+
+    localStorage.removeItem(
+        "rememberMe"
+    );
 
 
     /*
-        Login Page এ Redirect
-    */
+     * Redirect Login
+     */
 
     window.location.replace(
-        "login.html"
+        "../login.html"
     );
 
 }
 
 
 /* =====================================================
-   NOTIFICATION
-===================================================== */
-
-function setupNotifications() {
-
-
-    const notificationBtn =
-        document.getElementById(
-            "notificationBtn"
-        );
-
-
-    if (!notificationBtn) {
-
-        return;
-
-    }
-
-
-    notificationBtn.addEventListener(
-        "click",
-        function () {
-
-
-            /*
-                আপাতত Notification Demo
-                পরে Google Sheet থেকে
-                Real Notification নেওয়া যাবে
-            */
-
-
-            alert(
-                "You have 3 new notifications."
-            );
-
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   PREVENT DASHBOARD AFTER LOGOUT
+   PREVENT BACK BUTTON AFTER LOGOUT
 ===================================================== */
 
 window.addEventListener(
@@ -578,12 +518,27 @@ window.addEventListener(
             );
 
 
+        const role =
+            String(
+                localStorage.getItem(
+                    "role"
+                ) ||
+                ""
+            )
+            .trim()
+            .toLowerCase();
+
+
         if (
-            loggedIn !== "true"
+            loggedIn !== "true" ||
+            (
+                role !== "admin" &&
+                role !== "administrator"
+            )
         ) {
 
             window.location.replace(
-                "login.html"
+                "../login.html"
             );
 
         }
@@ -593,214 +548,9 @@ window.addEventListener(
 
 
 /* =====================================================
-   BROWSER BACK BUTTON SECURITY
-===================================================== */
-
-window.history.pushState(
-    null,
-    "",
-    window.location.href
-);
-
-
-window.addEventListener(
-    "popstate",
-    function () {
-
-
-        const loggedIn =
-            localStorage.getItem(
-                "loggedIn"
-            );
-
-
-        if (
-            loggedIn !== "true"
-        ) {
-
-            window.location.replace(
-                "login.html"
-            );
-
-            return;
-
-        }
-
-
-        window.history.pushState(
-            null,
-            "",
-            window.location.href
-        );
-
-    }
-);
-
-
-/* =====================================================
-   ACTIVE MENU
-===================================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-
-        const currentPage =
-            window.location.pathname
-                .split("/")
-                .pop();
-
-
-        const navLinks =
-            document.querySelectorAll(
-                ".nav-link"
-            );
-
-
-        navLinks.forEach(
-            function (link) {
-
-
-                const linkPage =
-                    link
-                        .getAttribute("href")
-                        .split("/")
-                        .pop();
-
-
-                if (
-                    linkPage === currentPage
-                ) {
-
-                    navLinks.forEach(
-                        function (item) {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   DASHBOARD DEMO STATISTICS
-===================================================== */
-
-function updateDashboardStats(
-    pendingSupport,
-    pendingCall,
-    completed,
-    totalUsers
-) {
-
-
-    const support =
-        document.getElementById(
-            "pendingSupportCount"
-        );
-
-
-    const call =
-        document.getElementById(
-            "pendingCallCount"
-        );
-
-
-    const complete =
-        document.getElementById(
-            "completedCount"
-        );
-
-
-    const users =
-        document.getElementById(
-            "totalUsersCount"
-        );
-
-
-    if (support) {
-
-        support.textContent =
-            pendingSupport;
-
-    }
-
-
-    if (call) {
-
-        call.textContent =
-            pendingCall;
-
-    }
-
-
-    if (complete) {
-
-        complete.textContent =
-            completed;
-
-    }
-
-
-    if (users) {
-
-        users.textContent =
-            totalUsers;
-
-    }
-
-}
-
-
-/* =====================================================
-   INITIAL DEMO DATA
-===================================================== */
-
-/*
-    এখন Demo হিসেবে 0 দেখাবে।
-
-    পরে Google Apps Script / Google Sheet
-    Backend থেকে Real Data এনে এই Function
-    ব্যবহার করা যাবে।
-
-    Example:
-
-    updateDashboardStats(
-        15,
-        8,
-        125,
-        20
-    );
-*/
-
-
-updateDashboardStats(
-    0,
-    0,
-    0,
-    0
-);
-
-
-/* =====================================================
-   CONSOLE MESSAGE
+   CONSOLE
 ===================================================== */
 
 console.log(
-    "LINK4 Dashboard System Loaded Successfully."
+    "System Management Admin Dashboard Loaded."
 );
