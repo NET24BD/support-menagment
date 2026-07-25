@@ -3,35 +3,4049 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-    <title>LINK4 Support Management</title>
+<meta
+name="description"
+content="SYSTEM MANAGEMENT - Professional Management Platform"
+>
 
-    <meta
-        http-equiv="refresh"
-        content="0;url=login.html"
-    >
+<title>
+SYSTEM MANAGEMENT | Professional Management Platform
+</title>
 
-    <script>
 
-        window.location.replace(
-            "./login.html"
+<!-- =====================================================
+     GOOGLE FONT
+===================================================== -->
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com"
+>
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+rel="stylesheet"
+>
+
+
+<!-- =====================================================
+     ICON LIBRARY
+===================================================== -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+
+<style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+
+    --bg:#050b08;
+
+    --bg2:#08120d;
+
+    --card:#0d1b14;
+
+    --card2:#102219;
+
+    --green:#00c875;
+
+    --green2:#00a85f;
+
+    --green-light:#61f0a8;
+
+    --red:#e63950;
+
+    --white:#f5faf7;
+
+    --text:#d9e5de;
+
+    --muted:#8b9d93;
+
+    --border:rgba(255,255,255,.08);
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    font-family:
+
+        "Inter",
+
+        Arial,
+
+        sans-serif;
+
+    color:var(--white);
+
+    background:var(--bg);
+
+}
+
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+button{
+
+    font-family:inherit;
+
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    overflow:hidden;
+
+    background:
+
+    radial-gradient(
+
+        circle at 10% 10%,
+
+        rgba(0,200,117,.12),
+
+        transparent 30%
+
+    ),
+
+    radial-gradient(
+
+        circle at 90% 20%,
+
+        rgba(0,120,70,.10),
+
+        transparent 30%
+
+    ),
+
+    radial-gradient(
+
+        circle at 50% 100%,
+
+        rgba(230,57,80,.035),
+
+        transparent 35%
+
+    ),
+
+    #050b08;
+
+}
+
+
+.background::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.28;
+
+    background-image:
+
+    linear-gradient(
+
+        rgba(255,255,255,.025) 1px,
+
+        transparent 1px
+
+    ),
+
+    linear-gradient(
+
+        90deg,
+
+        rgba(255,255,255,.025) 1px,
+
+        transparent 1px
+
+    );
+
+    background-size:
+
+    55px 55px;
+
+    mask-image:
+
+    linear-gradient(
+
+        to bottom,
+
+        black,
+
+        transparent 90%
+
+    );
+
+}
+
+
+.glow{
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    pointer-events:none;
+
+}
+
+
+.glow1{
+
+    top:-300px;
+
+    left:-150px;
+
+    background:#00c875;
+
+    opacity:.12;
+
+}
+
+
+.glow2{
+
+    right:-300px;
+
+    top:30%;
+
+    background:#006b3c;
+
+    opacity:.10;
+
+}
+
+
+.glow3{
+
+    bottom:-350px;
+
+    left:35%;
+
+    background:#e63950;
+
+    opacity:.035;
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    z-index:999;
+
+    height:76px;
+
+    padding:
+
+    0 6%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:
+
+    rgba(
+
+        5,
+
+        11,
+
+        8,
+
+        .78
+
+    );
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+
+    1px solid
+
+    var(--border);
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.logo-box{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        var(--green),
+
+        var(--green2)
+
+    );
+
+    box-shadow:
+
+    0 10px 30px
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .2
+
+    );
+
+}
+
+
+.logo-box i{
+
+    color:white;
+
+    font-size:18px;
+
+}
+
+
+.logo-text strong{
+
+    display:block;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    letter-spacing:1.2px;
+
+}
+
+
+.logo-text span{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    letter-spacing:1px;
+
+}
+
+
+.nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+
+}
+
+
+.nav a{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.nav a:hover{
+
+    color:var(--green-light);
+
+}
+
+
+.login-btn{
+
+    padding:
+
+    11px 22px;
+
+    border-radius:10px;
+
+    color:white !important;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        var(--green),
+
+        var(--green2)
+
+    );
+
+    box-shadow:
+
+    0 10px 25px
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .18
+
+    );
+
+}
+
+
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    padding:
+
+    140px 6% 80px;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+.hero-container{
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+
+    1.05fr
+
+    .95fr;
+
+    gap:80px;
+
+    align-items:center;
+
+}
+
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+
+    8px 14px;
+
+    margin-bottom:24px;
+
+    border:
+
+    1px solid
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .2
+
+    );
+
+    border-radius:30px;
+
+    color:var(--green-light);
+
+    background:
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .05
+
+    );
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+}
+
+
+.badge i{
+
+    font-size:7px;
+
+}
+
+
+.hero h1{
+
+    font-size:
+
+    clamp(
+
+        44px,
+
+        5.5vw,
+
+        75px
+
+    );
+
+    line-height:1.04;
+
+    letter-spacing:-3px;
+
+    font-weight:900;
+
+}
+
+
+.hero h1 span{
+
+    display:block;
+
+    color:var(--green-light);
+
+}
+
+
+.hero-text{
+
+    max-width:600px;
+
+    margin-top:24px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.9;
+
+}
+
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:32px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.btn-primary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:
+
+    15px 24px;
+
+    border-radius:10px;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        var(--green),
+
+        var(--green2)
+
+    );
+
+    font-size:11px;
+
+    font-weight:800;
+
+    box-shadow:
+
+    0 15px 35px
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .2
+
+    );
+
+    transition:.25s;
+
+}
+
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+.btn-secondary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:
+
+    15px 24px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:10px;
+
+    color:var(--text);
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .025
+
+    );
+
+    font-size:11px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+
+.btn-secondary:hover{
+
+    color:var(--green-light);
+
+    border-color:
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .3
+
+    );
+
+}
+
+
+/* =====================================================
+   DASHBOARD PREVIEW
+===================================================== */
+
+.preview{
+
+    padding:18px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:24px;
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(
+
+            20,
+
+            40,
+
+            30,
+
+            .9
+
+        ),
+
+        rgba(
+
+            7,
+
+            16,
+
+            11,
+
+            .96
+
+        )
+
+    );
+
+    box-shadow:
+
+    0 35px 100px
+
+    rgba(
+
+        0,
+
+        0,
+
+        0,
+
+        .35
+
+    );
+
+}
+
+
+.preview-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+
+    5px 5px 17px;
+
+    border-bottom:
+
+    1px solid
+
+    var(--border);
+
+}
+
+
+.preview-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.preview-icon{
+
+    width:36px;
+
+    height:36px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    color:var(--green-light);
+
+    background:
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .1
+
+    );
+
+}
+
+
+.preview-brand strong{
+
+    display:block;
+
+    font-size:10px;
+
+}
+
+
+.preview-brand span{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+
+.online{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:var(--green-light);
+
+    font-size:8px;
+
+    font-weight:700;
+
+}
+
+
+.online i{
+
+    font-size:6px;
+
+}
+
+
+/* =====================================================
+   PREVIEW STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        4,
+
+        1fr
+
+    );
+
+    gap:9px;
+
+    margin-top:14px;
+
+}
+
+
+.stat{
+
+    padding:
+
+    15px 12px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:12px;
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .025
+
+    );
+
+}
+
+
+.stat small{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:var(--muted);
+
+    font-size:7px;
+
+}
+
+
+.stat strong{
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   PREVIEW GRAPH
+===================================================== */
+
+.graph{
+
+    margin-top:12px;
+
+    padding:18px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:14px;
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .02
+
+    );
+
+}
+
+
+.graph-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+
+.graph-head strong{
+
+    font-size:10px;
+
+}
+
+
+.graph-head span{
+
+    color:var(--green-light);
+
+    font-size:8px;
+
+}
+
+
+.bars{
+
+    height:90px;
+
+    display:flex;
+
+    align-items:end;
+
+    gap:8px;
+
+}
+
+
+.bar{
+
+    flex:1;
+
+    border-radius:
+
+    5px 5px 2px 2px;
+
+    background:
+
+    linear-gradient(
+
+        to top,
+
+        var(--green2),
+
+        var(--green-light)
+
+    );
+
+    opacity:.75;
+
+}
+
+
+.bar:nth-child(1){
+
+    height:35%;
+
+}
+
+
+.bar:nth-child(2){
+
+    height:55%;
+
+}
+
+
+.bar:nth-child(3){
+
+    height:45%;
+
+}
+
+
+.bar:nth-child(4){
+
+    height:70%;
+
+}
+
+
+.bar:nth-child(5){
+
+    height:60%;
+
+}
+
+
+.bar:nth-child(6){
+
+    height:85%;
+
+}
+
+
+.bar:nth-child(7){
+
+    height:75%;
+
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+
+    padding:
+
+    100px 6%;
+
+    border-top:
+
+    1px solid
+
+    var(--border);
+
+}
+
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+
+.heading{
+
+    max-width:650px;
+
+    margin:
+
+    0 auto 55px;
+
+    text-align:center;
+
+}
+
+
+.label{
+
+    margin-bottom:12px;
+
+    color:var(--green-light);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
+}
+
+
+.heading h2{
+
+    font-size:
+
+    clamp(
+
+        28px,
+
+        4vw,
+
+        43px
+
+    );
+
+    font-weight:900;
+
+    letter-spacing:-1.5px;
+
+}
+
+
+.heading p{
+
+    margin-top:14px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   MODULE GRID
+===================================================== */
+
+.module-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        4,
+
+        1fr
+
+    );
+
+    gap:18px;
+
+}
+
+
+.module-card{
+
+    position:relative;
+
+    min-height:260px;
+
+    padding:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    overflow:hidden;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(
+
+            18,
+
+            38,
+
+            27,
+
+            .9
+
+        ),
+
+        rgba(
+
+            8,
+
+            18,
+
+            12,
+
+            .96
+
+        )
+
+    );
+
+    transition:
+
+    .35s
+
+    cubic-bezier(
+
+        .22,
+
+        1,
+
+        .36,
+
+        1
+
+    );
+
+}
+
+
+.module-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    top:-120px;
+
+    right:-90px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        circle,
+
+        rgba(
+
+            0,
+
+            200,
+
+            117,
+
+            .22
+
+        ),
+
+        transparent 70%
+
+    );
+
+    transition:.4s;
+
+}
+
+
+.module-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:20px;
+
+    right:20px;
+
+    bottom:0;
+
+    height:2px;
+
+    opacity:0;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        var(--green),
+
+        transparent
+
+    );
+
+    transition:.35s;
+
+}
+
+
+.module-card:hover{
+
+    transform:
+
+    translateY(
+
+        -9px
+
+    );
+
+    border-color:
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .3
+
+    );
+
+    box-shadow:
+
+    0 25px 65px
+
+    rgba(
+
+        0,
+
+        0,
+
+        0,
+
+        .35
+
+    );
+
+}
+
+
+.module-card:hover::before{
+
+    transform:scale(1.5);
+
+}
+
+
+.module-card:hover::after{
+
+    opacity:1;
+
+}
+
+
+.module-top{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+}
+
+
+.module-icon{
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:
+
+    1px solid
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .2
+
+    );
+
+    border-radius:15px;
+
+    color:var(--green-light);
+
+    background:
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .08
+
+    );
+
+    font-size:18px;
+
+    transition:.35s;
+
+}
+
+
+.module-card:hover
+.module-icon{
+
+    transform:
+
+    rotate(
+
+        -5deg
+
+    )
+
+    translateY(
+
+        -3px
+
+    );
+
+    background:
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .18
+
+    );
+
+}
+
+
+.module-number{
+
+    color:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .2
+
+    );
+
+    font-size:10px;
+
+    font-weight:800;
+
+}
+
+
+.module-content{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:22px;
+
+}
+
+
+.module-content h3{
+
+    margin-bottom:9px;
+
+    font-size:14px;
+
+    font-weight:800;
+
+}
+
+
+.module-content p{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.75;
+
+}
+
+
+.module-footer{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding-top:15px;
+
+    margin-top:20px;
+
+    border-top:
+
+    1px solid
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .06
+
+    );
+
+}
+
+
+.module-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:var(--green-light);
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+
+.module-link i{
+
+    transition:.3s;
+
+}
+
+
+.module-card:hover
+.module-link i{
+
+    transform:
+
+    translateX(
+
+        4px
+
+    );
+
+}
+
+
+.module-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    color:var(--muted);
+
+    font-size:7px;
+
+}
+
+
+.module-status i{
+
+    color:var(--green);
+
+    font-size:6px;
+
+}
+
+
+/* =====================================================
+   WORKFLOW
+===================================================== */
+
+.workflow{
+
+    padding:
+
+    100px 6%;
+
+    background:
+
+    rgba(
+
+        5,
+
+        14,
+
+        9,
+
+        .7
+
+    );
+
+    border-top:
+
+    1px solid
+
+    var(--border);
+
+}
+
+
+.workflow-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        4,
+
+        1fr
+
+    );
+
+    gap:18px;
+
+}
+
+
+.step{
+
+    position:relative;
+
+    padding:28px 24px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:18px;
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .02
+
+    );
+
+}
+
+
+.step-number{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:18px;
+
+    border-radius:50%;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        var(--green),
+
+        var(--green2)
+
+    );
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+
+.step h3{
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+}
+
+
+.step p{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.7;
+
+}
+
+
+.step-arrow{
+
+    position:absolute;
+
+    top:38px;
+
+    right:-13px;
+
+    color:var(--green);
+
+    z-index:5;
+
+}
+
+
+/* =====================================================
+   WHY
+===================================================== */
+
+.why-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+
+.why-title h2{
+
+    font-size:
+
+    clamp(
+
+        30px,
+
+        4vw,
+
+        46px
+
+    );
+
+    line-height:1.15;
+
+    font-weight:900;
+
+}
+
+
+.why-title h2 span{
+
+    color:var(--green-light);
+
+}
+
+
+.why-title p{
+
+    max-width:560px;
+
+    margin-top:18px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.9;
+
+}
+
+
+.benefits{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(
+
+        2,
+
+        1fr
+
+    );
+
+    gap:12px;
+
+}
+
+
+.benefit{
+
+    padding:22px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:15px;
+
+    background:
+
+    rgba(
+
+        255,
+
+        255,
+
+        255,
+
+        .025
+
+    );
+
+}
+
+
+.benefit i{
+
+    margin-bottom:14px;
+
+    color:var(--green-light);
+
+}
+
+
+.benefit strong{
+
+    display:block;
+
+    font-size:11px;
+
+}
+
+
+.benefit span{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    line-height:1.6;
+
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta{
+
+    padding:
+
+    100px 6%;
+
+}
+
+
+.cta-box{
+
+    padding:
+
+    75px 30px;
+
+    text-align:center;
+
+    border:
+
+    1px solid
+
+    rgba(
+
+        0,
+
+        200,
+
+        117,
+
+        .18
+
+    );
+
+    border-radius:25px;
+
+    background:
+
+    radial-gradient(
+
+        circle at 50% 0%,
+
+        rgba(
+
+            0,
+
+            200,
+
+            117,
+
+            .13
+
+        ),
+
+        transparent 50%
+
+    ),
+
+    rgba(
+
+        12,
+
+        29,
+
+        20,
+
+        .8
+
+    );
+
+}
+
+
+.cta-box h2{
+
+    font-size:
+
+    clamp(
+
+        28px,
+
+        4vw,
+
+        44px
+
+    );
+
+    font-weight:900;
+
+}
+
+
+.cta-box p{
+
+    max-width:550px;
+
+    margin:
+
+    15px auto 28px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:
+
+    30px 6%;
+
+    border-top:
+
+    1px solid
+
+    var(--border);
+
+    background:#030805;
+
+}
+
+
+.footer{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+.footer strong{
+
+    display:block;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+}
+
+
+.footer span{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+
+.copyright{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(
+
+    max-width:1000px
+
+){
+
+    .hero-container{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+    }
+
+
+    .hero-content{
+
+        text-align:center;
+
+    }
+
+
+    .hero-text{
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+
+    .preview{
+
+        max-width:650px;
+
+        margin:auto;
+
+    }
+
+
+    .module-grid{
+
+        grid-template-columns:
+
+        repeat(
+
+            2,
+
+            1fr
+
         );
 
-    </script>
+    }
+
+
+    .workflow-grid{
+
+        grid-template-columns:
+
+        repeat(
+
+            2,
+
+            1fr
+
+        );
+
+    }
+
+
+    .step-arrow{
+
+        display:none;
+
+    }
+
+
+    .why-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(
+
+    max-width:600px
+
+){
+
+    .navbar{
+
+        height:68px;
+
+        padding:
+
+        0 18px;
+
+    }
+
+
+    .logo-box{
+
+        width:40px;
+
+        height:40px;
+
+    }
+
+
+    .logo-text strong{
+
+        font-size:12px;
+
+    }
+
+
+    .logo-text span{
+
+        display:none;
+
+    }
+
+
+    .nav a:not(
+        .login-btn
+    ){
+
+        display:none;
+
+    }
+
+
+    .hero{
+
+        padding:
+
+        110px 20px 70px;
+
+    }
+
+
+    .hero h1{
+
+        font-size:43px;
+
+        letter-spacing:-2px;
+
+    }
+
+
+    .hero-text{
+
+        font-size:12px;
+
+    }
+
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+    .btn-primary,
+    .btn-secondary{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+
+    .preview{
+
+        padding:13px;
+
+        border-radius:18px;
+
+    }
+
+
+    .stats{
+
+        grid-template-columns:
+
+        repeat(
+
+            2,
+
+            1fr
+
+        );
+
+    }
+
+
+    .section,
+    .workflow,
+    .cta{
+
+        padding:
+
+        75px 20px;
+
+    }
+
+
+    .module-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .module-card{
+
+        min-height:245px;
+
+    }
+
+
+    .workflow-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .benefits{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .footer{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:15px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-    <p>
-        Redirecting to Login...
-    </p>
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="background">
+
+    <div class="glow glow1"></div>
+
+    <div class="glow glow2"></div>
+
+    <div class="glow glow3"></div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+<a
+href="./index.html"
+class="logo"
+>
+
+
+<div class="logo-box">
+
+<i class="fa-solid fa-layer-group"></i>
+
+</div>
+
+
+<div class="logo-text">
+
+<strong>
+SYSTEM MANAGEMENT
+</strong>
+
+<span>
+PROFESSIONAL MANAGEMENT PLATFORM
+</span>
+
+</div>
+
+
+</a>
+
+
+
+<nav class="nav">
+
+
+<a href="#modules">
+Modules
+</a>
+
+
+<a href="#workflow">
+Workflow
+</a>
+
+
+<a href="#about">
+About
+</a>
+
+
+<a
+href="./login.html"
+class="login-btn"
+>
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+&nbsp;
+
+Login
+
+</a>
+
+
+</nav>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+
+<div class="hero-container">
+
+
+<div class="hero-content">
+
+
+<div class="badge">
+
+<i class="fa-solid fa-circle"></i>
+
+PROFESSIONAL MANAGEMENT PLATFORM
+
+</div>
+
+
+<h1>
+
+Manage Your Business.
+
+<span>
+Control Your Operations.
+</span>
+
+</h1>
+
+
+<p class="hero-text">
+
+SYSTEM MANAGEMENT is a centralized professional
+platform designed to manage support operations,
+customer communication, team activities, monitoring,
+users and complete operational history from one
+organized system.
+
+</p>
+
+
+<div class="hero-buttons">
+
+
+<a
+href="./login.html"
+class="btn-primary"
+>
+
+<i class="fa-solid fa-arrow-right-to-bracket"></i>
+
+Login to System
+
+</a>
+
+
+<a
+href="#modules"
+class="btn-secondary"
+>
+
+<i class="fa-solid fa-grid-2"></i>
+
+Explore Platform
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- PREVIEW -->
+
+<div class="preview">
+
+
+<div class="preview-top">
+
+
+<div class="preview-brand">
+
+
+<div class="preview-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+SYSTEM CONTROL CENTER
+</strong>
+
+<span>
+Management Dashboard
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="online">
+
+<i class="fa-solid fa-circle"></i>
+
+System Online
+
+</div>
+
+
+</div>
+
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<small>
+SUPPORT
+</small>
+
+<strong>
+128
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+COMPLETED
+</small>
+
+<strong>
+96
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+PENDING
+</small>
+
+<strong>
+18
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+CALLS
+</small>
+
+<strong>
+14
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="graph">
+
+
+<div class="graph-head">
+
+<strong>
+Operational Activity
+</strong>
+
+<span>
++24.8%
+</span>
+
+</div>
+
+
+<div class="bars">
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     MODULES
+===================================================== -->
+
+<section
+class="section"
+id="modules"
+>
+
+
+<div class="container">
+
+
+<div class="heading">
+
+
+<div class="label">
+SYSTEM MODULES
+</div>
+
+
+<h2>
+Everything Your Team Needs
+</h2>
+
+
+<p>
+
+A complete management environment designed
+to keep your daily operations organized,
+connected and easy to control.
+
+</p>
+
+
+</div>
+
+
+
+<div class="module-grid">
+
+
+<!-- 01 -->
+
+<a
+href="./pages/new-support.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-plus"></i>
+
+</div>
+
+
+<div class="module-number">
+01
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+New Support
+</h3>
+
+
+<p>
+
+Create new customer support requests
+and send them into the operational
+workflow.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Active
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 02 -->
+
+<a
+href="./pages/support.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-headset"></i>
+
+</div>
+
+
+<div class="module-number">
+02
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+Support Management
+</h3>
+
+
+<p>
+
+Manage pending support requests,
+assign work and track operational
+progress.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Active
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 03 -->
+
+<a
+href="./pages/call.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-phone"></i>
+
+</div>
+
+
+<div class="module-number">
+03
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+Call Management
+</h3>
+
+
+<p>
+
+Manage customer calls and organize
+communication activities efficiently.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Active
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 04 -->
+
+<a
+href="./pages/history.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+</div>
+
+
+<div class="module-number">
+04
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+Support History
+</h3>
+
+
+<p>
+
+Review previous support and call
+activities through complete records.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Active
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 05 -->
+
+<a
+href="./pages/monitor.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-chart-simple"></i>
+
+</div>
+
+
+<div class="module-number">
+05
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+Live Monitoring
+</h3>
+
+
+<p>
+
+Monitor current support activities,
+active calls and operational progress.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Live
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 06 -->
+
+<a
+href="./pages/user-management.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div class="module-number">
+06
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+User Management
+</h3>
+
+
+<p>
+
+Manage users, roles, account access
+and system permissions.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Secure
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 07 -->
+
+<a
+href="./pages/team-management.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-user-group"></i>
+
+</div>
+
+
+<div class="module-number">
+07
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+Team Management
+</h3>
+
+
+<p>
+
+Organize teams, assign responsibilities
+and manage operational resources.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Active
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 08 -->
+
+<a
+href="./pages/reports.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-chart-pie"></i>
+
+</div>
+
+
+<div class="module-number">
+08
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+Reports & Analytics
+</h3>
+
+
+<p>
+
+Analyze operational performance,
+activities and management reports.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Analytics
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 09 -->
+
+<a
+href="./pages/my-account.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+
+<div class="module-number">
+09
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+My Account
+</h3>
+
+
+<p>
+
+View personal account information,
+profile details and activity.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Private
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+
+<!-- 10 -->
+
+<a
+href="./pages/settings.html"
+class="module-card"
+>
+
+
+<div class="module-top">
+
+
+<div class="module-icon">
+
+<i class="fa-solid fa-gear"></i>
+
+</div>
+
+
+<div class="module-number">
+10
+</div>
+
+
+</div>
+
+
+<div class="module-content">
+
+
+<h3>
+System Settings
+</h3>
+
+
+<p>
+
+Configure system preferences,
+security and management settings.
+
+</p>
+
+
+</div>
+
+
+<div class="module-footer">
+
+
+<span class="module-link">
+
+Open Module
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</span>
+
+
+<span class="module-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Secure
+
+</span>
+
+
+</div>
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     WORKFLOW
+===================================================== -->
+
+<section
+class="workflow"
+id="workflow"
+>
+
+
+<div class="container">
+
+
+<div class="heading">
+
+
+<div class="label">
+SMART WORKFLOW
+</div>
+
+
+<h2>
+One Connected Management Process
+</h2>
+
+
+<p>
+
+Keep every operation organized from
+the initial request to the final history.
+
+</p>
+
+
+</div>
+
+
+
+<div class="workflow-grid">
+
+
+<div class="step">
+
+
+<div class="step-number">
+01
+</div>
+
+
+<h3>
+New Entry
+</h3>
+
+
+<p>
+
+Customer issues and requests
+are added to the system.
+
+</p>
+
+
+<span class="step-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</span>
+
+
+</div>
+
+
+
+<div class="step">
+
+
+<div class="step-number">
+02
+</div>
+
+
+<h3>
+Support Team
+</h3>
+
+
+<p>
+
+Support staff review the issue
+and complete required work.
+
+</p>
+
+
+<span class="step-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</span>
+
+
+</div>
+
+
+
+<div class="step">
+
+
+<div class="step-number">
+03
+</div>
+
+
+<h3>
+Call Team
+</h3>
+
+
+<p>
+
+Customer communication and
+follow-up calls are managed.
+
+</p>
+
+
+<span class="step-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</span>
+
+
+</div>
+
+
+
+<div class="step">
+
+
+<div class="step-number">
+04
+</div>
+
+
+<h3>
+Complete History
+</h3>
+
+
+<p>
+
+Completed activities remain
+available for future monitoring.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY
+===================================================== -->
+
+<section
+class="section"
+id="about"
+>
+
+
+<div class="container">
+
+
+<div class="why-grid">
+
+
+<div class="why-title">
+
+
+<div class="label">
+WHY SYSTEM MANAGEMENT
+</div>
+
+
+<h2>
+
+Built for
+
+<span>
+Organized Operations.
+</span>
+
+</h2>
+
+
+<p>
+
+SYSTEM MANAGEMENT brings support operations,
+customer communication, team management and
+activity monitoring into one professional
+environment.
+
+</p>
+
+
+</div>
+
+
+
+<div class="benefits">
+
+
+<div class="benefit">
+
+<i class="fa-solid fa-layer-group"></i>
+
+<strong>
+Centralized Management
+</strong>
+
+<span>
+Manage daily operations from one
+connected platform.
+</span>
+
+</div>
+
+
+
+<div class="benefit">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<strong>
+Role Based Access
+</strong>
+
+<span>
+Give users access based on
+their assigned role.
+</span>
+
+</div>
+
+
+
+<div class="benefit">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<strong>
+Complete History
+</strong>
+
+<span>
+Keep records of important
+system activities.
+</span>
+
+</div>
+
+
+
+<div class="benefit">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<strong>
+Better Monitoring
+</strong>
+
+<span>
+Track current activities and
+operational performance.
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+
+<div class="container">
+
+
+<div class="cta-box">
+
+
+<div class="label">
+READY TO GET STARTED?
+</div>
+
+
+<h2>
+Access Your Management System
+</h2>
+
+
+<p>
+
+Login to SYSTEM MANAGEMENT and access
+your personalized workspace based on
+your assigned role.
+
+</p>
+
+
+<a
+href="./login.html"
+class="btn-primary"
+>
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+Login to Dashboard
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+<div class="footer">
+
+
+<div>
+
+<strong>
+SYSTEM MANAGEMENT
+</strong>
+
+<span>
+Professional Management Platform
+</span>
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 SYSTEM MANAGEMENT.
+All Rights Reserved.
+
+</div>
+
+
+</div>
+
+
+</footer>
+
 
 </body>
 
