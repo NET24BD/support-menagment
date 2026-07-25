@@ -1,531 +1,66 @@
 /* =====================================================
    LINK4 COMMUNICATION
-   LOGIN SYSTEM JAVASCRIPT
+   LOGIN JAVASCRIPT
 ===================================================== */
 
 
 /* =====================================================
-   GOOGLE APPS SCRIPT API URL
-   এখানে তোমার Google Apps Script Web App URL বসাও
+   CONFIGURATION
 ===================================================== */
 
-const API_URL =
-"https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const loginForm =
-document.getElementById("loginForm");
-
-const usernameInput =
-document.getElementById("username");
-
-const passwordInput =
-document.getElementById("password");
-
-const loginButton =
-document.getElementById("loginButton");
-
-const loginMessage =
-document.getElementById("loginMessage");
-
-const togglePassword =
-document.getElementById("togglePassword");
-
-
-/* =====================================================
-   PASSWORD SHOW / HIDE
-===================================================== */
-
-if (togglePassword) {
-
-    togglePassword.addEventListener(
-        "click",
-        function () {
-
-            if (
-                passwordInput.type === "password"
-            ) {
-
-                passwordInput.type =
-                    "text";
-
-                togglePassword.innerHTML =
-                    '<i class="fa-solid fa-eye-slash"></i>';
-
-            } else {
-
-                passwordInput.type =
-                    "password";
-
-                togglePassword.innerHTML =
-                    '<i class="fa-solid fa-eye"></i>';
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   SHOW MESSAGE
-===================================================== */
-
-function showMessage(
-    message,
-    type = "error"
-) {
-
-    if (!loginMessage) {
-        return;
-    }
-
-    loginMessage.textContent =
-        message;
-
-    loginMessage.className =
-        "login-message show " +
-        type;
-
-}
-
-
-/* =====================================================
-   HIDE MESSAGE
-===================================================== */
-
-function hideMessage() {
-
-    if (!loginMessage) {
-        return;
-    }
-
-    loginMessage.textContent =
-        "";
-
-    loginMessage.className =
-        "login-message";
-
-}
-
-
-/* =====================================================
-   BUTTON LOADING
-===================================================== */
-
-function setLoading(
-    loading
-) {
-
-    if (!loginButton) {
-        return;
-    }
-
-
-    if (loading) {
-
-        loginButton.disabled =
-            true;
-
-        loginButton.innerHTML =
-
-        `
-        <i class="fa-solid fa-spinner fa-spin"></i>
-        Signing In...
-        `;
-
-    } else {
-
-        loginButton.disabled =
-            false;
-
-        loginButton.innerHTML =
-
-        `
-        <i class="fa-solid fa-right-to-bracket"></i>
-        Sign In
-        `;
-
-    }
-
-}
-
-
-/* =====================================================
-   SAVE LOGIN SESSION
-===================================================== */
-
-function saveLoginSession(
-    user
-) {
-
-    localStorage.setItem(
-        "loggedIn",
-        "true"
-    );
-
-
-    localStorage.setItem(
-        "username",
-        user.username || ""
-    );
-
-
-    localStorage.setItem(
-        "name",
-        user.name ||
-        user.username ||
-        ""
-    );
-
-
-    localStorage.setItem(
-        "role",
-        user.role ||
-        ""
-    );
-
-
-    localStorage.setItem(
-        "status",
-        user.status ||
-        ""
-    );
-
-}
-
-
-/* =====================================================
-   LOGIN SUCCESS
-===================================================== */
-
-function loginSuccess(
-    user
-) {
-
-    saveLoginSession(
-        user
-    );
-
+const LOGIN_CONFIG = {
 
     /*
-      Dashboard page এখানে সেট করো
-      যদি dashboard.html হয় তাহলে:
-      dashboard.html
+        আপনার Google Apps Script Web App URL এখানে দিন।
+
+        Example:
+
+        API_URL:
+        "https://script.google.com/macros/s/XXXXXXXX/exec"
+
+        Backend ব্যবহার না করলে
+        নিচে DEMO_LOGIN = true রাখুন।
     */
 
-    window.location.replace(
-        "dashboard.html"
-    );
+    API_URL: "",
 
-}
+    /*
+        Demo Login
+
+        true  = Demo Login ব্যবহার করবে
+        false = Google Apps Script API ব্যবহার করবে
+    */
+
+    DEMO_LOGIN: true
+
+};
 
 
 /* =====================================================
-   LOGIN FORM SUBMIT
+   DOM ELEMENTS
 ===================================================== */
 
-if (loginForm) {
-
-    loginForm.addEventListener(
-
-        "submit",
-
-        async function (event) {
-
-            event.preventDefault();
-
-
-            hideMessage();
-
-
-            const username =
-                usernameInput.value.trim();
-
-
-            const password =
-                passwordInput.value;
-
-
-            /* ================================
-               BASIC VALIDATION
-            ================================= */
-
-            if (!username) {
-
-                showMessage(
-                    "Please enter your username."
-                );
-
-                usernameInput.focus();
-
-                return;
-
-            }
-
-
-            if (!password) {
-
-                showMessage(
-                    "Please enter your password."
-                );
-
-                passwordInput.focus();
-
-                return;
-
-            }
-
-
-            setLoading(
-                true
-            );
-
-
-            try {
-
-                /*
-                  Google Apps Script API
-                  Login Request
-                */
-
-                const url =
-
-                    API_URL +
-
-                    "?action=login" +
-
-                    "&username=" +
-
-                    encodeURIComponent(
-                        username
-                    ) +
-
-                    "&password=" +
-
-                    encodeURIComponent(
-                        password
-                    ) +
-
-                    "&t=" +
-
-                    Date.now();
-
-
-                const response =
-                    await fetch(
-                        url,
-                        {
-                            method:
-                                "GET",
-
-                            cache:
-                                "no-store"
-                        }
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Server error. Please try again."
-                    );
-
-                }
-
-
-                const result =
-                    await response.json();
-
-
-                /* ================================
-                   LOGIN FAILED
-                ================================= */
-
-                if (
-                    !result.success
-                ) {
-
-                    throw new Error(
-
-                        result.message ||
-
-                        "Invalid username or password."
-
-                    );
-
-                }
-
-
-                /* ================================
-                   USER DATA
-                ================================= */
-
-                const user =
-
-                    result.user ||
-
-                    {
-
-                        username:
-                            username,
-
-                        name:
-                            username,
-
-                        role:
-                            "",
-
-                        status:
-                            "active"
-
-                    };
-
-
-                /* ================================
-                   STATUS CHECK
-                ================================= */
-
-                const status =
-
-                    String(
-                        user.status ||
-                        "active"
-                    )
-                    .toLowerCase()
-                    .trim();
-
-
-                if (
-                    status === "blocked" ||
-                    status === "inactive"
-                ) {
-
-                    throw new Error(
-                        "Your account is currently " +
-                        status +
-                        ". Please contact administrator."
-                    );
-
-                }
-
-
-                /* ================================
-                   SUCCESS
-                ================================= */
-
-                showMessage(
-                    "Login successful. Redirecting...",
-                    "success"
-                );
-
-
-                setTimeout(
-
-                    function () {
-
-                        loginSuccess(
-                            user
-                        );
-
-                    },
-
-                    500
-
-                );
-
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Login Error:",
-                    error
-                );
-
-
-                showMessage(
-
-                    error.message ||
-
-                    "Unable to login. Please try again."
-
-                );
-
-
-                setLoading(
-                    false
-                );
-
-            }
-
-        }
-
-    );
-
-}
-
-
-/* =====================================================
-   ENTER KEY SUPPORT
-===================================================== */
-
-if (usernameInput) {
-
-    usernameInput.addEventListener(
-
-        "keydown",
-
-        function (event) {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                passwordInput.focus();
-
-            }
-
-        }
-
-    );
-
-}
-
-
-/* =====================================================
-   AUTO FOCUS
-===================================================== */
-
-window.addEventListener(
-
+document.addEventListener(
     "DOMContentLoaded",
-
     function () {
 
-        if (usernameInput) {
-
-            usernameInput.focus();
-
-        }
+        initializeLogin();
 
     }
-
 );
 
 
 /* =====================================================
-   PREVENT BACK TO LOGIN
-   IF ALREADY LOGGED IN
+   INITIALIZE LOGIN
 ===================================================== */
 
-(function checkExistingLogin() {
+function initializeLogin() {
+
+
+    /*
+        যদি User আগে থেকেই Login করা থাকে
+        তাহলে সরাসরি Dashboard এ যাবে
+    */
 
     const loggedIn =
         localStorage.getItem(
@@ -537,16 +72,846 @@ window.addEventListener(
         loggedIn === "true"
     ) {
 
-        /*
-          চাইলে এখানে dashboard.html
-          redirect চালু রাখতে পারো।
+        window.location.replace(
+            "dashboard.html"
+        );
 
-          আপাতত বন্ধ রাখা হয়েছে,
-          যাতে login page সবসময় খোলা যায়।
-        */
-
-        // window.location.replace("dashboard.html");
+        return;
 
     }
 
-})();
+
+    /*
+        Login Form
+    */
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+
+    if (!loginForm) {
+
+        console.error(
+            "Login form not found."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Form Submit
+    */
+
+    loginForm.addEventListener(
+        "submit",
+        handleLogin
+    );
+
+
+    /*
+        Password Show / Hide
+    */
+
+    setupPasswordToggle();
+
+
+    /*
+        Clear Error Message
+        যখন User আবার Input করবে
+    */
+
+    setupInputListeners();
+
+}
+
+
+/* =====================================================
+   HANDLE LOGIN
+===================================================== */
+
+async function handleLogin(event) {
+
+
+    /*
+        Page Reload বন্ধ করা
+    */
+
+    event.preventDefault();
+
+
+    /*
+        Input Elements
+    */
+
+    const usernameInput =
+        document.getElementById(
+            "username"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    if (
+        !usernameInput ||
+        !passwordInput
+    ) {
+
+        showMessage(
+            "Login form configuration error.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Input Value
+    */
+
+    const username =
+        usernameInput.value.trim();
+
+
+    const password =
+        passwordInput.value.trim();
+
+
+    /*
+        Empty Validation
+    */
+
+    if (
+        username === ""
+    ) {
+
+        showMessage(
+            "Please enter your username.",
+            "error"
+        );
+
+        usernameInput.focus();
+
+        return;
+
+    }
+
+
+    if (
+        password === ""
+    ) {
+
+        showMessage(
+            "Please enter your password.",
+            "error"
+        );
+
+        passwordInput.focus();
+
+        return;
+
+    }
+
+
+    /*
+        Loading State
+    */
+
+    setLoginLoading(
+        true
+    );
+
+
+    try {
+
+
+        /*
+            DEMO LOGIN
+        */
+
+        if (
+            LOGIN_CONFIG.DEMO_LOGIN === true
+        ) {
+
+            await demoLogin(
+                username,
+                password
+            );
+
+        }
+
+
+        /*
+            GOOGLE APPS SCRIPT LOGIN
+        */
+
+        else {
+
+            await authenticateUser(
+                username,
+                password
+            );
+
+        }
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Login Error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Login failed. Please try again.",
+            "error"
+        );
+
+
+        setLoginLoading(
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DEMO LOGIN
+===================================================== */
+
+function demoLogin(
+    username,
+    password
+) {
+
+
+    return new Promise(
+        function (
+            resolve,
+            reject
+        ) {
+
+
+            setTimeout(
+                function () {
+
+
+                    /*
+                        Demo Username / Password
+
+                        Username:
+                        admin
+
+                        Password:
+                        123456
+
+                        পরে এগুলো Remove করে
+                        Google Sheet Login ব্যবহার করবেন।
+                    */
+
+
+                    if (
+                        username === "admin" &&
+                        password === "123456"
+                    ) {
+
+
+                        /*
+                            Login Session
+                        */
+
+                        createLoginSession({
+
+                            userName:
+                                "Administrator",
+
+                            username:
+                                username,
+
+                            role:
+                                "Administrator"
+
+                        });
+
+
+                        resolve();
+
+                    }
+
+                    else {
+
+
+                        reject(
+                            new Error(
+                                "Invalid username or password."
+                            )
+                        );
+
+                    }
+
+
+                },
+                700
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GOOGLE APPS SCRIPT AUTHENTICATION
+===================================================== */
+
+async function authenticateUser(
+    username,
+    password
+) {
+
+
+    /*
+        API URL Check
+    */
+
+    if (
+        !LOGIN_CONFIG.API_URL
+    ) {
+
+        throw new Error(
+            "Login API URL is not configured."
+        );
+
+    }
+
+
+    /*
+        Google Apps Script API Request
+    */
+
+    const response =
+        await fetch(
+            LOGIN_CONFIG.API_URL,
+            {
+
+                method:
+                    "POST",
+
+                headers:
+                    {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                body:
+                    JSON.stringify({
+
+                        action:
+                            "login",
+
+                        username:
+                            username,
+
+                        password:
+                            password
+
+                    })
+
+            }
+        );
+
+
+    /*
+        Response Check
+    */
+
+    if (
+        !response.ok
+    ) {
+
+        throw new Error(
+            "Unable to connect to login server."
+        );
+
+    }
+
+
+    /*
+        JSON Response
+    */
+
+    const result =
+        await response.json();
+
+
+    /*
+        Login Failed
+    */
+
+    if (
+        !result.success
+    ) {
+
+        throw new Error(
+            result.message ||
+            "Invalid username or password."
+        );
+
+    }
+
+
+    /*
+        Login Successful
+    */
+
+    createLoginSession({
+
+        userName:
+            result.name ||
+            result.userName ||
+            username,
+
+        username:
+            result.username ||
+            username,
+
+        role:
+            result.role ||
+            "Staff"
+
+    });
+
+}
+
+
+/* =====================================================
+   CREATE LOGIN SESSION
+===================================================== */
+
+function createLoginSession(
+    userData
+) {
+
+
+    /*
+        Login Status
+    */
+
+    localStorage.setItem(
+        "loggedIn",
+        "true"
+    );
+
+
+    /*
+        User Name
+    */
+
+    localStorage.setItem(
+        "userName",
+        userData.userName
+    );
+
+
+    /*
+        Username
+    */
+
+    localStorage.setItem(
+        "username",
+        userData.username
+    );
+
+
+    /*
+        Role
+    */
+
+    localStorage.setItem(
+        "role",
+        userData.role
+    );
+
+
+    /*
+        Login Time
+
+        Future session management এর জন্য
+    */
+
+    localStorage.setItem(
+        "loginTime",
+        new Date().toISOString()
+    );
+
+
+    /*
+        Dashboard Redirect
+    */
+
+    showMessage(
+        "Login successful. Redirecting...",
+        "success"
+    );
+
+
+    setTimeout(
+        function () {
+
+            window.location.replace(
+                "dashboard.html"
+            );
+
+        },
+        500
+    );
+
+}
+
+
+/* =====================================================
+   PASSWORD SHOW / HIDE
+===================================================== */
+
+function setupPasswordToggle() {
+
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    const toggleButton =
+        document.getElementById(
+            "togglePassword"
+        );
+
+
+    /*
+        যদি HTML এ Toggle Button না থাকে
+        তাহলে Function বন্ধ থাকবে
+    */
+
+    if (
+        !passwordInput ||
+        !toggleButton
+    ) {
+
+        return;
+
+    }
+
+
+    toggleButton.addEventListener(
+        "click",
+        function () {
+
+
+            if (
+                passwordInput.type ===
+                "password"
+            ) {
+
+
+                passwordInput.type =
+                    "text";
+
+
+                toggleButton.textContent =
+                    "🙈";
+
+            }
+
+            else {
+
+
+                passwordInput.type =
+                    "password";
+
+
+                toggleButton.textContent =
+                    "👁️";
+
+            }
+
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOGIN MESSAGE
+===================================================== */
+
+function showMessage(
+    message,
+    type = "error"
+) {
+
+
+    /*
+        HTML এ নিচের Element থাকলে
+        সেখানে Message দেখাবে:
+
+        <div id="loginMessage"></div>
+    */
+
+    const messageElement =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    if (
+        messageElement
+    ) {
+
+
+        messageElement.textContent =
+            message;
+
+
+        messageElement.className =
+            "login-message " +
+            type;
+
+
+        messageElement.style.display =
+            "block";
+
+
+        return;
+
+    }
+
+
+    /*
+        Login Message Element না থাকলে
+        Console এ দেখাবে
+    */
+
+    console.log(
+        type.toUpperCase() +
+        ": " +
+        message
+    );
+
+}
+
+
+/* =====================================================
+   INPUT LISTENERS
+===================================================== */
+
+function setupInputListeners() {
+
+
+    const inputs =
+        document.querySelectorAll(
+            "#loginForm input"
+        );
+
+
+    inputs.forEach(
+        function (input) {
+
+
+            input.addEventListener(
+                "input",
+                function () {
+
+
+                    const messageElement =
+                        document.getElementById(
+                            "loginMessage"
+                        );
+
+
+                    if (
+                        messageElement
+                    ) {
+
+                        messageElement.style.display =
+                            "none";
+
+                    }
+
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOGIN BUTTON LOADING
+===================================================== */
+
+function setLoginLoading(
+    loading
+) {
+
+
+    const loginButton =
+        document.querySelector(
+            "#loginForm button[type='submit']"
+        );
+
+
+    if (
+        !loginButton
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        loading
+    ) {
+
+
+        /*
+            Original Button Text
+            Save করে রাখা
+        */
+
+        if (
+            !loginButton.dataset.originalText
+        ) {
+
+            loginButton.dataset.originalText =
+                loginButton.textContent;
+
+        }
+
+
+        loginButton.disabled =
+            true;
+
+
+        loginButton.textContent =
+            "Signing in...";
+
+
+    }
+
+    else {
+
+
+        loginButton.disabled =
+            false;
+
+
+        loginButton.textContent =
+            loginButton.dataset.originalText ||
+            "Login";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT SESSION CLEANUP
+===================================================== */
+
+function clearLoginSession() {
+
+
+    localStorage.removeItem(
+        "loggedIn"
+    );
+
+
+    localStorage.removeItem(
+        "userName"
+    );
+
+
+    localStorage.removeItem(
+        "name"
+    );
+
+
+    localStorage.removeItem(
+        "username"
+    );
+
+
+    localStorage.removeItem(
+        "role"
+    );
+
+
+    localStorage.removeItem(
+        "loginTime"
+    );
+
+}
+
+
+/* =====================================================
+   LOGIN PAGE SECURITY
+===================================================== */
+
+window.addEventListener(
+    "pageshow",
+    function () {
+
+
+        const loggedIn =
+            localStorage.getItem(
+                "loggedIn"
+            );
+
+
+        /*
+            Login করা থাকলে
+            Login Page এ থাকার দরকার নেই
+        */
+
+        if (
+            loggedIn === "true"
+        ) {
+
+            window.location.replace(
+                "dashboard.html"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CONSOLE
+===================================================== */
+
+console.log(
+    "LINK4 Login System Loaded Successfully."
+);
