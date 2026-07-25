@@ -1,6 +1,7 @@
 /* =====================================================
    SYSTEM MANAGEMENT
    ROLE BASED LOGIN SYSTEM
+   FILE: js/login.js
 ===================================================== */
 
 
@@ -19,7 +20,7 @@ const LOGIN_CONFIG = {
 
 
 /* =====================================================
-   DASHBOARD PATH
+   DASHBOARD URL
 ===================================================== */
 
 const DASHBOARDS = {
@@ -62,13 +63,30 @@ document.addEventListener(
 
 function initializeLogin() {
 
+
     /*
-     * IMPORTANT:
-     * Do NOT automatically redirect from login page
-     * just because old localStorage exists.
-     *
-     * User must explicitly login again if they
-     * are currently on login.html.
+     * Already Logged In Check
+     */
+
+    const loggedIn =
+        localStorage.getItem(
+            "loggedIn"
+        );
+
+
+    if (
+        loggedIn === "true"
+    ) {
+
+        redirectByRole();
+
+        return;
+
+    }
+
+
+    /*
+     * Login Form
      */
 
     const loginForm =
@@ -77,7 +95,9 @@ function initializeLogin() {
         );
 
 
-    if (!loginForm) {
+    if (
+        !loginForm
+    ) {
 
         console.error(
             "Login form not found."
@@ -122,11 +142,12 @@ async function handleLogin(
     event
 ) {
 
+
     event.preventDefault();
 
 
     /*
-     * Get Inputs
+     * Get Input
      */
 
     const usernameInput =
@@ -141,14 +162,8 @@ async function handleLogin(
         );
 
 
-    const rememberMe =
-        document.getElementById(
-            "rememberMe"
-        );
-
-
     /*
-     * Validate Elements
+     * Check Input
      */
 
     if (
@@ -156,8 +171,7 @@ async function handleLogin(
         !passwordInput
     ) {
 
-        showPopup(
-            "Login Error",
+        showMessage(
             "Login form configuration error.",
             "error"
         );
@@ -228,7 +242,7 @@ async function handleLogin(
 
 
         /*
-         * Authenticate User
+         * Authenticate
          */
 
         const result =
@@ -238,14 +252,8 @@ async function handleLogin(
             );
 
 
-        console.log(
-            "Login Response:",
-            result
-        );
-
-
         /*
-         * Check API Result
+         * Login Failed
          */
 
         if (
@@ -254,10 +262,14 @@ async function handleLogin(
         ) {
 
             throw new Error(
+
                 result &&
                 result.message
+
                     ? result.message
+
                     : "Invalid username or password."
+
             );
 
         }
@@ -268,9 +280,7 @@ async function handleLogin(
          */
 
         createLoginSession(
-            result,
-            rememberMe &&
-            rememberMe.checked
+            result
         );
 
 
@@ -280,6 +290,7 @@ async function handleLogin(
         error
     ) {
 
+
         console.error(
             "Login Error:",
             error
@@ -288,7 +299,7 @@ async function handleLogin(
 
         showMessage(
             error.message ||
-            "Unable to connect to login server.",
+            "Unable to login. Please try again.",
             "error"
         );
 
@@ -328,7 +339,37 @@ async function authenticateUser(
 
 
     /*
-     * Send Request
+     * Demo Login Disabled
+     */
+
+    if (
+        LOGIN_CONFIG.DEMO_LOGIN === true
+    ) {
+
+        return {
+
+            success:
+                true,
+
+            username:
+                username,
+
+            name:
+                "Demo User",
+
+            role:
+                "admin",
+
+            status:
+                "Active"
+
+        };
+
+    }
+
+
+    /*
+     * API Request
      */
 
     const response =
@@ -341,8 +382,10 @@ async function authenticateUser(
 
                 headers:
                     {
+
                         "Content-Type":
                             "text/plain;charset=utf-8"
+
                     },
 
                 body:
@@ -364,7 +407,7 @@ async function authenticateUser(
 
 
     /*
-     * Response Check
+     * Server Error
      */
 
     if (
@@ -379,7 +422,7 @@ async function authenticateUser(
 
 
     /*
-     * Parse JSON
+     * Get JSON
      */
 
     const result =
@@ -396,8 +439,7 @@ async function authenticateUser(
 ===================================================== */
 
 function createLoginSession(
-    userData,
-    rememberMe
+    userData
 ) {
 
 
@@ -427,7 +469,46 @@ function createLoginSession(
 
 
     /*
-     * Save Session
+     * Check Account Status
+     */
+
+    const blockedStatuses = [
+
+        "blocked",
+
+        "inactive",
+
+        "disabled",
+
+        "suspended"
+
+    ];
+
+
+    if (
+        blockedStatuses.includes(
+            status.toLowerCase()
+        )
+    ) {
+
+        showMessage(
+            "Your account is " +
+            status +
+            ". Please contact administrator.",
+            "error"
+        );
+
+        setLoginLoading(
+            false
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Save Login Status
      */
 
     localStorage.setItem(
@@ -479,7 +560,7 @@ function createLoginSession(
 
 
     /*
-     * Save Login Time
+     * Login Time
      */
 
     localStorage.setItem(
@@ -492,12 +573,32 @@ function createLoginSession(
      * Remember Me
      */
 
-    localStorage.setItem(
-        "rememberMe",
-        rememberMe
-            ? "true"
-            : "false"
-    );
+    const rememberMe =
+        document.getElementById(
+            "rememberMe"
+        );
+
+
+    if (
+        rememberMe &&
+        rememberMe.checked
+    ) {
+
+        localStorage.setItem(
+            "rememberMe",
+            "true"
+        );
+
+    }
+
+    else {
+
+        localStorage.setItem(
+            "rememberMe",
+            "false"
+        );
+
+    }
 
 
     /*
@@ -511,7 +612,7 @@ function createLoginSession(
 
 
     /*
-     * Redirect After Login
+     * Redirect
      */
 
     setTimeout(
@@ -549,7 +650,7 @@ function redirectByRole() {
 
 
     /*
-     * Get Dashboard
+     * Dashboard Variable
      */
 
     let dashboard;
@@ -625,16 +726,8 @@ function redirectByRole() {
 
 
     /*
-     * Redirect
+     * Final Redirect
      */
-
-    console.log(
-        "Redirecting:",
-        role,
-        "→",
-        dashboard
-    );
-
 
     window.location.replace(
         dashboard
@@ -645,14 +738,14 @@ function redirectByRole() {
 
 /* =====================================================
    PASSWORD TOGGLE
+   FIXED FOR YOUR LOGIN.HTML
 ===================================================== */
 
 function setupPasswordToggle() {
 
 
     /*
-     * Your HTML uses:
-     * passwordToggle
+     * Password Input
      */
 
     const passwordInput =
@@ -661,17 +754,33 @@ function setupPasswordToggle() {
         );
 
 
+    /*
+     * Toggle Button
+     * Your HTML ID:
+     * passwordToggle
+     */
+
     const toggleButton =
         document.getElementById(
             "passwordToggle"
         );
 
 
+    /*
+     * Password Icon
+     * Your HTML ID:
+     * passwordIcon
+     */
+
     const passwordIcon =
         document.getElementById(
             "passwordIcon"
         );
 
+
+    /*
+     * Check Elements
+     */
 
     if (
         !passwordInput ||
@@ -682,6 +791,10 @@ function setupPasswordToggle() {
 
     }
 
+
+    /*
+     * Click
+     */
 
     toggleButton.addEventListener(
         "click",
@@ -694,16 +807,29 @@ function setupPasswordToggle() {
             ) {
 
 
+                /*
+                 * Show Password
+                 */
+
                 passwordInput.type =
                     "text";
 
+
+                /*
+                 * Change Icon
+                 */
 
                 if (
                     passwordIcon
                 ) {
 
-                    passwordIcon.className =
-                        "fa-solid fa-eye-slash";
+                    passwordIcon.classList.remove(
+                        "fa-eye"
+                    );
+
+                    passwordIcon.classList.add(
+                        "fa-eye-slash"
+                    );
 
                 }
 
@@ -718,16 +844,29 @@ function setupPasswordToggle() {
             else {
 
 
+                /*
+                 * Hide Password
+                 */
+
                 passwordInput.type =
                     "password";
 
+
+                /*
+                 * Change Icon
+                 */
 
                 if (
                     passwordIcon
                 ) {
 
-                    passwordIcon.className =
-                        "fa-solid fa-eye";
+                    passwordIcon.classList.remove(
+                        "fa-eye-slash"
+                    );
+
+                    passwordIcon.classList.add(
+                        "fa-eye"
+                    );
 
                 }
 
@@ -747,6 +886,7 @@ function setupPasswordToggle() {
 
 /* =====================================================
    SHOW LOGIN MESSAGE
+   WORKS WITH YOUR HTML
 ===================================================== */
 
 function showMessage(
@@ -756,11 +896,7 @@ function showMessage(
 
 
     /*
-     * Your HTML uses:
-     *
-     * messageBox
-     * messageIcon
-     * messageText
+     * Message Box
      */
 
     const messageBox =
@@ -769,17 +905,29 @@ function showMessage(
         );
 
 
+    /*
+     * Message Text
+     */
+
     const messageText =
         document.getElementById(
             "messageText"
         );
 
 
+    /*
+     * Message Icon
+     */
+
     const messageIcon =
         document.getElementById(
             "messageIcon"
         );
 
+
+    /*
+     * Check
+     */
 
     if (
         !messageBox ||
@@ -798,7 +946,7 @@ function showMessage(
 
 
     /*
-     * Message Text
+     * Set Text
      */
 
     messageText.textContent =
@@ -820,7 +968,8 @@ function showMessage(
     messageBox.classList.remove(
         "success",
         "error",
-        "warning"
+        "warning",
+        "info"
     );
 
 
@@ -834,7 +983,7 @@ function showMessage(
 
 
     /*
-     * Icon
+     * Change Icon
      */
 
     if (
@@ -842,166 +991,47 @@ function showMessage(
     ) {
 
 
+        messageIcon.className =
+            "fa-solid";
+
+
         if (
-            type ===
-            "success"
+            type === "success"
         ) {
 
-            messageIcon.className =
-                "fa-solid fa-circle-check";
+            messageIcon.classList.add(
+                "fa-circle-check"
+            );
 
         }
 
         else if (
-            type ===
-            "warning"
+            type === "error"
         ) {
 
-            messageIcon.className =
-                "fa-solid fa-triangle-exclamation";
+            messageIcon.classList.add(
+                "fa-circle-xmark"
+            );
+
+        }
+
+        else if (
+            type === "warning"
+        ) {
+
+            messageIcon.classList.add(
+                "fa-triangle-exclamation"
+            );
 
         }
 
         else {
 
-            messageIcon.className =
-                "fa-solid fa-circle-exclamation";
+            messageIcon.classList.add(
+                "fa-circle-info"
+            );
 
         }
-
-    }
-
-}
-
-
-/* =====================================================
-   CUSTOM POPUP
-===================================================== */
-
-function showPopup(
-    title,
-    message,
-    type = "error"
-) {
-
-
-    const popup =
-        document.getElementById(
-            "customPopup"
-        );
-
-
-    const popupTitle =
-        document.getElementById(
-            "popupTitle"
-        );
-
-
-    const popupMessage =
-        document.getElementById(
-            "popupMessage"
-        );
-
-
-    const popupIcon =
-        document.getElementById(
-            "popupIconElement"
-        );
-
-
-    const popupButton =
-        document.getElementById(
-            "popupButton"
-        );
-
-
-    if (
-        !popup
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-     * Set Content
-     */
-
-    if (
-        popupTitle
-    ) {
-
-        popupTitle.textContent =
-            title;
-
-    }
-
-
-    if (
-        popupMessage
-    ) {
-
-        popupMessage.textContent =
-            message;
-
-    }
-
-
-    /*
-     * Icon
-     */
-
-    if (
-        popupIcon
-    ) {
-
-
-        if (
-            type ===
-            "success"
-        ) {
-
-            popupIcon.className =
-                "fa-solid fa-circle-check";
-
-        }
-
-        else {
-
-            popupIcon.className =
-                "fa-solid fa-circle-exclamation";
-
-        }
-
-    }
-
-
-    /*
-     * Show Popup
-     */
-
-    popup.classList.add(
-        "active"
-    );
-
-
-    /*
-     * Close Button
-     */
-
-    if (
-        popupButton
-    ) {
-
-        popupButton.onclick =
-            function () {
-
-                popup.classList.remove(
-                    "active"
-                );
-
-            };
 
     }
 
@@ -1058,6 +1088,7 @@ function setupInputListeners() {
 
 /* =====================================================
    LOGIN BUTTON LOADING
+   WORKS WITH YOUR HTML
 ===================================================== */
 
 function setLoginLoading(
@@ -1065,11 +1096,19 @@ function setLoginLoading(
 ) {
 
 
+    /*
+     * Login Button
+     */
+
     const loginButton =
         document.getElementById(
             "loginButton"
         );
 
+
+    /*
+     * Normal Text
+     */
 
     const loginButtonText =
         document.getElementById(
@@ -1077,11 +1116,19 @@ function setLoginLoading(
         );
 
 
+    /*
+     * Loading Text
+     */
+
     const loginLoading =
         document.getElementById(
             "loginLoading"
         );
 
+
+    /*
+     * Check
+     */
 
     if (
         !loginButton
@@ -1097,9 +1144,17 @@ function setLoginLoading(
     ) {
 
 
+        /*
+         * Disable
+         */
+
         loginButton.disabled =
             true;
 
+
+        /*
+         * Normal Text Hide
+         */
 
         if (
             loginButtonText
@@ -1110,6 +1165,10 @@ function setLoginLoading(
 
         }
 
+
+        /*
+         * Loading Show
+         */
 
         if (
             loginLoading
@@ -1125,9 +1184,17 @@ function setLoginLoading(
     else {
 
 
+        /*
+         * Enable
+         */
+
         loginButton.disabled =
             false;
 
+
+        /*
+         * Normal Text Show
+         */
 
         if (
             loginButtonText
@@ -1138,6 +1205,10 @@ function setLoginLoading(
 
         }
 
+
+        /*
+         * Loading Hide
+         */
 
         if (
             loginLoading
@@ -1154,31 +1225,172 @@ function setLoginLoading(
 
 
 /* =====================================================
-   LOGIN PAGE SECURITY
+   CUSTOM POPUP
+   OPTIONAL
 ===================================================== */
 
-/*
- * IMPORTANT:
- *
- * We intentionally DO NOT redirect automatically
- * when login.html loads.
- *
- * This prevents the following problem:
- *
- * index.html
- *     ↓
- * login.html
- *     ↓
- * old localStorage
- *     ↓
- * immediately admin dashboard
- *
- * Now login.html will always show the login form.
- */
+function showPopup(
+    title,
+    message,
+    type = "info"
+) {
+
+
+    const popup =
+        document.getElementById(
+            "customPopup"
+        );
+
+
+    const popupTitle =
+        document.getElementById(
+            "popupTitle"
+        );
+
+
+    const popupMessage =
+        document.getElementById(
+            "popupMessage"
+        );
+
+
+    const popupIconElement =
+        document.getElementById(
+            "popupIconElement"
+        );
+
+
+    if (
+        !popup
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+     * Title
+     */
+
+    if (
+        popupTitle
+    ) {
+
+        popupTitle.textContent =
+            title;
+
+    }
+
+
+    /*
+     * Message
+     */
+
+    if (
+        popupMessage
+    ) {
+
+        popupMessage.textContent =
+            message;
+
+    }
+
+
+    /*
+     * Icon
+     */
+
+    if (
+        popupIconElement
+    ) {
+
+
+        popupIconElement.className =
+            "fa-solid";
+
+
+        if (
+            type === "success"
+        ) {
+
+            popupIconElement.classList.add(
+                "fa-circle-check"
+            );
+
+        }
+
+        else if (
+            type === "error"
+        ) {
+
+            popupIconElement.classList.add(
+                "fa-circle-xmark"
+            );
+
+        }
+
+        else if (
+            type === "warning"
+        ) {
+
+            popupIconElement.classList.add(
+                "fa-triangle-exclamation"
+            );
+
+        }
+
+        else {
+
+            popupIconElement.classList.add(
+                "fa-circle-info"
+            );
+
+        }
+
+    }
+
+
+    /*
+     * Show Popup
+     */
+
+    popup.classList.add(
+        "active"
+    );
+
+
+}
 
 
 /* =====================================================
-   CLOSE POPUP WHEN CLICKING OVERLAY
+   CLOSE CUSTOM POPUP
+===================================================== */
+
+function closePopup() {
+
+
+    const popup =
+        document.getElementById(
+            "customPopup"
+        );
+
+
+    if (
+        popup
+    ) {
+
+        popup.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   POPUP BUTTON
 ===================================================== */
 
 document.addEventListener(
@@ -1186,36 +1398,65 @@ document.addEventListener(
     function () {
 
 
-        const popup =
+        const popupButton =
             document.getElementById(
-                "customPopup"
+                "popupButton"
             );
-
-
-        const overlay =
-            popup
-                ? popup.querySelector(
-                    ".popup-overlay"
-                )
-                : null;
 
 
         if (
-            overlay
+            popupButton
         ) {
 
-            overlay.addEventListener(
+            popupButton.addEventListener(
                 "click",
-                function () {
-
-                    popup.classList.remove(
-                        "active"
-                    );
-
-                }
+                closePopup
             );
 
         }
+
+    }
+);
+
+
+/* =====================================================
+   LOGIN PAGE SECURITY
+===================================================== */
+
+window.addEventListener(
+    "pageshow",
+    function () {
+
+
+        const loggedIn =
+            localStorage.getItem(
+                "loggedIn"
+            );
+
+
+        if (
+            loggedIn === "true"
+        ) {
+
+            redirectByRole();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PREVENT LOGIN PAGE CACHE
+===================================================== */
+
+window.addEventListener(
+    "pagehide",
+    function () {
+
+        console.log(
+            "Leaving login page."
+        );
 
     }
 );
@@ -1226,5 +1467,5 @@ document.addEventListener(
 ===================================================== */
 
 console.log(
-    "SYSTEM MANAGEMENT Role Based Login System Loaded."
+    "System Management Role Based Login System Loaded Successfully."
 );
