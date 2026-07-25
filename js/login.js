@@ -25,19 +25,19 @@ const LOGIN_CONFIG = {
 const DASHBOARDS = {
 
     admin:
-        "dashboards/admin-dashboard.html",
+        "https://net24bd.github.io/support-menagment/dashboards/admin-dashboard.html",
 
     support:
-        "dashboards/support-dashboard.html",
+        "https://net24bd.github.io/support-menagment/dashboards/support-dashboard.html",
 
     call:
-        "dashboards/call-dashboard.html",
+        "https://net24bd.github.io/support-menagment/dashboards/call-dashboard.html",
 
     user:
-        "dashboards/user-dashboard.html",
+        "https://net24bd.github.io/support-menagment/dashboards/user-dashboard.html",
 
     staff:
-        "dashboards/user-dashboard.html"
+        "https://net24bd.github.io/support-menagment/dashboards/user-dashboard.html"
 
 };
 
